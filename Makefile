@@ -8,7 +8,8 @@ book:
 
 gh-pages: book
 	${GIT} checkout gh-pages
-	cp -r _book/* .
 	git clean -i
+	cp -r _book/* .
+	git add .
 	git commit -am "Update GitHub Pages copy of spec."
 	${GIT} checkout master	
