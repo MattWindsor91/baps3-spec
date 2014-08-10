@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="rustdoc">
+    <title>Inter-Service Communications</title>
+
+    <link rel="stylesheet" type="text/css" href="../rust-book.css">
+
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    <div id='toc'>
+<ul class='chapter'>
+<li><a href='../README.html'><b>1.</b> Introduction</a>
+</li>
+<li><a href='../meta/README.html'><b>2.</b> This document</a>
+<ul class='section'>
+<li><a href='../meta/compiling.html'><b>2.1.</b> Compiling this document</a>
+</li>
+<li><a href='../meta/conventions.html'><b>2.2.</b> Conventions used in this document</a>
+</li>
+</ul>
+</li>
+<li><a href='../rationale/README.html'><b>3.</b> Rationale</a>
+</li>
+<li><a href='../services/README.html'><b>4.</b> Services</a>
+<ul class='section'>
+<li><a href='../services/player.html'><b>4.1.</b> Player</a>
+</li>
+<li><a href='../services/playlist.html'><b>4.2.</b> Playlist</a>
+</li>
+<li><a href='../services/platform.html'><b>4.3.</b> Platform</a>
+</li>
+<li><a href='../services/tracklister.html'><b>4.4.</b> Track Lister</a>
+</li>
+<li><a href='../services/trackresolver.html'><b>4.5.</b> Track Resolver</a>
+</li>
+<li><a href='../services/client.html'><b>4.6.</b> Client</a>
+</li>
+</ul>
+</li>
+<li><a href='../comms/README.html'><b>5.</b> Inter-Service Communications</a>
+</li>
+<li><a href='../impl/README.html'><b>6.</b> Reference Implementations</a>
+</li>
+</ul>
+</div>
+<div id='page-wrapper'>
+<div id='page'>
+
+
+    <h1 class="title">Inter-Service Communications</h1>
+    <p>Unless BAPS3 is implemented as a single monolithic entity, its services need to
+communicate with each other to fulfil the tasks of a playout suite.  We specify
+two interfaces for inter-service communication:</p>
+
+<ul>
+<li>The <em>internal API</em>, which is a lightweight, line-orientated textual API used
+for communication between server-side services;</li>
+<li>The <em>external API</em>, which is a HTTP-based JSON API used for communication
+specifically between the platform and client services.</li>
+</ul>
+
+<h2 id="the-baps2-api" class='section-header'><a
+                           href="#the-baps2-api">The BAPS2 API</a></h2>
+<p>We consciously chose not to use the existing BAPS2 API, for the following
+reasons:</p>
+
+<ul>
+<li>The BAPS2 API is based on a binary protocol that is difficult to debug, and
+provides a lack of transparency that outweighs the performance advantages of
+using the binary protocol;</li>
+<li>The HTTP-based external API allows Web-based implementations of the client
+service, amongst other flexibility benefits;</li>
+<li>The change from BAPS2 to BAPS3 allowed us to correct some oddities and
+counter-intuitive design decisions in the BAPS2 API.</li>
+</ul>
+
+<h2 id="chapter-structure" class='section-header'><a
+                           href="#chapter-structure">Chapter Structure</a></h2>
+<p>We define both APIs in turn, starting with the internal API and following with
+the external API.  For each API, the protocols underlying the API are first
+described, followed by a detailed reference of
+the requests and responses used in that API.</p>
+
+<p>For the internal API, requests and responses are grouped by <em>feature flags</em>,
+which are used by the API to describe the feature set of an internal API server.</p>
+
+    <script type="text/javascript">
+        window.playgroundUrl = "";
+    </script>
+    </div></div>
+
+
+</body>
+</html>

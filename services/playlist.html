@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="rustdoc">
+    <title>Playlist</title>
+
+    <link rel="stylesheet" type="text/css" href="../rust-book.css">
+
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    <div id='toc'>
+<ul class='chapter'>
+<li><a href='../README.html'><b>1.</b> Introduction</a>
+</li>
+<li><a href='../meta/README.html'><b>2.</b> This document</a>
+<ul class='section'>
+<li><a href='../meta/compiling.html'><b>2.1.</b> Compiling this document</a>
+</li>
+<li><a href='../meta/conventions.html'><b>2.2.</b> Conventions used in this document</a>
+</li>
+</ul>
+</li>
+<li><a href='../rationale/README.html'><b>3.</b> Rationale</a>
+</li>
+<li><a href='../services/README.html'><b>4.</b> Services</a>
+<ul class='section'>
+<li><a href='../services/player.html'><b>4.1.</b> Player</a>
+</li>
+<li><a href='../services/playlist.html'><b>4.2.</b> Playlist</a>
+</li>
+<li><a href='../services/platform.html'><b>4.3.</b> Platform</a>
+</li>
+<li><a href='../services/tracklister.html'><b>4.4.</b> Track Lister</a>
+</li>
+<li><a href='../services/trackresolver.html'><b>4.5.</b> Track Resolver</a>
+</li>
+<li><a href='../services/client.html'><b>4.6.</b> Client</a>
+</li>
+</ul>
+</li>
+<li><a href='../comms/README.html'><b>5.</b> Inter-Service Communications</a>
+</li>
+<li><a href='../impl/README.html'><b>6.</b> Reference Implementations</a>
+</li>
+</ul>
+</div>
+<div id='page-wrapper'>
+<div id='page'>
+
+
+    <h1 class="title">Playlist</h1>
+    <p>The <em>playlist</em> service maintains a playlist on top of the player service.  The
+playlist contains both <em>file items</em>, which represent files available to load
+into the player, and <em>text items</em>, which are comments that can be added into the
+playlist, but are not loadable and will be skipped over by the playlist.</p>
+
+<h2 id="interface" class='section-header'><a
+                           href="#interface">Interface</a></h2>
+<p>The playlist uses the internal API to communicate both with the platform above
+it, and the player below.</p>
+
+<p>The playlist exposes an API on top of the player, delegating any commands it
+doesn&#39;t understand to the player itself.  It adds the following requests to
+the interface:</p>
+
+<ul>
+<li><code>enqueue</code> — Adds a file or text item into the playlist;</li>
+<li><code>dequeue</code> — Removes a file or text item from the playlist;</li>
+<li><code>clear</code> — Removes all items from the playlist.</li>
+<li><code>select</code> — Selects a file item in the playlist, loading it into the player;</li>
+<li><code>list</code> — Enumerates the items in the playlist, alongside their types;</li>
+</ul>
+
+<p>In addition, it overrides the following player requests:</p>
+
+<ul>
+<li><code>load</code> — Clears the playlist, enqueues the requested file, and selects it.</li>
+<li><code>eject</code> — Deselects the current selected item and unloads it from the player;</li>
+<li><code>quit</code> — Quits both the playlist and player services.</li>
+</ul>
+
+<p>It also adds the following responses to those sent by the player:</p>
+
+<ul>
+<li><code>ENQUEUE</code> — An item has been enqueued;</li>
+<li><code>DEQUEUE</code> — An item has been dequeued;</li>
+<li><code>SELECT</code> — The selection has been changed;</li>
+<li><code>COUNT</code> — The current number of items in the playlist;</li>
+<li><code>LIST</code> — A playlist item.</li>
+</ul>
+
+<h2 id="requirements" class='section-header'><a
+                           href="#requirements">Requirements</a></h2>
+<p><strong>Interface compatibility.</strong>  The playlist <strong>must</strong> implement the above
+interface. It <strong>may</strong> implement a superset of the interface, in order to
+implement more features than those required by the playlist.</p>
+
+<p><strong>File and text loading.</strong>  The playlist <strong>should</strong> allow both files and text
+items to be enqueued, and <strong>must</strong> disregard text items for the purposes of
+selection and auto-advancing.  If the playlist does not allow text items, it
+<strong>must</strong> notify the platform of this deficiency via the <code>FEATURES</code> response.</p>
+
+<p><strong>Features propagation.</strong>  The playlist <strong>must</strong> announce those features of the
+player to which it allows access, and <strong>must</strong> hide those features of the player
+to which it does not.</p>
+
+<p><strong>Flexible player selection.</strong>  The playlist <strong>should</strong> allow the configurable
+selection of the player instance to which it will attach.  For example, a
+TCP/IP-based playlist service should allow the player port and address to be
+selected.  If the playlist spawns, or contains, its own player, this may be
+disregarded.</p>
+
+    <script type="text/javascript">
+        window.playgroundUrl = "";
+    </script>
+    </div></div>
+
+
+</body>
+</html>

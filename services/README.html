@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="rustdoc">
+    <title>Services</title>
+
+    <link rel="stylesheet" type="text/css" href="../rust-book.css">
+
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    <div id='toc'>
+<ul class='chapter'>
+<li><a href='../README.html'><b>1.</b> Introduction</a>
+</li>
+<li><a href='../meta/README.html'><b>2.</b> This document</a>
+<ul class='section'>
+<li><a href='../meta/compiling.html'><b>2.1.</b> Compiling this document</a>
+</li>
+<li><a href='../meta/conventions.html'><b>2.2.</b> Conventions used in this document</a>
+</li>
+</ul>
+</li>
+<li><a href='../rationale/README.html'><b>3.</b> Rationale</a>
+</li>
+<li><a href='../services/README.html'><b>4.</b> Services</a>
+<ul class='section'>
+<li><a href='../services/player.html'><b>4.1.</b> Player</a>
+</li>
+<li><a href='../services/playlist.html'><b>4.2.</b> Playlist</a>
+</li>
+<li><a href='../services/platform.html'><b>4.3.</b> Platform</a>
+</li>
+<li><a href='../services/tracklister.html'><b>4.4.</b> Track Lister</a>
+</li>
+<li><a href='../services/trackresolver.html'><b>4.5.</b> Track Resolver</a>
+</li>
+<li><a href='../services/client.html'><b>4.6.</b> Client</a>
+</li>
+</ul>
+</li>
+<li><a href='../comms/README.html'><b>5.</b> Inter-Service Communications</a>
+</li>
+<li><a href='../impl/README.html'><b>6.</b> Reference Implementations</a>
+</li>
+</ul>
+</div>
+<div id='page-wrapper'>
+<div id='page'>
+
+
+    <h1 class="title">Services</h1>
+    <p>BAPS3 is comprised of multiple logical <em>services</em>.  Each service is intended to
+be implemented as a separate server program, but <strong>may</strong> be merged (for
+reasons of performance, maintainability, and so on).</p>
+
+<h2 id="core-services" class='section-header'><a
+                           href="#core-services">Core Services</a></h2>
+<p>There are six <em>core services</em> that define BAPS3&#39;s minimal functionality:</p>
+
+<ul>
+<li>The <a href="player.html">Player</a> service;</li>
+<li>The <a href="playlist.html">Playlist</a> service;</li>
+<li>The <a href="tracklister.html">Track Lister</a> service;</li>
+<li>The <a href="trackresolver.html">Track Resolver</a> service;</li>
+<li>The <a href="platform.html">Platform</a> service;</li>
+<li>The <a href="client.html">Client</a> service;</li>
+</ul>
+
+<h2 id="additional-services" class='section-header'><a
+                           href="#additional-services">Additional Services</a></h2>
+<p>Implementations of BAPS3 <strong>may</strong> define additional services.  Examples of
+possible additional services <em>not</em> specified here include:</p>
+
+<ul>
+<li>Additional frontend services (for debugging purposes, for example);</li>
+<li>Digitising and cataloguing services;</li>
+<li>Installation, deployment and configuration services.</li>
+</ul>
+
+<h2 id="chapter-structure" class='section-header'><a
+                           href="#chapter-structure">Chapter Structure</a></h2>
+<p>In this chapter, each core service is detailed in turn.  The services are
+defined in terms of:</p>
+
+<ul>
+<li>Their remits;</li>
+<li>Their interfaces with other services (in brief; a more detailed specification
+follows in the next chapter);</li>
+<li>Their implementation requirements;</li>
+<li>Comparisons with existing software.</li>
+</ul>
+
+    <script type="text/javascript">
+        window.playgroundUrl = "";
+    </script>
+    </div></div>
+
+
+</body>
+</html>

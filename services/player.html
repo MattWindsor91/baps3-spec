@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="rustdoc">
+    <title>Player</title>
+
+    <link rel="stylesheet" type="text/css" href="../rust-book.css">
+
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    <div id='toc'>
+<ul class='chapter'>
+<li><a href='../README.html'><b>1.</b> Introduction</a>
+</li>
+<li><a href='../meta/README.html'><b>2.</b> This document</a>
+<ul class='section'>
+<li><a href='../meta/compiling.html'><b>2.1.</b> Compiling this document</a>
+</li>
+<li><a href='../meta/conventions.html'><b>2.2.</b> Conventions used in this document</a>
+</li>
+</ul>
+</li>
+<li><a href='../rationale/README.html'><b>3.</b> Rationale</a>
+</li>
+<li><a href='../services/README.html'><b>4.</b> Services</a>
+<ul class='section'>
+<li><a href='../services/player.html'><b>4.1.</b> Player</a>
+</li>
+<li><a href='../services/playlist.html'><b>4.2.</b> Playlist</a>
+</li>
+<li><a href='../services/platform.html'><b>4.3.</b> Platform</a>
+</li>
+<li><a href='../services/tracklister.html'><b>4.4.</b> Track Lister</a>
+</li>
+<li><a href='../services/trackresolver.html'><b>4.5.</b> Track Resolver</a>
+</li>
+<li><a href='../services/client.html'><b>4.6.</b> Client</a>
+</li>
+</ul>
+</li>
+<li><a href='../comms/README.html'><b>5.</b> Inter-Service Communications</a>
+</li>
+<li><a href='../impl/README.html'><b>6.</b> Reference Implementations</a>
+</li>
+</ul>
+</div>
+<div id='page-wrapper'>
+<div id='page'>
+
+
+    <h1 class="title">Player</h1>
+    <p>The <em>player</em> service plays audio files.  It is supplied a single file at a time,
+and allows the playback to be controlled by upstream services through a basic
+API (<code>stop</code>, <code>play</code>, <code>seek</code>, <code>load</code>, and <code>eject</code>).</p>
+
+<p>Conceptually, a player represents part of a single <em>playout channel</em>, with the
+<em>playlist</em> service providing the rest.  Since the usual configuration of a BAPS3
+system will use more than one channel, a playout machine will likely host more
+than one instance of the player service.</p>
+
+<h2 id="interface" class='section-header'><a
+                           href="#interface">Interface</a></h2>
+<p>The player uses the internal API to communicate with the playlist service.  It
+understands the following requests:</p>
+
+<ul>
+<li><code>play</code> — Plays the currently loaded file;</li>
+<li><code>stop</code> — Stops the currently loaded file;</li>
+<li><code>load</code> — Loads a new file;</li>
+<li><code>eject</code> — Unloads the currently loaded file;</li>
+<li><code>seek</code> — Seeks to a new position in the currently loaded file;</li>
+<li><code>quit</code> — Quits the player.</li>
+</ul>
+
+<p>It emits the following responses:</p>
+
+<ul>
+<li><code>OHAI</code> — Identifies the player implementation and welcomes the client;</li>
+<li><code>STATE</code> — A state change has occurred;</li>
+<li><code>TIME</code> — The current position in the loaded file, sent periodically;</li>
+<li><code>END</code> — The file has ended of its own accord (not via user intervention);</li>
+<li><code>OKAY</code> — A client request was successfully honoured;</li>
+<li><code>WHAT</code> — A client request was not understood;</li>
+<li><code>FAIL</code> — An error has occurred;</li>
+<li><code>FILE</code> — The currently loaded file;</li>
+<li><code>FEATURES</code> — The set of features implemented by the player.</li>
+</ul>
+
+<h2 id="requirements" class='section-header'><a
+                           href="#requirements">Requirements</a></h2>
+<p><strong>Interface compatibility.</strong>  The player <strong>must</strong> implement the above interface.
+It <strong>may</strong> implement a superset of the interface, in order to implement more
+features than those required by the player.</p>
+
+<p><strong>File loads.</strong>  The player <strong>must</strong> be able to load and play files, given their
+absolute path on the local filesystem.</p>
+
+<p><strong>Configurable audio sink.</strong>  The player <strong>must</strong> allow its audio sink to be
+configured.  This allows a playout machine to direct each player to a separate
+physical or logical sound-card, which is important for allowing each playback
+channel to be routed to a separate mixing desk fader.</p>
+
+<p><strong>Non-conflicting API endpoint.</strong>  The player <strong>must</strong> allow its API end-point
+to be set up so as not to conflict with other BAPS3 services on the same
+machine.  For example, if it exposes a TCP socket, the port should be
+configurable; if it exposes a <em>stdin/stdout</em> interface, then no action is needed
+as this cannot conflict with other services.  This is to allow multiple such
+services to co-exist on the same machine, which is important for the
+multiple-output-channel use case mentioned above.</p>
+
+    <script type="text/javascript">
+        window.playgroundUrl = "";
+    </script>
+    </div></div>
+
+
+</body>
+</html>
