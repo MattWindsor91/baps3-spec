@@ -5,7 +5,7 @@ It may be read directly as a directory of _Markdown_ files,
 or compiled to book format.
 
 The latest version of the specification may be found at its
-[GitHub page](https://github.com/UniversityRadioYork/baps3-spec)
+[GitHub repository](https://github.com/UniversityRadioYork/baps3-spec)
 at all times.  A
 [pre-rendered copy](http://universityradioyork.github.io/baps3-spec/) is
 available via GitHub Pages, but may lag behind the main repository.
