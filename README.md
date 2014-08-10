@@ -1,4 +1,3 @@
-baps3-spec
-==========
+% BAPS3 Specification
 
-Specification for BAPS3
+This is the specification for the BAPS3 playout system.
