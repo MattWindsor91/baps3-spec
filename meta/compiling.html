@@ -58,7 +58,41 @@
 
 
     <h1 class="title">Compiling this document</h1>
-    <p>This document may be compiled using Rustbook.</p>
+    <p>This document may be compiled using
+<a href="https://github.com/aturon/rust-book">rustbook</a>; see the readme of that project
+for details.  It may also work, to some extent, with
+<a href="https://github.com/GitbookIO/gitbook">gitbook</a>.</p>
+
+<h2 id="source" class='section-header'><a
+                           href="#source">Source</a></h2>
+<p>The latest source is available via its
+<a href="https://github.com/UniversityRadioYork/baps3-spec">GitHub repository</a>.</p>
+
+<h2 id="makefile" class='section-header'><a
+                           href="#makefile">Makefile</a></h2>
+<p>The source distribution contains a GNU <code>Makefile</code>, which provides a thin layer
+over common compilation tasks:</p>
+
+<ul>
+<li><code>make</code> or <code>make book</code> will run <code>rustbook build</code>;</li>
+<li><code>make gh-pages</code> will build the book, then checkout the <code>gh-pages</code> branch and
+commit the book&#39;s contents into that branch, and is useful for updating the
+Github Pages version of the specification.</li>
+</ul>
+
+<h2 id="contributing" class='section-header'><a
+                           href="#contributing">Contributing</a></h2>
+<p>To contribute to this specification:</p>
+
+<ul>
+<li><a href="https://github.com/UniversityRadioYork/baps3-spec/fork">Fork</a> the
+specification on GitHub;</li>
+<li>Make any desired changes;</li>
+<li>Submit the changes as a <em>pull request</em> via GitHub.</li>
+</ul>
+
+<p>You can also submit issues via the GitHub
+<a href="https://github.com/UniversityRadioYork/baps3-spec/issues">issue page</a>.</p>
 
     <script type="text/javascript">
         window.playgroundUrl = "";
