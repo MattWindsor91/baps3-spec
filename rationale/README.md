@@ -10,6 +10,7 @@ The primary goals for BAPS3 are:
 * To replace BAPS2 in use at University Radio York;
 * To be easily modifiable, replaceable, and extensible;
 * To take advantage of modern software, hardware and development technology;
+* To be cross-platform (specifically focusing on Windows, Linux and FreeBSD);
 * To be as reliable as, or more reliable than, BAPS2.
 
 In addition to this, we hope that BAPS3 will:
