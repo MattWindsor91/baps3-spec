@@ -6,7 +6,11 @@ or compiled to book format.
 
 The latest version of the specification may be found at its
 [GitHub page](https://github.com/UniversityRadioYork/baps3-spec)
-at all times.  The specification is licenced under the
+at all times.  A
+[pre-rendered copy](http://universityradioyork.github.io/baps3-spec/) is
+available via GitHub Pages, but may lag behind the main repository.
+
+The specification is licenced under the
 [CC0](https://creativecommons.org/about/cc0) licence; that is,
 it is under the public domain.  In the repository, this is
 available as the file `LICENSE`.
