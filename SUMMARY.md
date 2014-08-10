@@ -2,6 +2,7 @@
 
 * [This document](meta/README.md)
     * [Compiling this document](meta/compiling.md)
+    * [Conventions used in this document](meta/conventions.md)
 * [Rationale](rationale/README.md)
 * [Services](services/README.md)
     * [Player](services/player.md)
