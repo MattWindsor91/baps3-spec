@@ -1,11 +1,21 @@
 CACHE MANIFEST
-# Revision 1407756090142
+# Revision 1407757353193
 
 CACHE:
 index.html
 comms/README.html
 comms/external/README.html
+comms/internal/feature-playlist.html
 comms/internal/README.html
+comms/internal/core.html
+comms/internal/feature-end.html
+comms/internal/feature-fileload.html
+comms/internal/changes.html
+comms/internal/feature-playstop.html
+comms/internal/feature-seek.html
+comms/internal/feature-textitems.html
+comms/internal/feature-timereport.html
+comms/internal/protocol.html
 impl/README.html
 meta/README.html
 meta/compiling.html
