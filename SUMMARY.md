@@ -23,6 +23,6 @@
         * [Feature: End](comms/internal/feature-end.md)
         * [Feature: TimeReport](comms/internal/feature-timereport.md)
         * [Feature: Playlist](comms/internal/feature-playlist.md)
-        * [Feature: TextItems](comms/internal/feature-textitems.md)
+        * [Feature: Playlist.TextItems](comms/internal/feature-textitems.md)
     * [External API](comms/external/README.md)
 * [Reference Implementations](impl/README.md)
