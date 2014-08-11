@@ -11,5 +11,8 @@
     * [Track Lister](services/tracklister.md)
     * [Track Resolver](services/trackresolver.md)
     * [Client](services/client.md)
+    * [Additional Services](services/additional.md)
 * [Inter-Service Communications](comms/README.md)
+    * [Internal API](comms/internal/README.md)
+    * [External API](comms/external/README.md)
 * [Reference Implementations](impl/README.md)

@@ -4,7 +4,10 @@ GITBOOK		?= gitbook
 all: book
 
 book:
-	${GITBOOK} build
+	${GITBOOK} build --config book.json
+
+serve:
+	${GITBOOK} serve --config book.json
 
 gh-pages: book
 	${GIT} checkout gh-pages

@@ -11,8 +11,8 @@
         "home": null,
 
         "about": null,
-        "issues": null,
-        "contribute": null,
+        "issues": "https://github.com/UniversityRadioYork/baps3-spec/issues",
+        "contribute": "https://github.com/UniversityRadioYork/baps3-spec",
 
         "custom": {
             "URY": "https://ury.org.uk"
@@ -23,5 +23,5 @@
             "facebook": false,
             "twitter": false
         }
-    },
+    }
 }
