@@ -1,4 +1,4 @@
-% Conventions used in this document
+# Conventions used in this document
 
 We adopt several conventions in the BAPS3 specification.
 

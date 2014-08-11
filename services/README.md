@@ -1,4 +1,4 @@
-% Services
+# Services
 
 BAPS3 is comprised of multiple logical _services_.  Each service is intended to
 be implemented as a separate server program, but __may__ be merged (for

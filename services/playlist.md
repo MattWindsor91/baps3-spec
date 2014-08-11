@@ -1,4 +1,4 @@
-% Playlist
+# Playlist
 
 The _playlist_ service maintains a playlist on top of the player service.  The
 playlist contains both _file items_, which represent files available to load

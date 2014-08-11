@@ -1,4 +1,4 @@
-% Player
+# Player
 
 The _player_ service plays audio files.  It is supplied a single file at a time,
 and allows the playback to be controlled by upstream services through a basic

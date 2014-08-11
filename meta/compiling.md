@@ -1,9 +1,9 @@
-% Compiling this document
+# Compiling this document
 
 This document may be compiled using
-[rustbook](https://github.com/aturon/rust-book); see the readme of that project
+[gitbook](https://github.com/GitbookIO/gitbook); see the readme of that project
 for details.  It may also work, to some extent, with
-[gitbook](https://github.com/GitbookIO/gitbook).
+[rustbook](https://github.com/aturon/rust-book).
 
 ## Source
 

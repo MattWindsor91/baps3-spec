@@ -1,4 +1,4 @@
-% Rationale
+# Rationale
 
 _BAPS3_ is an architecture for a radio playout suite, designed to replace the
 playout suite, _BAPS2_, in use at University Radio York as of 2014.  As such, it

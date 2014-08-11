@@ -1,10 +1,10 @@
 GIT		?= git
-RUSTBOOK	?= rustbook
+GITBOOK		?= gitbook
 
 all: book
 
 book:
-	${RUSTBOOK} build
+	${GITBOOK} build
 
 gh-pages: book
 	${GIT} checkout gh-pages

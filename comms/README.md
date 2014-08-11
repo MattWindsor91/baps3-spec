@@ -1,4 +1,4 @@
-% Inter-Service Communications
+# Inter-Service Communications
 
 Unless BAPS3 is implemented as a single monolithic entity, its services need to
 communicate with each other to fulfil the tasks of a playout suite.  We specify

@@ -1,4 +1,4 @@
-% Reference Implementations
+# Reference Implementations
 
 URY is in the process of programming _reference implementations_ of the BAPS3
 services:

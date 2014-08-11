@@ -1,0 +1,27 @@
+{
+    "pluginsConfig": {
+        "fontSettings": {
+            "theme": "sepia",
+            "family": "serif",
+            "size": 1
+        }
+    },
+
+    "links": {
+        "home": null,
+
+        "about": null,
+        "issues": null,
+        "contribute": null,
+
+        "custom": {
+            "URY": "https://ury.org.uk"
+        },
+
+        "sharing": {
+            "google": false,
+            "facebook": false,
+            "twitter": false
+        }
+    },
+}
