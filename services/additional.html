@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>Inter-Service Communications | BAPS3 Specification</title>
+        <title>Additional Services | BAPS3 Specification</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.7.1">
@@ -17,10 +17,10 @@
     
     
     
-    <link rel="next" href="../comms/internal/README.html" />
+    <link rel="next" href="../comms/README.html" />
     
     
-    <link rel="prev" href="../services/additional.html" />
+    <link rel="prev" href="../services/client.html" />
     
 
         
@@ -32,7 +32,7 @@
 
 
         
-    <div class="book"  data-level="4" data-basepath=".." data-revision="1407755990353">
+    <div class="book"  data-level="3.7" data-basepath=".." data-revision="1407755990353">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -316,7 +316,7 @@
         </li>
     
         
-        <li class="chapter " data-level="3.7" data-path="services/additional.html">
+        <li class="chapter active" data-level="3.7" data-path="services/additional.html">
             
                 
                     <a href="../services/additional.html">
@@ -337,7 +337,7 @@
         </li>
     
         
-        <li class="chapter active" data-level="4" data-path="comms/README.html">
+        <li class="chapter " data-level="4" data-path="comms/README.html">
             
                 
                     <a href="../comms/README.html">
@@ -422,7 +422,7 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 81.25%;min-width: 75%;"></div>
+        <div class="inner" style="width: 75%;min-width: 68.75%;"></div>
     </div>
     <div class="chapters">
     
@@ -452,7 +452,7 @@
     
         <a href="../services/additional.html" title="Additional Services" class="chapter done " data-progress="3.7" style="left: 75%;"></a>
     
-        <a href="../comms/README.html" title="Inter-Service Communications" class="chapter done new-chapter" data-progress="4" style="left: 81.25%;"></a>
+        <a href="../comms/README.html" title="Inter-Service Communications" class="chapter  new-chapter" data-progress="4" style="left: 81.25%;"></a>
     
         <a href="../comms/internal/README.html" title="Internal API" class="chapter  " data-progress="4.1" style="left: 87.5%;"></a>
     
@@ -465,37 +465,26 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_2">
+                    <section class="normal" id="section-gitbook_11">
                     
-                        <h1 id="inter-service-communications">Inter-Service Communications</h1>
-<p>Unless BAPS3 is implemented as a single monolithic entity, its services need to
-communicate with each other to fulfil the tasks of a playout suite.  We specify
-two interfaces for inter-service communication:</p>
+                        <h1 id="additional-services">Additional Services</h1>
+<p>This section, which is not a normative part of the specification, describes
+ideas for additional BAPS3 services.</p>
+<h2 id="cataloguer">Cataloguer</h2>
+<p>A <em>cataloguer</em> service existed in BAPS2, but is not being developed as a core
+component of BAPS3.  A cataloguer service would provide an interface for
+uploading tracks (from CDs and audio files) into the music library referenced
+by the player and track resolver services.</p>
+<h2 id="streamer">Streamer</h2>
+<p>A <em>streamer</em> service is similar to a player service, but cannot load files or
+seek, and outputs a live audio stream.  Uses for this service include:</p>
 <ul>
-<li>The <em>internal API</em>, which is a lightweight, line-orientated textual API used
-for communication between server-side services;</li>
-<li>The <em>external API</em>, which is a HTTP-based JSON API used for communication
-specifically between the platform and client services.</li>
+<li>Integrating outside broadcast feeds into a BAPS3 session;</li>
+<li>Providing a constant sustainer service (jukebox, news, and so on) that
+presenters can use during their show;</li>
+<li>Stand-alone use as a lightweight stream player (possibly even for use when
+playing the radio station&#39;s streams).</li>
 </ul>
-<h2 id="the-baps2-api">The BAPS2 API</h2>
-<p>We consciously chose not to use the existing BAPS2 API, for the following
-reasons:</p>
-<ul>
-<li>The BAPS2 API is based on a binary protocol that is difficult to debug, and
-provides a lack of transparency that outweighs the performance advantages of
-using the binary protocol;</li>
-<li>The HTTP-based external API allows Web-based implementations of the client
-service, amongst other flexibility benefits;</li>
-<li>The change from BAPS2 to BAPS3 allowed us to correct some oddities and
-counter-intuitive design decisions in the BAPS2 API.</li>
-</ul>
-<h2 id="chapter-structure">Chapter Structure</h2>
-<p>We define both APIs in turn, starting with the internal API and following with
-the external API.  For each API, the protocols underlying the API are first
-described, followed by a detailed reference of
-the requests and responses used in that API.</p>
-<p>For the internal API, requests and responses are grouped by <em>feature flags</em>,
-which are used by the API to describe the feature set of an internal API server.</p>
 
                     
                     </section>
@@ -505,10 +494,10 @@ which are used by the API to describe the feature set of an internal API server.
         </div>
 
         
-        <a href="../services/additional.html" class="navigation navigation-prev " aria-label="Previous page: Additional Services"><i class="fa fa-angle-left"></i></a>
+        <a href="../services/client.html" class="navigation navigation-prev " aria-label="Previous page: Client"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../comms/internal/README.html" class="navigation navigation-next " aria-label="Next page: Internal API"><i class="fa fa-angle-right"></i></a>
+        <a href="../comms/README.html" class="navigation navigation-next " aria-label="Next page: Inter-Service Communications"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
