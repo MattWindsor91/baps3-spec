@@ -32,7 +32,7 @@
 
 
         
-    <div class="book"  data-level="4.1.2" data-basepath="../.." data-revision="1407757353193">
+    <div class="book"  data-level="4.1.2" data-basepath="../.." data-revision="1407938049144">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -523,7 +523,7 @@
                         
                             <b>4.1.10.</b>
                         
-                         Feature: TextItems
+                         Feature: Playlist.TextItems
                     </a>
                 
             
@@ -640,7 +640,7 @@
     
         <a href="../../comms/internal/feature-playlist.html" title="Feature: Playlist" class="chapter  " data-progress="4.1.9" style="left: 88.46153846153847%;"></a>
     
-        <a href="../../comms/internal/feature-textitems.html" title="Feature: TextItems" class="chapter  " data-progress="4.1.10" style="left: 92.3076923076923%;"></a>
+        <a href="../../comms/internal/feature-textitems.html" title="Feature: Playlist.TextItems" class="chapter  " data-progress="4.1.10" style="left: 92.3076923076923%;"></a>
     
         <a href="../../comms/external/README.html" title="External API" class="chapter  " data-progress="4.2" style="left: 96.15384615384616%;"></a>
     
@@ -650,6 +650,60 @@
 </div>
 
                 <div class="page-inner">
+                
+                    <section class="normal" id="section-gitbook_9">
+                    
+                        <h1 id="api-changes">API Changes</h1>
+<p>The internal API is intended to be extensible and changeable.  Its main
+feature for supporting change is the <code>FEATURES</code> response, which announces to
+a service server&#39;s clients the abilities of that server.</p>
+<p>This section discusses the matter of dealing with API extensions and changes
+in a clean and backwards-compatible manner.</p>
+<h2 id="adding-new-features">Adding New Features</h2>
+<p>When adding new requests or responses to the API for a given server, the
+server <strong>should</strong> identify the additional features provided by use of one or
+more <code>FEATURES</code> flags.</p>
+<p>Certain sets of requests and responses have corresponding <code>FEATURES</code> flags
+defined in the BAPS3 specification.  For example, the <code>seek</code> request and
+<code>TIME</code> response (when sent as a response to a <code>seek</code> request) are part of the
+<code>Seek</code> feature, and the <code>TIME</code> response (when sent periodically by the service)
+is part of the <code>TimeReport</code> feature.  Services <strong>must not</strong> use requests or
+responses specified in this document without announcing the appropriate
+feature, <strong>must not</strong> use request or response words that are specified as part
+of a feature in an incompatible manner, and <strong>must</strong> follow the specifications
+for those standard BAPS3 requests, responses and features implemented.</p>
+<h2 id="extending-existing-features">Extending Existing Features</h2>
+<p>When adding additional functionality on top of an existing feature, without
+changing the meaning of the feature&#39;s current requests and responses, the
+new functionality <strong>should</strong> be reported as a <em>separate</em> feature flag.  The flag
+<strong>may</strong> denote its relationship to the original feature by using a string of
+the form <code>EXISTING.NEW</code>, where <code>EXISTING</code> is the existing feature name and
+<code>NEW</code> is the new feature name.  The new feature <strong>should</strong> require the presence
+of the old feature.</p>
+<p>For example, the <code>Playlist</code> feature denotes a playlist that allows, by default,
+the enqueueing of files only.  To allow text items to be added to the playlist,
+the <code>Playlist.TextItems</code> feature is also specified.  This does not alter the
+<code>Playlist</code> feature&#39;s semantics.</p>
+<h2 id="backwards-incompatible-feature-changes">Backwards-Incompatible Feature Changes</h2>
+<p>Any changes to a feature that change the semantics of that feature <strong>must</strong>
+be expressed by changing to a different feature string.  A convention that
+<strong>may</strong> be used is appending a revision number to the original feature.  For
+example, a backwards-incompatible change to the <code>Seek</code> feature could result in
+a <code>Seek-2</code> feature.</p>
+<p>Services <strong>may</strong> attempt to parse the <code>FEATURES</code> flags of downstream services
+for version information encoded in this manner, but it is not a required
+capability.</p>
+<p>Changes to the core requests and responses are considered to create a new
+protocol version, which is discussed below.</p>
+<h2 id="protocol-changes">Protocol Changes</h2>
+<p>Any changes to the core internal API protocol <strong>should</strong> result in the initial
+response (<code>OHAI</code>) being replaced with a string that cannot be parsed as an
+<code>OHAI</code> response.  This is to ensure that API implementations can detect the
+incompatible protocol change and either switch to the new protocol or terminate
+with an error.</p>
+
+                    
+                    </section>
                 
                 </div>
             </div>

@@ -32,7 +32,7 @@
 
 
         
-    <div class="book"  data-level="4.1.3" data-basepath="../.." data-revision="1407757353193">
+    <div class="book"  data-level="4.1.3" data-basepath="../.." data-revision="1407938049144">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -523,7 +523,7 @@
                         
                             <b>4.1.10.</b>
                         
-                         Feature: TextItems
+                         Feature: Playlist.TextItems
                     </a>
                 
             
@@ -640,7 +640,7 @@
     
         <a href="../../comms/internal/feature-playlist.html" title="Feature: Playlist" class="chapter  " data-progress="4.1.9" style="left: 88.46153846153847%;"></a>
     
-        <a href="../../comms/internal/feature-textitems.html" title="Feature: TextItems" class="chapter  " data-progress="4.1.10" style="left: 92.3076923076923%;"></a>
+        <a href="../../comms/internal/feature-textitems.html" title="Feature: Playlist.TextItems" class="chapter  " data-progress="4.1.10" style="left: 92.3076923076923%;"></a>
     
         <a href="../../comms/external/README.html" title="External API" class="chapter  " data-progress="4.2" style="left: 96.15384615384616%;"></a>
     
@@ -650,6 +650,63 @@
 </div>
 
                 <div class="page-inner">
+                
+                    <section class="normal" id="section-gitbook_6">
+                    
+                        <h1 id="core">Core</h1>
+<p>Certain requests and responses <strong>should</strong> be implemented by all BAPS3 servers
+understanding the Internal API, and are not associated with any <code>FEATURES</code> flag.
+These are enumerated here.</p>
+<h2 id="requests">Requests</h2>
+<h3 id="quit"><code>quit</code></h3>
+<h4 id="syntax">Syntax</h4>
+<p><code>quit</code></p>
+<h4 id="meaning">Meaning</h4>
+<p><code>quit</code> is a request to a server, and all servers downstream from it, to
+close gracefully.</p>
+<p>The server(s) do not need to acknowledge the <code>quit</code> in any manner other than
+disconnecting upstream connections.</p>
+<h2 id="responses">Responses</h2>
+<h3 id="fail"><code>FAIL</code></h3>
+<h3 id="okay"><code>OKAY</code></h3>
+<h3 id="ohai"><code>OHAI</code></h3>
+<h4 id="syntax">Syntax</h4>
+<p><code>OHAI &lt;IDENTIFIER&gt;</code></p>
+<h4 id="meaning">Meaning</h4>
+<p><code>OHAI</code> <strong>must</strong> be sent as the first <em>initial response</em> given to any connecting
+upstream, and identifies the server (as well as the BAPS3 internal protocol).</p>
+<p>Any client connecting to a BAPS3 Internal API-compliant server <strong>may</strong> take the
+absence of an initial <code>OHAI</code> as grounds for rejecting the server.  This is not
+an absolute requirement.</p>
+<p>A server that is the upstream of a second server <strong>should</strong> reference that
+server&#39;s <em>full</em> identifier as part of its <code>OHAI</code> response.  For example, a
+<code>listmaster</code> server connecting to a <code>playslave++</code> server should report itself
+as <code>listmaster/playslave++</code>.</p>
+<p>A client <strong>may</strong> use the server&#39;s identifier as a hint for enabling
+server-specific behaviour: this <strong>should</strong> be restricted to working around
+quirks and bugs in poorly constructed servers, and <strong>should not</strong> be used for
+enabling specific functionality (the <code>FEATURES</code> system should be preferred
+instead).</p>
+<h3 id="state"><code>STATE</code></h3>
+<h4 id="syntax">Syntax</h4>
+<p><code>STATE &lt;STATE-NAME&gt;</code></p>
+<h4 id="meaning">Meaning</h4>
+<p><code>STATE</code> <strong>should</strong> be sent when:</p>
+<ul>
+<li>A new upstream connects to a server with <em>at least</em> two states, as part of
+the <em>initial responses</em>; <strong>or</strong></li>
+<li>The server&#39;s <em>state</em> changes.</li>
+</ul>
+<p>The list of available states starts empty, and is added to by certain features.
+For example, the <code>PlayStop</code> feature adds the <code>Playing</code> and <code>Stopped</code> states,
+and mandates that the initial state is <code>Stopped</code> unless any other feature
+specifically overrides that mandate.</p>
+<p>If the server does not make use of a state machine, then <code>STATE</code> is redundant
+and <strong>may</strong> be left unimplemented.</p>
+<h3 id="what"><code>WHAT</code></h3>
+
+                    
+                    </section>
                 
                 </div>
             </div>

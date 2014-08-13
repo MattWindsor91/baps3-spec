@@ -32,7 +32,7 @@
 
 
         
-    <div class="book"  data-level="4.1.5" data-basepath="../.." data-revision="1407757353193">
+    <div class="book"  data-level="4.1.5" data-basepath="../.." data-revision="1407938049144">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -523,7 +523,7 @@
                         
                             <b>4.1.10.</b>
                         
-                         Feature: TextItems
+                         Feature: Playlist.TextItems
                     </a>
                 
             
@@ -640,7 +640,7 @@
     
         <a href="../../comms/internal/feature-playlist.html" title="Feature: Playlist" class="chapter  " data-progress="4.1.9" style="left: 88.46153846153847%;"></a>
     
-        <a href="../../comms/internal/feature-textitems.html" title="Feature: TextItems" class="chapter  " data-progress="4.1.10" style="left: 92.3076923076923%;"></a>
+        <a href="../../comms/internal/feature-textitems.html" title="Feature: Playlist.TextItems" class="chapter  " data-progress="4.1.10" style="left: 92.3076923076923%;"></a>
     
         <a href="../../comms/external/README.html" title="External API" class="chapter  " data-progress="4.2" style="left: 96.15384615384616%;"></a>
     
@@ -650,6 +650,32 @@
 </div>
 
                 <div class="page-inner">
+                
+                    <section class="normal" id="section-gitbook_10">
+                    
+                        <h1 id="feature-playstop">Feature: PlayStop</h1>
+<p>Provides the <code>play</code> and <code>stop</code> requests, as well as the <code>Playing</code> and
+<code>Stopped</code> states.</p>
+<h2 id="dependencies">Dependencies</h2>
+<p><code>PlayStop</code> has no dependencies.</p>
+<h2 id="conflicts">Conflicts</h2>
+<p><code>PlayStop</code> may conflict with any other playback control sets.</p>
+<h2 id="states">States</h2>
+<h3 id="playing"><code>Playing</code></h3>
+<p>The state in which the audio source is actively playing.  This state
+<strong>should</strong> be reachable only from <code>Stopped</code> (via <code>play</code>).</p>
+<h3 id="stopped"><code>Stopped</code></h3>
+<p>The state in which the audio source is stopped playing.  This state <strong>should</strong>
+be reachable from <code>Playing</code> (via <code>stop</code>), but may also be reachable from any
+state representing a lack of audio source (for example, <code>Ejected</code> from
+<code>FileLoad</code>).</p>
+<p>This <strong>should</strong> be the <em>initial state</em>, unless a state is available representing
+a lack of audio source, <em>and</em> the server starts without any audio source loaded.
+(For example, if <code>FileLoad</code> and <code>PlayStop</code> are both implemented, the <em>initial
+state</em> <strong>should</strong> be <code>Ejected</code>, not <code>Stopped</code>).</p>
+
+                    
+                    </section>
                 
                 </div>
             </div>

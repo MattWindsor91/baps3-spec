@@ -32,7 +32,7 @@
 
 
         
-    <div class="book"  data-level="4.1.4" data-basepath="../.." data-revision="1407757353193">
+    <div class="book"  data-level="4.1.4" data-basepath="../.." data-revision="1407938049144">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -523,7 +523,7 @@
                         
                             <b>4.1.10.</b>
                         
-                         Feature: TextItems
+                         Feature: Playlist.TextItems
                     </a>
                 
             
@@ -640,7 +640,7 @@
     
         <a href="../../comms/internal/feature-playlist.html" title="Feature: Playlist" class="chapter  " data-progress="4.1.9" style="left: 88.46153846153847%;"></a>
     
-        <a href="../../comms/internal/feature-textitems.html" title="Feature: TextItems" class="chapter  " data-progress="4.1.10" style="left: 92.3076923076923%;"></a>
+        <a href="../../comms/internal/feature-textitems.html" title="Feature: Playlist.TextItems" class="chapter  " data-progress="4.1.10" style="left: 92.3076923076923%;"></a>
     
         <a href="../../comms/external/README.html" title="External API" class="chapter  " data-progress="4.2" style="left: 96.15384615384616%;"></a>
     
@@ -650,6 +650,45 @@
 </div>
 
                 <div class="page-inner">
+                
+                    <section class="normal" id="section-gitbook_8">
+                    
+                        <h1 id="feature-fileload">Feature: FileLoad</h1>
+<p>Provides the <code>load</code> request, for loading audio files, and the <code>FILE</code> response,
+for notifying upstream that a file has been loaded.</p>
+<h2 id="dependencies">Dependencies</h2>
+<p><code>FileLoad</code> has no dependencies.</p>
+<h2 id="conflicts">Conflicts</h2>
+<p><code>FileLoad</code> may conflict with any other loading features.</p>
+<h2 id="states">States</h2>
+<h3 id="ejected"><code>Ejected</code></h3>
+<p>The state in which no file is loaded.  Unless the server starts with a file
+loaded, this <strong>should</strong> be the <em>initial state</em>, overriding any initial state
+provided by a playback control feature (such as <code>PlayStop</code>), unless explicitly
+overridden by another feature.</p>
+<h2 id="requests">Requests</h2>
+<h3 id="load"><code>load</code></h3>
+<h4 id="syntax">Syntax</h4>
+<p><code>load &lt;PATH&gt;</code></p>
+<h4 id="meaning">Meaning</h4>
+<p>Loads the file at <code>PATH</code>, replacing any previously loaded file.</p>
+<p>Will succeed and send <code>FILE</code> if the file has been loaded successfully.  The
+state <strong>should</strong> then be set to <code>Stopped</code>.</p>
+<p>If the load failed, the state <strong>should</strong> be set to <code>Ejected</code>.</p>
+<h2 id="responses">Responses</h2>
+<h3 id="file"><code>FILE</code></h3>
+<h4 id="syntax">Syntax</h4>
+<p><code>FILE &lt;PATH&gt;</code></p>
+<h4 id="meaning">Meaning</h4>
+<p><code>FILE</code> <strong>should</strong> be sent when:</p>
+<ul>
+<li>A new upstream connects to a server with the <code>FileLoad</code> feature, as part of
+the <em>initial responses</em>; <strong>or</strong></li>
+<li>A new file has been loaded.</li>
+</ul>
+
+                    
+                    </section>
                 
                 </div>
             </div>
