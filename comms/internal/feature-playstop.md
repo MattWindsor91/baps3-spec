@@ -29,3 +29,23 @@ This __should__ be the _initial state_, unless a state is available representing
 a lack of audio source, _and_ the server starts without any audio source loaded.
 (For example, if `FileLoad` and `PlayStop` are both implemented, the _initial
 state_ __should__ be `Ejected`, not `Stopped`).
+
+## Requests
+
+### `play` — Start Playing Audio
+
+#### Syntax
+
+`play`
+
+### `stop` — Stop Playing Audio
+
+#### Syntax
+
+`stop`
+
+
+## Responses
+
+`PlayStop` provides no responses.  Confirmation of the `play` and `stop`
+requests is provided through the core `STATE` response.
