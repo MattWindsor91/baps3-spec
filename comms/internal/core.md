@@ -24,7 +24,15 @@ disconnecting upstream connections.
 
 ### `FAIL`
 
+#### Syntax
+
+`FAIL <COMMAND> [ARGS...]`
+
 ### `OKAY`
+
+#### Syntax
+
+`OKAY <COMMAND> [ARGS...]`
 
 ### `OHAI`
 
