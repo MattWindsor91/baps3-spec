@@ -32,7 +32,7 @@
 
 
         
-    <div class="book"  data-level="4.1.3" data-basepath="../.." data-revision="1407938049144">
+    <div class="book"  data-level="4.1.3" data-basepath="../.." data-revision="1407947034848">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -158,7 +158,7 @@
                         
                             <b>1.1.</b>
                         
-                         Compiling this document
+                         Compiling
                     </a>
                 
             
@@ -174,7 +174,7 @@
                         
                             <b>1.2.</b>
                         
-                         Conventions used in this document
+                         Conventions
                     </a>
                 
             
@@ -596,9 +596,9 @@
     
         <a href="../../meta/README.html" title="This document" class="chapter done new-chapter" data-progress="1" style="left: 3.8461538461538463%;"></a>
     
-        <a href="../../meta/compiling.html" title="Compiling this document" class="chapter done " data-progress="1.1" style="left: 7.6923076923076925%;"></a>
+        <a href="../../meta/compiling.html" title="Compiling" class="chapter done " data-progress="1.1" style="left: 7.6923076923076925%;"></a>
     
-        <a href="../../meta/conventions.html" title="Conventions used in this document" class="chapter done " data-progress="1.2" style="left: 11.538461538461538%;"></a>
+        <a href="../../meta/conventions.html" title="Conventions" class="chapter done " data-progress="1.2" style="left: 11.538461538461538%;"></a>
     
         <a href="../../rationale/README.html" title="Rationale" class="chapter done new-chapter" data-progress="2" style="left: 15.384615384615385%;"></a>
     
@@ -658,7 +658,7 @@
 understanding the Internal API, and are not associated with any <code>FEATURES</code> flag.
 These are enumerated here.</p>
 <h2 id="requests">Requests</h2>
-<h3 id="quit"><code>quit</code></h3>
+<h3 id="quit--quit-server-stack"><code>quit</code> — Quit Server Stack</h3>
 <h4 id="syntax">Syntax</h4>
 <p><code>quit</code></p>
 <h4 id="meaning">Meaning</h4>
@@ -667,9 +667,13 @@ close gracefully.</p>
 <p>The server(s) do not need to acknowledge the <code>quit</code> in any manner other than
 disconnecting upstream connections.</p>
 <h2 id="responses">Responses</h2>
-<h3 id="fail"><code>FAIL</code></h3>
-<h3 id="okay"><code>OKAY</code></h3>
-<h3 id="ohai"><code>OHAI</code></h3>
+<h3 id="fail--server-failure"><code>FAIL</code> — Server Failure</h3>
+<h4 id="syntax">Syntax</h4>
+<p><code>FAIL &lt;MESSAGE&gt;</code></p>
+<h3 id="okay--command-received"><code>OKAY</code> — Command Received</h3>
+<h4 id="syntax">Syntax</h4>
+<p><code>OKAY &lt;COMMAND&gt; [ARGS...]</code></p>
+<h3 id="ohai--server-welcome"><code>OHAI</code> — Server Welcome</h3>
 <h4 id="syntax">Syntax</h4>
 <p><code>OHAI &lt;IDENTIFIER&gt;</code></p>
 <h4 id="meaning">Meaning</h4>
@@ -687,7 +691,7 @@ server-specific behaviour: this <strong>should</strong> be restricted to working
 quirks and bugs in poorly constructed servers, and <strong>should not</strong> be used for
 enabling specific functionality (the <code>FEATURES</code> system should be preferred
 instead).</p>
-<h3 id="state"><code>STATE</code></h3>
+<h3 id="state--state-update"><code>STATE</code> — State Update</h3>
 <h4 id="syntax">Syntax</h4>
 <p><code>STATE &lt;STATE-NAME&gt;</code></p>
 <h4 id="meaning">Meaning</h4>
@@ -703,7 +707,9 @@ and mandates that the initial state is <code>Stopped</code> unless any other fea
 specifically overrides that mandate.</p>
 <p>If the server does not make use of a state machine, then <code>STATE</code> is redundant
 and <strong>may</strong> be left unimplemented.</p>
-<h3 id="what"><code>WHAT</code></h3>
+<h3 id="what--bad-command"><code>WHAT</code> — Bad Command</h3>
+<h4 id="syntax">Syntax</h4>
+<p><code>WHAT &lt;MESSAGE&gt; &lt;COMMAND&gt; [ARGS...]</code></p>
 
                     
                     </section>

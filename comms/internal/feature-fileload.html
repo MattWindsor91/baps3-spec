@@ -32,7 +32,7 @@
 
 
         
-    <div class="book"  data-level="4.1.4" data-basepath="../.." data-revision="1407938049144">
+    <div class="book"  data-level="4.1.4" data-basepath="../.." data-revision="1407947034848">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -158,7 +158,7 @@
                         
                             <b>1.1.</b>
                         
-                         Compiling this document
+                         Compiling
                     </a>
                 
             
@@ -174,7 +174,7 @@
                         
                             <b>1.2.</b>
                         
-                         Conventions used in this document
+                         Conventions
                     </a>
                 
             
@@ -596,9 +596,9 @@
     
         <a href="../../meta/README.html" title="This document" class="chapter done new-chapter" data-progress="1" style="left: 3.8461538461538463%;"></a>
     
-        <a href="../../meta/compiling.html" title="Compiling this document" class="chapter done " data-progress="1.1" style="left: 7.6923076923076925%;"></a>
+        <a href="../../meta/compiling.html" title="Compiling" class="chapter done " data-progress="1.1" style="left: 7.6923076923076925%;"></a>
     
-        <a href="../../meta/conventions.html" title="Conventions used in this document" class="chapter done " data-progress="1.2" style="left: 11.538461538461538%;"></a>
+        <a href="../../meta/conventions.html" title="Conventions" class="chapter done " data-progress="1.2" style="left: 11.538461538461538%;"></a>
     
         <a href="../../rationale/README.html" title="Rationale" class="chapter done new-chapter" data-progress="2" style="left: 15.384615384615385%;"></a>
     
@@ -661,13 +661,13 @@ for notifying upstream that a file has been loaded.</p>
 <h2 id="conflicts">Conflicts</h2>
 <p><code>FileLoad</code> may conflict with any other loading features.</p>
 <h2 id="states">States</h2>
-<h3 id="ejected"><code>Ejected</code></h3>
+<h3 id="ejected--no-file-loaded"><code>Ejected</code> — No File Loaded</h3>
 <p>The state in which no file is loaded.  Unless the server starts with a file
 loaded, this <strong>should</strong> be the <em>initial state</em>, overriding any initial state
 provided by a playback control feature (such as <code>PlayStop</code>), unless explicitly
 overridden by another feature.</p>
 <h2 id="requests">Requests</h2>
-<h3 id="load"><code>load</code></h3>
+<h3 id="load--load-file"><code>load</code> — Load File</h3>
 <h4 id="syntax">Syntax</h4>
 <p><code>load &lt;PATH&gt;</code></p>
 <h4 id="meaning">Meaning</h4>
@@ -676,7 +676,7 @@ overridden by another feature.</p>
 state <strong>should</strong> then be set to <code>Stopped</code>.</p>
 <p>If the load failed, the state <strong>should</strong> be set to <code>Ejected</code>.</p>
 <h2 id="responses">Responses</h2>
-<h3 id="file"><code>FILE</code></h3>
+<h3 id="file--file-loaded"><code>FILE</code> — File Loaded</h3>
 <h4 id="syntax">Syntax</h4>
 <p><code>FILE &lt;PATH&gt;</code></p>
 <h4 id="meaning">Meaning</h4>
