@@ -1,4 +1,4 @@
-# Compiling this document
+# Compiling
 
 This document may be compiled using
 [gitbook](https://github.com/GitbookIO/gitbook); see the readme of that project
