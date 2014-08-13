@@ -6,7 +6,7 @@ These are enumerated here.
 
 ## Requests
 
-### `quit`
+### `quit` — Quit Server Stack
 
 #### Syntax
 
@@ -22,19 +22,19 @@ disconnecting upstream connections.
 
 ## Responses
 
-### `FAIL`
+### `FAIL` — Server Failure
 
 #### Syntax
 
 `FAIL <MESSAGE>`
 
-### `OKAY`
+### `OKAY` — Command Received
 
 #### Syntax
 
 `OKAY <COMMAND> [ARGS...]`
 
-### `OHAI`
+### `OHAI` — Server Welcome
 
 #### Syntax
 
@@ -60,7 +60,7 @@ quirks and bugs in poorly constructed servers, and __should not__ be used for
 enabling specific functionality (the `FEATURES` system should be preferred
 instead).
 
-### `STATE`
+### `STATE` — State Update
 
 #### Syntax
 
@@ -82,8 +82,8 @@ specifically overrides that mandate.
 If the server does not make use of a state machine, then `STATE` is redundant
 and __may__ be left unimplemented.
 
-### `WHAT`
+### `WHAT` — Bad Command
 
 #### Syntax
 
-`WHAT <COMMAND> [ARGS...]`
+`WHAT <MESSAGE> <COMMAND> [ARGS...]`

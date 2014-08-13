@@ -13,12 +13,12 @@ Provides the `play` and `stop` requests, as well as the `Playing` and
 
 ## States
 
-### `Playing`
+### `Playing` — Playing Audio
 
 The state in which the audio source is actively playing.  This state
 __should__ be reachable only from `Stopped` (via `play`).
 
-### `Stopped`
+### `Stopped` — Not Playing Audio
 
 The state in which the audio source is stopped playing.  This state __should__
 be reachable from `Playing` (via `stop`), but may also be reachable from any

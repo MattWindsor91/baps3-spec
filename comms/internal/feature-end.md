@@ -16,7 +16,7 @@ Provides the `END` response, sent when an audio source ends of its own accord.
 
 ## Responses
 
-### `END`
+### `END` — Audio Ended
 
 #### Syntax
 
