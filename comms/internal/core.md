@@ -26,7 +26,7 @@ disconnecting upstream connections.
 
 #### Syntax
 
-`FAIL <COMMAND> [ARGS...]`
+`FAIL <MESSAGE>`
 
 ### `OKAY`
 
@@ -83,3 +83,7 @@ If the server does not make use of a state machine, then `STATE` is redundant
 and __may__ be left unimplemented.
 
 ### `WHAT`
+
+#### Syntax
+
+`WHAT <COMMAND> [ARGS...]`
