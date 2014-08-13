@@ -15,6 +15,7 @@
 * [Inter-Service Communications](comms/README.md)
     * [Internal API](comms/internal/README.md)
         * [Protocol](comms/internal/protocol.md)
+        * [Features](comms/internal/features.md)
         * [API Changes](comms/internal/changes.md)
         * [Core](comms/internal/core.md)
         * [Feature: FileLoad](comms/internal/feature-fileload.md)
