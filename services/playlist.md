@@ -34,6 +34,11 @@ It also adds the following responses to those sent by the player:
 * `COUNT` — The current number of items in the playlist;
 * `LIST` — A playlist item.
 
+## Implemented Features
+
+The playlist __must__ implement, as a minimum, the `Playlist`,
+`Playlist.TextItems`, and `AutoAdvance` features.
+
 ## Requirements
 
 __Interface compatibility.__  The playlist __must__ implement the above
