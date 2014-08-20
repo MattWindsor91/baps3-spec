@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>API Changes | BAPS3 Specification</title>
+        <title>Features | BAPS3 Specification</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.7.1">
@@ -17,10 +17,10 @@
     
     
     
-    <link rel="next" href="../../comms/internal/core.html" />
+    <link rel="next" href="../../comms/internal/changes.html" />
     
     
-    <link rel="prev" href="../../comms/internal/features.html" />
+    <link rel="prev" href="../../comms/internal/protocol.html" />
     
 
         
@@ -32,7 +32,7 @@
 
 
         
-    <div class="book"  data-level="4.1.3" data-basepath="../.." data-revision="1408576010660">
+    <div class="book"  data-level="4.1.2" data-basepath="../.." data-revision="1408576010660">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -387,7 +387,7 @@
         </li>
     
         
-        <li class="chapter " data-level="4.1.2" data-path="comms/internal/features.html">
+        <li class="chapter active" data-level="4.1.2" data-path="comms/internal/features.html">
             
                 
                     <a href="../../comms/internal/features.html">
@@ -403,7 +403,7 @@
         </li>
     
         
-        <li class="chapter active" data-level="4.1.3" data-path="comms/internal/changes.html">
+        <li class="chapter " data-level="4.1.3" data-path="comms/internal/changes.html">
             
                 
                     <a href="../../comms/internal/changes.html">
@@ -604,7 +604,7 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 62.96296296296296%;min-width: 59.25925925925926%;"></div>
+        <div class="inner" style="width: 59.25925925925926%;min-width: 55.55555555555556%;"></div>
     </div>
     <div class="chapters">
     
@@ -642,7 +642,7 @@
     
         <a href="../../comms/internal/features.html" title="Features" class="chapter done " data-progress="4.1.2" style="left: 59.25925925925926%;"></a>
     
-        <a href="../../comms/internal/changes.html" title="API Changes" class="chapter done " data-progress="4.1.3" style="left: 62.96296296296296%;"></a>
+        <a href="../../comms/internal/changes.html" title="API Changes" class="chapter  " data-progress="4.1.3" style="left: 62.96296296296296%;"></a>
     
         <a href="../../comms/internal/core.html" title="Core" class="chapter  " data-progress="4.1.4" style="left: 66.66666666666667%;"></a>
     
@@ -669,56 +669,63 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_10">
+                    <section class="normal" id="section-gitbook_14">
                     
-                        <h1 id="api-changes">API Changes</h1>
-<p>The internal API is intended to be extensible and changeable.  Its main
-feature for supporting change is the <code>FEATURES</code> response, which announces to
-a service server&#39;s clients the abilities of that server.</p>
-<p>This section discusses the matter of dealing with API extensions and changes
-in a clean and backwards-compatible manner.</p>
-<h2 id="adding-new-features">Adding New Features</h2>
-<p>When adding new requests or responses to the API for a given server, the
-server <strong>should</strong> identify the additional features provided by use of one or
-more <code>FEATURES</code> flags.</p>
-<p>Certain sets of requests and responses have corresponding <code>FEATURES</code> flags
-defined in the BAPS3 specification.  For example, the <code>seek</code> request and
-<code>TIME</code> response (when sent as a response to a <code>seek</code> request) are part of the
-<code>Seek</code> feature, and the <code>TIME</code> response (when sent periodically by the service)
-is part of the <code>TimeReport</code> feature.  Services <strong>must not</strong> use requests or
-responses specified in this document without announcing the appropriate
-feature, <strong>must not</strong> use request or response words that are specified as part
-of a feature in an incompatible manner, and <strong>must</strong> follow the specifications
-for those standard BAPS3 requests, responses and features implemented.</p>
-<h2 id="extending-existing-features">Extending Existing Features</h2>
-<p>When adding additional functionality on top of an existing feature, without
-changing the meaning of the feature&#39;s current requests and responses, the
-new functionality <strong>should</strong> be reported as a <em>separate</em> feature flag.  The flag
-<strong>may</strong> denote its relationship to the original feature by using a string of
-the form <code>EXISTING.NEW</code>, where <code>EXISTING</code> is the existing feature name and
-<code>NEW</code> is the new feature name.  The new feature <strong>should</strong> require the presence
-of the old feature.</p>
-<p>For example, the <code>Playlist</code> feature denotes a playlist that allows, by default,
-the enqueueing of files only.  To allow text items to be added to the playlist,
-the <code>Playlist.TextItems</code> feature is also specified.  This does not alter the
-<code>Playlist</code> feature&#39;s semantics.</p>
-<h2 id="backwards-incompatible-feature-changes">Backwards-Incompatible Feature Changes</h2>
-<p>Any changes to a feature that change the semantics of that feature <strong>must</strong>
-be expressed by changing to a different feature string.  A convention that
-<strong>may</strong> be used is appending a revision number to the original feature.  For
-example, a backwards-incompatible change to the <code>Seek</code> feature could result in
-a <code>Seek-2</code> feature.</p>
-<p>Services <strong>may</strong> attempt to parse the <code>FEATURES</code> flags of downstream services
-for version information encoded in this manner, but it is not a required
-capability.</p>
-<p>Changes to the core requests and responses are considered to create a new
-protocol version, which is discussed below.</p>
-<h2 id="protocol-changes">Protocol Changes</h2>
-<p>Any changes to the core internal API protocol <strong>should</strong> result in the initial
-response (<code>OHAI</code>) being replaced with a string that cannot be parsed as an
-<code>OHAI</code> response.  This is to ensure that API implementations can detect the
-incompatible protocol change and either switch to the new protocol or terminate
-with an error.</p>
+                        <h1 id="features">Features</h1>
+<p>The internal API uses the concept of <em>feature flags</em> to disclose the available
+states, requests, and responses to clients of a service.</p>
+<p>The <em>feature flags</em> supported by a service are exposed through the <code>FEATURES</code>
+core initial response.</p>
+<h2 id="rationale">Rationale</h2>
+<h3 id="lightweight">Lightweight</h3>
+<p><code>FEATURES</code> is not a difficult system to implement.  Baseline services such
+as players need only provide a stock response to upstream clients upon
+connection.  Services that communicate downstream need only parse the <code>FEATURES</code>
+command, optionally check for dependencies and conflicts, append their
+own features, and emit the result.</p>
+<h3 id="api-reuse">API Reuse</h3>
+<p>The <code>FEATURES</code> system allows the Internal API to be used in multiple different
+contexts.  A player implements the same API as a playlist, and the composition
+of both into a player-playlist also implements the same API.</p>
+<h3 id="composability">Composability</h3>
+<p>Due to the ability to pass-through unknown requests and responses, and the
+ability to take the union of <code>FEATURES</code> responses, two services can be
+composed to produce a new service implementing the union of both services&#39;
+features.</p>
+<p>For example, a playlist service can attach to a player service to provide
+playlist functionality on top of that of the player, so long as the player
+provides the necessary features for loading and playing files.  The result,
+as far as any clients of the playlist are concerned, is a single service that
+provides playlist and playback functionality.</p>
+<p>Suppose the player, in addition to the required features specified in this
+document, supplies a <code>Volume</code> feature allowing the player&#39;s volume to be
+controlled.  Without any special handling by the playlist, the composed service
+exposes the <code>Volume</code> feature and passes through any volume changes to the
+player.</p>
+<h3 id="enforcing-dependencies">Enforcing Dependencies</h3>
+<p>When an upstream service connects to a downstream service, it can check the
+downstream <code>FEATURES</code> response for any features on which it depends.</p>
+<p>For example, the <code>Playlist</code> feature depends on the downstream service having
+the <code>FileLoad</code> feature.</p>
+<h3 id="preventing-conflicts">Preventing Conflicts</h3>
+<p>In addition, the upstream service can check the downstream <code>FEATURES</code> to ensure
+that any functionality it provides does not conflict with functionality already
+present in the downstream.</p>
+<p>This can prevent a service from accidentally being connected to another
+instance of itself: a playlist service may refuse to attach to another
+playlist service, as it detects that the downstream service already implements
+<code>Playlist</code>.</p>
+<h3 id="flexible-clients">Flexible Clients</h3>
+<p><code>FEATURES</code> provides clients with flexibility to target multiple different
+combinations of BAPS3 services, if they desire, by adapting their user
+interfaces to reflect the <code>FEATURES</code> declared.</p>
+<p>For example, a client may be attached to a player, and display controls for
+loading a single file, as well as seeking, playing, stopping and ejecting.  The
+same client may also be attached to a playlist-player, at which point it adds
+in a playlist interface.  If the playlist-player supports the hypothetical
+<code>Volume</code> feature, it may then also add a volume control.</p>
+<p>This allows a single debug client to be used to test multiple different
+combinations of BAPS3 services, for instance.</p>
 
                     
                     </section>
@@ -728,10 +735,10 @@ with an error.</p>
         </div>
 
         
-        <a href="../../comms/internal/features.html" class="navigation navigation-prev " aria-label="Previous page: Features"><i class="fa fa-angle-left"></i></a>
+        <a href="../../comms/internal/protocol.html" class="navigation navigation-prev " aria-label="Previous page: Protocol"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../comms/internal/core.html" class="navigation navigation-next " aria-label="Next page: Core"><i class="fa fa-angle-right"></i></a>
+        <a href="../../comms/internal/changes.html" class="navigation navigation-next " aria-label="Next page: API Changes"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
