@@ -33,6 +33,11 @@ It emits the following responses:
 * `FILE` — The currently loaded file;
 * `FEATURES` — The set of features implemented by the player.
 
+## Implemented Features
+
+The player __must__ implement, as a minimum, the `End`, `FileLoad`,
+`PlayStop`, `Seek`, and `TimeReport` features.
+
 ## Requirements
 
 __Interface compatibility.__  The player __must__ implement the above interface.

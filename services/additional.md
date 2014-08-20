@@ -20,3 +20,8 @@ seek, and outputs a live audio stream.  Uses for this service include:
   presenters can use during their show;
 * Stand-alone use as a lightweight stream player (possibly even for use when
   playing the radio station's streams).
+
+## Monitor
+
+A _monitor_ service periodically checks the other services for liveness, and
+corrects breakages in the BAPS3 stack.
