@@ -3,6 +3,23 @@
 The BAPS3 Internal API sits atop a text-based protocol based upon
 [POSIX shell][] conventions.
 
+## Rationale
+
+We use a shell-style protocol because:
+
+* It is lightweight and relatively easy to parse;
+* It is a good match for the command-and-arguments style of the BAPS3 API;
+* The shell style of escaping is convenient for escaping paths (especially on
+  Windows, where the single-quote syntax can avoid needing to escape every
+  backslash in a Windows path), which are common arguments to BAPS3 commands
+  (`load`, `enqueue`, and so on).
+
+A disadvantage is that it is impossible to perform a context-free splitting of
+input into lines; the line-feed character could be escaped.  However, since the
+usual transport used by the BAPS3 protocol is TCP, and most TCP libraries
+provide unbuffered input in chunks which may be smaller or larger than one line,
+we rarely need this luxury.
+
 ## Encoding
 
 API users __must__ support the sending and receiving of all single-byte UTF-8
@@ -14,6 +31,10 @@ The majority of characters may be transmitted verbatim via the protocol.
 However, in order to allow separation of protocol communications into the
 _words_ and _commands_ defined below, BAPS3 must give special meaning to certain
 characters.  This is done according to four _quote modes_, specified below.
+
+__Note:__ In case of ambiguity, refer to the [POSIX shell][] quoting standards:
+we follow that style of quoting with the exception of disallowing variable and
+command interpolation (thus, backtick and dollar are not considered special).
 
 ### Unquoted mode
 
@@ -56,6 +77,10 @@ mode to escape these characters.
 The core element of the protocol is the _word_, which is a sequence of
 zero or more characters delimited by any run of _unquoted_ whitespace.
 
+__Note:__ There is _no_ limit on the number of quote mode transitions inside a
+single word.  For example, `unquoted"double"unquoted'single'\ unquoted`
+__should__ be considered one word (albeit a pathological one).
+
 ## Commands
 
 Each communication over the Internal API consists of a _command_ of one or more
@@ -69,14 +94,27 @@ Commands are divided into _requests_ and _responses_.
 
 _Requests_ are the subset of valid commands that originate from an API client,
 and instruct an API service.  Request command words __should__ consist of one
-or more _lowercase_ ASCII characters.
+or more _lowercase_ ASCII characters, and __may__ be quoted.
 
 ### Responses
 
 _Requests_ are the subset of valid commands that originate from an API service,
 and inform an API client.  Response command words __should__ consist of one
-or more _uppercase_ ASCII characters.
+or more _uppercase_ ASCII characters, and __may__ be quoted.
 
+### Examples
+
+The following are well-formed commands:
+
+* `stop`
+* `"play"`
+* `'quit'`
+* `enqueue file 0 /home/demo/music/test\ file.mp3`
+* `load "/home/demo/music/test file.mp3"`
+* `load 'C:\Users\Demo\Music\test file.mp3'`
+* `load "C:\\Users\\Demo\\Music\\test file.mp3"`
+* `OHAI 'listmaster/playslave'`
+* `FEATURES FileLoad PlayStop Seek End TimeReport`
 
 [POSIX shell]: http://pubs.opengroup.org/onlinepubs/009604599/utilities/xcu_chap02.html
 [isspace()]: http://pubs.opengroup.org/onlinepubs/009695399/functions/isspace.html
