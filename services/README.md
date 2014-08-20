@@ -8,12 +8,12 @@ reasons of performance, maintainability, and so on).
 
 There are six _core services_ that define BAPS3's minimal functionality:
 
-* [Player](player.md);
-* [Playlist](playlist.md);
-* [Track Lister](tracklister.md);
-* [Track Resolver](trackresolver.md);
-* [Platform](platform.md);
-* [Client](client.md).
+* [Player][];
+* [Playlist][];
+* [Track Lister][];
+* [Track Resolver][];
+* [Platform][];
+* [Client][].
 
 ## Additional Services
 
@@ -34,3 +34,10 @@ defined in terms of:
   follows in the next chapter);
 * Their implementation requirements;
 * Comparisons with existing software.
+
+[Player]:         player.md
+[Playlist]:       playlist.md
+[Track Lister]:   tracklister.md
+[Track Resolver]: trackresolver.md
+[Platform]:       platform.md
+[Client]:         client.md

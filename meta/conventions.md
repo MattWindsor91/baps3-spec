@@ -16,10 +16,11 @@ We use the following typographical conventions:
 
 The key words __must__, __must not__, __required__, __shall__, __shall not__,
 __should__, __should not__, __recommended__,  __may__, and __optional__ in this
-document are to be interpreted as described in
-[RFC 2119](https://www.ietf.org/rfc/rfc2119.txt).
+document are to be interpreted as described in [RFC 2119][].
 
 Note that the RFC 2119 key words are highlighted in this document by the use
 of __bold face__, as opposed to the capitalisation suggested in RFC 2119.  Any
 instance of such a key word that is not in bold is not intended to be
 interpreted as per the RFC.
+
+[RFC 2119]: https://www.ietf.org/rfc/rfc2119.txt
