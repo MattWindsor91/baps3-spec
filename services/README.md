@@ -8,19 +8,19 @@ reasons of performance, maintainability, and so on).
 
 There are six _core services_ that define BAPS3's minimal functionality:
 
-* The [Player][] service;
-* The [Playlist][] service;
-* The [Track Lister][] service;
-* The [Track Resolver][] service;
-* The [Platform][] service;
-* The [Client][] service.
+* [Player][];
+* [Playlist][];
+* [Track Lister][];
+* [Track Resolver][];
+* [Platform][];
+* [Client][].
 
 ## Additional Services
 
 Implementations of BAPS3 __may__ define additional services.  Examples of
-possible additional services _not_ specified here include:
+possible services _not_ specified here include:
 
-* Additional frontend services (for debugging purposes, for example);
+* Additional frontends (for debugging purposes, for example);
 * Digitising and cataloguing services;
 * Installation, deployment and configuration services.
 

@@ -1,14 +1,11 @@
 # Compiling
 
-This document may be compiled using
-[gitbook](https://github.com/GitbookIO/gitbook); see the readme of that project
-for details.  It may also work, to some extent, with
-[rustbook](https://github.com/aturon/rust-book).
+This document may be compiled using [gitbook][]; see the readme of that project
+for details.  It may also work, to some extent, with [rustbook][].
 
 ## Source
 
-The latest source is available via its
-[GitHub repository](https://github.com/UniversityRadioYork/baps3-spec).
+The latest source is available via its [GitHub repository][].
 
 ## Makefile
 
@@ -24,10 +21,14 @@ over common compilation tasks:
 
 To contribute to this specification:
 
-* [Fork](https://github.com/UniversityRadioYork/baps3-spec/fork) the
-  specification on GitHub;
+* [Fork][] the specification on GitHub;
 * Make any desired changes;
 * Submit the changes as a _pull request_ via GitHub.
 
-You can also submit issues via the GitHub
-[issue page](https://github.com/UniversityRadioYork/baps3-spec/issues).
+You can also submit issues via the GitHub [issue page][].
+
+[gitbook]:           https://github.com/GitbookIO/gitbook
+[rustbook]:          https://github.com/aturon/rust-book
+[GitHub repository]: https://github.com/UniversityRadioYork/baps3-spec
+[Fork]:              https://github.com/UniversityRadioYork/baps3-spec/fork
+[issue page]:        https://github.com/UniversityRadioYork/baps3-spec/issues

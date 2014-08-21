@@ -117,4 +117,4 @@ The following are well-formed commands:
 * `FEATURES FileLoad PlayStop Seek End TimeReport`
 
 [POSIX shell]: http://pubs.opengroup.org/onlinepubs/009604599/utilities/xcu_chap02.html
-[isspace()]: http://pubs.opengroup.org/onlinepubs/009695399/functions/isspace.html
+[isspace()]:   http://pubs.opengroup.org/onlinepubs/009695399/functions/isspace.html
