@@ -5,6 +5,7 @@
     * [Conventions](meta/conventions.md)
 * [Rationale](rationale/README.md)
 * [Services](services/README.md)
+    * [Rationale](services/rationale.md)
     * [Player](services/player.md)
     * [Playlist](services/playlist.md)
     * [Platform](services/platform.md)
