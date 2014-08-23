@@ -2,6 +2,9 @@
 
 Provides the `END` response, sent when an audio source ends of its own accord.
 
+This feature mainly exists to enable other features, such as
+`Playlist.AutoAdvance`.
+
 ## Dependencies
 
 `End` has no dependencies.
