@@ -1,7 +1,7 @@
 # Compiling
 
-This document may be compiled using [gitbook][]; see the readme of that project
-for details.  It may also work, to some extent, with [rustbook][].
+This document may be compiled using [gitbook][]; see the _readme_ of that
+project for details.  It may also work, to some extent, with [rustbook][].
 
 ## Source
 
@@ -12,10 +12,15 @@ The latest source is available via its [GitHub repository][].
 The source distribution contains a GNU `Makefile`, which provides a thin layer
 over common compilation tasks:
 
-* `make` or `make book` will run `rustbook build`;
+* `make` or `make book` will run `gitbook build`;
+* `make serve` will run `gitbook serve`;
 * `make gh-pages` will build the book, then checkout the `gh-pages` branch and
   commit the book's contents into that branch, and is useful for updating the
   Github Pages version of the specification.
+
+__Note:__ On operating systems such as FreeBSD, where the default `make` is not
+GNU make, substitute the appropriate command for running GNU make (usually
+`gmake`) for `make`. __(End of note.)__
 
 ## Contributing
 
