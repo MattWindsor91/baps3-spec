@@ -6,8 +6,7 @@ services:
 * [URY playd][], a C++ implementation of the player service;
 * [listmaster][], a Rust implementation of the playlist service;
 * [URY rapid][], a Ruby implementation of the platform service;
-* A Web implementation of the client is being created as part of
-  [MyRadio][](https://github.com/UniversityRadioYork/MyRadio).
+* A Web implementation of the client is being created as part of [MyRadio][].
 
 These will form part of a full implementation of BAPS3 for use in URY.
 
