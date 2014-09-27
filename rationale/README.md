@@ -1,9 +1,9 @@
 # Rationale
 
 _BAPS3_ is an architecture for a radio playout suite, designed to replace the
-playout suite, _BAPS2_, in use at University Radio York as of 2014.  As such, it
-is primarily designed to build on the successes, and avoid the failures, of that
-system.
+playout suite, _BAPS2_, in use at [University Radio York][] as of 2014.  As
+such, it is primarily designed to build on the successes, and avoid the
+failures, of that system.
 
 The primary goals for BAPS3 are:
 
@@ -19,3 +19,5 @@ In addition to this, we hope that BAPS3 will:
 * Be adaptable to the changing world of student radio;
 * Allow a greater amount of flexibility within University Radio York than is
   currently available with BAPS2.
+
+[University Radio York]:  http://ury.org.uk

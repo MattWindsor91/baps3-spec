@@ -6,7 +6,7 @@ two interfaces for inter-service communication:
 
 * The _internal API_, which is a lightweight, line-orientated textual API used
   for communication between server-side services;
-* The _external API_, which is a HTTP-based JSON API used for communication
+* The _external API_, which is a HTTP-based [JSON][] API used for communication
   specifically between the platform and client services.
 
 ## The BAPS2 API
@@ -31,3 +31,5 @@ the requests and responses used in that API.
 
 For the internal API, requests and responses are grouped by _feature flags_,
 which are used by the API to describe the feature set of an internal API server.
+
+[JSON]:  http://json.org/
