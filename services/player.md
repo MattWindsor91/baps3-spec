@@ -1,18 +1,18 @@
 # Player
 
-The _player_ service plays audio files.  It is supplied a single file at a time,
+The _player service_ plays audio files.  It is supplied a single file at a time,
 and allows the playback to be controlled by upstream services through a basic
 API (`stop`, `play`, `seek`, `load`, and `eject`).
 
-Conceptually, a player represents part of a single _playout channel_, with the
-_playlist_ service providing the rest.  Since the usual configuration of a BAPS3
-system will use more than one channel, a playout machine will likely host more
-than one instance of the player service.
+Conceptually, a player service represents part of a single _playout channel_,
+with the _playlist service_ providing the rest.  Since the usual configuration
+of a BAPS3 system will use more than one channel, a playout machine will likely
+host more than one instance of the player service.
 
 ## Interface
 
-The player uses the internal API to communicate with the playlist service.  It
-understands the following requests:
+The player service uses the internal API to communicate with the playlist
+service.  It understands the following requests:
 
 * `play` — Plays the currently loaded file;
 * `stop` — Stops the currently loaded file;

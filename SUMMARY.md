@@ -3,7 +3,6 @@
 * [This document](meta/README.md)
     * [Compiling](meta/compiling.md)
     * [Conventions](meta/conventions.md)
-    * [Terminology](meta/terminology.md)
 * [Rationale](rationale/README.md)
 * [Services](services/README.md)
     * [Rationale](services/rationale.md)

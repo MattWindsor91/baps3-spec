@@ -3,7 +3,7 @@
 The internal API uses the concept of _feature flags_ to disclose the available
 states, requests, and responses to clients of a service.
 
-The _feature flags_ supported by a service are exposed through the `FEATURES`
+The feature flags supported by a service are exposed through the `FEATURES`
 core initial response.
 
 ## Rationale

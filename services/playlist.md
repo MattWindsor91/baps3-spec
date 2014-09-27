@@ -1,18 +1,18 @@
 # Playlist
 
-The _playlist_ service maintains a playlist on top of the player service.  The
+The _playlist service_ maintains a playlist on top of the player service.  The
 playlist contains both _file items_, which represent files available to load
 into the player, and _text items_, which are comments that can be added into the
 playlist, but are not loadable and will be skipped over by the playlist.
 
 ## Interface
 
-The playlist uses the internal API to communicate both with the platform above
-it, and the player below.
+The playlist service uses the internal API to communicate both with the platform
+service above it, and the player service below.
 
-The playlist exposes an API on top of the player, delegating any commands it
-doesn't understand to the player itself.  It adds the following requests to
-the interface:
+The playlist service exposes an API atop that of the player service, delegating
+any commands it doesn't understand downstream.  It adds the following requests
+to the interface:
 
 * `enqueue` — Adds a file or text item into the playlist;
 * `dequeue` — Removes a file or text item from the playlist;
