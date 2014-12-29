@@ -12,7 +12,7 @@ No known conflicts.
 
 ## Item Types
 
-### `text` — Textual Playlist Items
+### `text` — textual playlist items
 
 Items of type `text` take one argument, an arbitrary string, and represent the
 use of that string as an in-playlist comment.  Such items __must not__ be

@@ -12,7 +12,7 @@ Provides the `TIME` response, for reporting changes in audio position.
 
 ## Responses
 
-### `TIME` — Current Time
+### `TIME` — current time
 
 #### Synopsis
 

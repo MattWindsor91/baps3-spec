@@ -19,7 +19,7 @@ This feature mainly exists to enable other features, such as
 
 ## Responses
 
-### `END` — Audio Ended
+### `END` — audio ended
 
 #### Synopsis
 

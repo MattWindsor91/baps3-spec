@@ -18,7 +18,7 @@ auto-advance functionality.
 
 ## Requests
 
-### `autoadvance` — Set Auto-Advance Mode
+### `autoadvance` — set auto-advance mode
 
 #### Synopsis
 
@@ -34,7 +34,7 @@ described above; if auto-advance is `off`, the server __should not__ do so.
 
 ## Responses
 
-### `AUTOADVANCE` — Current Auto-Advance Mode
+### `AUTOADVANCE` — current auto-advance mode
 
 #### Synopsis
 

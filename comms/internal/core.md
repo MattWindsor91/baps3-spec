@@ -6,7 +6,7 @@ These are enumerated here.
 
 ## Requests
 
-### `quit` — Quit Server Stack
+### `quit` — quit server stack
 
 #### Synopsis
 
@@ -22,7 +22,7 @@ disconnecting upstream connections.
 
 ## Responses
 
-### `FAIL` — Server Failure
+### `FAIL` — server failure
 
 #### Synopsis
 
@@ -38,7 +38,7 @@ later words of the `FAIL` response.
 The second word of the `FAIL` response is a human-readable error message.
 Future revisions of the spec __may__ define a structure for this error message.
 
-### `OK` — Command Received
+### `OK` — command received
 
 #### Synopsis
 
@@ -51,7 +51,7 @@ terminated.  Said request __must__ be provided, in a form identical to the
 original request (up to encoding and escaping differences), as the second and
 later words of the `OK` response.
 
-### `OHAI` — Server Welcome
+### `OHAI` — server welcome
 
 #### Synopsis
 
@@ -77,7 +77,7 @@ quirks and bugs in poorly constructed servers, and __should not__ be used for
 enabling specific functionality (the `FEATURES` system should be preferred
 instead).
 
-### `STATE` — State Update
+### `STATE` — state update
 
 #### Synopsis
 
@@ -104,7 +104,7 @@ the initial state is `Stopped` unless any other feature specifically overrides
 that mandate.  Servers __should not__ use `Ready` if another feature state
 better fits its present situation.
 
-### `WHAT` — Bad Command
+### `WHAT` — bad command
 
 #### Synopsis
 

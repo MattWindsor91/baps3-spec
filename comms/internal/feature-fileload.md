@@ -13,7 +13,7 @@ for notifying upstream that a file has been loaded.
 
 ## States
 
-### `Ejected` — No File Loaded
+### `Ejected` — no file loaded
 
 The state in which no file is loaded.  Unless the server starts with a file
 loaded, this __should__ be the _initial state_, overriding any initial state
@@ -22,7 +22,7 @@ overridden by another feature.
 
 ## Requests
 
-### `load` — Load File
+### `load` — load file
 
 #### Synopsis
 
@@ -39,7 +39,7 @@ If the load failed, the state __should__ be set to `Ejected`.
 
 ## Responses
 
-### `FILE` — File Loaded
+### `FILE` — file loaded
 
 #### Synopsis
 

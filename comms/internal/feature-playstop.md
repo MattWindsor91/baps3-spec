@@ -13,12 +13,12 @@ Provides the `play` and `stop` requests, as well as the `Playing` and
 
 ## States
 
-### `Playing` — Playing Audio
+### `Playing` — playing audio
 
 The state in which the audio source is actively playing.  This state
 __should__ be reachable only from `Stopped` (via `play`).
 
-### `Stopped` — Not Playing Audio
+### `Stopped` — not playing audio
 
 The state in which the audio source is stopped playing.  This state __should__
 be reachable from `Playing` (via `stop`), but may also be reachable from any
@@ -32,7 +32,7 @@ state_ __should__ be `Ejected`, not `Stopped`).
 
 ## Requests
 
-### `play` — Start Playing Audio
+### `play` — start playing audio
 
 #### Synopsis
 
@@ -45,7 +45,7 @@ If the current state is `Stopped`, the current state __should__ be set to
 a file, it should be played from its last stopped position, or the beginning of
 the file if it has not been stopped since loading.
 
-### `stop` — Stop Playing Audio
+### `stop` — stop playing audio
 
 #### Synopsis
 

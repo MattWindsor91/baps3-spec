@@ -14,7 +14,7 @@ returning failure from a `seek` request.
 
 ## Requests
 
-### `seek` — Change Position
+### `seek` — change position
 
 #### Synopsis
 

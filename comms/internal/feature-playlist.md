@@ -71,7 +71,7 @@ As defined in the `FileLoad` feature.
 
 ## Requests
 
-### `dequeue` — Remove Item From Playlist
+### `dequeue` — remove item from playlist
 
 #### Synopsis
 
@@ -84,7 +84,7 @@ be interpreted as an _index_; else, a _hash_.
 
 Fails if `TARGET` does not point to an item in the playlist.
 
-### `enqueue` — Insert Item In Playlist
+### `enqueue` — insert item in playlist
 
 #### Synopsis
 
@@ -108,7 +108,7 @@ of item, see below.
 An `ENQUEUE` response __should__ be sent announcing the (non-negative) index,
 hash, type, and arguments of the inserted item.
 
-### `list` — Announce Playlist
+### `list` — announce playlist
 
 #### Synopsis
 
@@ -119,7 +119,7 @@ hash, type, and arguments of the inserted item.
 Causes the server to announce, via a `COUNT` and zero or more subsequent `ITEM`
 responses, the current state of the playlist.
 
-### `select` — Change Selection
+### `select` — change selection
 
 #### Synopsis
 
@@ -135,7 +135,7 @@ selection.
 
 ## Responses
 
-### `COUNT` — Playlist Size
+### `COUNT` — playlist size
 
 #### Synopsis
 
@@ -146,7 +146,7 @@ selection.
 Given before `ITEM` responses at the beginning of a response to a `list`
 request, to inform clients of how many items are to follow.
 
-### `DEQUEUE` — Item Removed From Playlist
+### `DEQUEUE` — item removed from playlist
 
 #### Synopsis
 
@@ -160,7 +160,7 @@ Unless an `ENQUEUE` with the same `HASH` follows, `HASH` now no longer points
 to an item.  `INDEX` now points to the item, if any, following the dequeued
 item.
 
-### `ENQUEUE` — Item Added To Playlist
+### `ENQUEUE` — item added to playlist
 
 #### Synopsis
 
@@ -182,7 +182,7 @@ hashes where possible.
 If an `ENQUEUE` follows a `DEQUEUE` on the same `HASH` with the same `TYPE` and
 `ARGUMENTS`, it likely represents an attempt by a client to move an item.
 
-### `ITEM` — Playlist Item
+### `ITEM` — playlist item
 
 #### Synopsis
 
@@ -194,7 +194,7 @@ If an `ENQUEUE` follows a `DEQUEUE` on the same `HASH` with the same `TYPE` and
 the `ITEM` request has the same meaning as given in `ENQUEUE`; the `INDEX`
 represents the item's _current_ index, not its original.
 
-### `SELECT` — Item Selected
+### `SELECT` — item selected
 
 #### Synopsis
 
