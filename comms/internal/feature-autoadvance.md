@@ -3,8 +3,9 @@
 Provides auto-advance functionality on a playlist.
 
 Auto-advance, when enabled, intercepts an `END` response and automatically
-`select`s the next _playable_ item in the playlist, if available.  Auto-advance
-thus skips over text items and other non-playable playlist content.
+`select`s the next `select`able item in the playlist, if available.
+Auto-advance thus skips over text items and other non-playable playlist
+content.
 
 ## Dependencies
 
