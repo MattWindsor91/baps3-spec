@@ -28,11 +28,28 @@ disconnecting upstream connections.
 
 `FAIL <MESSAGE>`
 
-### `OKAY` — Command Received
+#### Meaning
+
+`FAIL` __must__ be sent to acknowledge a request that has _failed_.
+Said request __must__ be provided, in a form identical to the
+original request (up to encoding and escaping differences), as the third and
+later words of the `FAIL` response.
+
+The second word of the `FAIL` response is a human-readable error message.
+Future revisions of the spec __may__ define a structure for this error message.
+
+### `OK` — Command Received
 
 #### Syntax
 
-`OKAY <COMMAND> [ARGS...]`
+`OK <COMMAND> [ARGS...]`
+
+#### Meaning
+
+`OK` __must__ be sent to acknowledge a request that has _successfully_
+terminated.  Said request __must__ be provided, in a form identical to the
+original request (up to encoding and escaping differences), as the second and
+later words of the `OK` response.
 
 ### `OHAI` — Server Welcome
 
@@ -70,20 +87,36 @@ instead).
 
 `STATE` __should__ be sent when:
 
-* A new upstream connects to a server with _at least_ two states, as part of
-  the _initial responses_; __or__
+* A new upstream connects to a server, as the _final_ _initial response_;
+  __or__
 * The server's _state_ changes.
 
-The list of available states starts empty, and is added to by certain features.
-For example, the `PlayStop` feature adds the `Playing` and `Stopped` states,
-and mandates that the initial state is `Stopped` unless any other feature
-specifically overrides that mandate.
+The list of available states always contains the following:
 
-If the server does not make use of a state machine, then `STATE` is redundant
-and __may__ be left unimplemented.
+* `Quitting`: the server is preparing to quit, and clients __should not__ send
+  responses;
+* `Ready`: the server can take responses, but there is no other state that
+  better defines the server's current status.
+
+The list of available states is added to by certain features.  For example, the
+`PlayStop` feature adds the `Playing` and `Stopped` states, and mandates that
+the initial state is `Stopped` unless any other feature specifically overrides
+that mandate.  Servers __should not__ use `Ready` if another feature state
+better fits its present situation.
 
 ### `WHAT` — Bad Command
 
 #### Syntax
 
 `WHAT <MESSAGE> <COMMAND> [ARGS...]`
+
+#### Meaning
+
+`WHAT` __must__ be sent to acknowledge an _invalid_ request: one that does not
+fit the syntax of its declared command, or one with an unknown command.
+Said request __must__ be provided, in a form identical to the
+original request (up to encoding and escaping differences), as the third and
+later words of the `WHAT` response.
+
+The second word of the `WHAT` response is a human-readable error message.
+Future revisions of the spec __may__ define a structure for this error message.
