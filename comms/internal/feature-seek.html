@@ -4,10 +4,11 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
         <title>Feature: Seek | BAPS3 Specification</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.1.0">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
@@ -15,7 +16,7 @@
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
         
-    
+        
     
     
     <link rel="next" href="../../comms/internal/feature-end.html" />
@@ -33,7 +34,7 @@
 
 
         
-    <div class="book" data-level="4.1.7" data-basepath="../.." data-revision="1411737619147">
+    <div class="book" data-level="4.1.7" data-basepath="../.." data-revision="1419896098637">
     
 
 <div class="book-summary">
@@ -654,6 +655,25 @@
                     <section class="normal" id="section-gitbook_12">
                     
                         <h1 id="feature-seek">Feature: Seek</h1>
+<p>Provides the <code>seek</code> request, for changing the audio position.</p>
+<h2 id="dependencies">Dependencies</h2>
+<p>The audio handled by servers implementing <code>Seek</code> <strong>should</strong> be seekable.
+<code>Seek</code> provides no means of handling or detecting unseekable audio, except
+returning failure from a <code>seek</code> request.</p>
+<h2 id="conflicts">Conflicts</h2>
+<p><code>Seek</code> may conflict with other seeking features.</p>
+<h2 id="requests">Requests</h2>
+<h3 id="seek--change-position"><code>seek</code> — change position</h3>
+<h4 id="synopsis">Synopsis</h4>
+<p><code>seek &lt;MICROS&gt;</code></p>
+<h4 id="description">Description</h4>
+<p>Seeks the currently playing audio to <code>MICROS</code> microseconds.  <code>MICROS</code> <strong>must</strong>
+be a non-negative integer for the <code>seek</code> request to be considered valid.</p>
+<p>The position after <code>seek</code> <strong>should</strong> be the closest possible position to
+<code>MICROS</code>.  If the position is past the end of audio, the server <strong>should</strong>
+behave as if the audio had ended of its own accord.</p>
+<p>The new position <strong>may</strong> be reported, for example via the <code>TIME</code> response, but
+this is outside the scope of this feature.</p>
 
                     
                     </section>

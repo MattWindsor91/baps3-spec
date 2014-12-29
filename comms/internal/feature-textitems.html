@@ -4,10 +4,11 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
         <title>Feature: Playlist.TextItems | BAPS3 Specification</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.1.0">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
@@ -15,7 +16,7 @@
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
         
-    
+        
     
     
     <link rel="next" href="../../comms/external/README.html" />
@@ -33,7 +34,7 @@
 
 
         
-    <div class="book" data-level="4.1.12" data-basepath="../.." data-revision="1411737619147">
+    <div class="book" data-level="4.1.12" data-basepath="../.." data-revision="1419896098637">
     
 
 <div class="book-summary">
@@ -654,6 +655,16 @@
                     <section class="normal" id="section-gitbook_13">
                     
                         <h1 id="feature-playlisttextitems">Feature: Playlist.TextItems</h1>
+<p>Provides the ability to enqueue items with type <code>text</code>.</p>
+<h2 id="dependencies">Dependencies</h2>
+<p><code>Playlist.TextItems</code> depends on <code>Playlist</code>.</p>
+<h2 id="conflicts">Conflicts</h2>
+<p>No known conflicts.</p>
+<h2 id="item-types">Item Types</h2>
+<h3 id="text--textual-playlist-items"><code>text</code> — textual playlist items</h3>
+<p>Items of type <code>text</code> take one argument, an arbitrary string, and represent the
+use of that string as an in-playlist comment.  Such items <strong>must not</strong> be
+<code>select</code>able.</p>
 
                     
                     </section>

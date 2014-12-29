@@ -4,10 +4,11 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
         <title>Feature: Playlist.AutoAdvance | BAPS3 Specification</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.1.0">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
@@ -15,7 +16,7 @@
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
         
-    
+        
     
     
     <link rel="next" href="../../comms/internal/feature-textitems.html" />
@@ -33,7 +34,7 @@
 
 
         
-    <div class="book" data-level="4.1.11" data-basepath="../.." data-revision="1411737619147">
+    <div class="book" data-level="4.1.11" data-basepath="../.." data-revision="1419896098637">
     
 
 <div class="book-summary">
@@ -656,27 +657,28 @@
                         <h1 id="feature-playlistautoadvance">Feature: Playlist.AutoAdvance</h1>
 <p>Provides auto-advance functionality on a playlist.</p>
 <p>Auto-advance, when enabled, intercepts an <code>END</code> response and automatically
-<code>select</code>s the next <em>playable</em> item in the playlist, if available.  Auto-advance
-thus skips over text items and other non-playable playlist content.</p>
+<code>select</code>s the next <code>select</code>able item in the playlist, if available.
+Auto-advance thus skips over text items and other non-playable playlist
+content.</p>
 <h2 id="dependencies">Dependencies</h2>
 <p><code>Playlist.AutoAdvance</code> depends on both <code>End</code> and <code>Playlist</code>.</p>
 <h2 id="conflicts">Conflicts</h2>
 <p><code>Playlist.AutoAdvance</code> may conflict with any other feature providing
 auto-advance functionality.</p>
 <h2 id="requests">Requests</h2>
-<h3 id="autoadvance--set-auto-advance-mode"><code>autoadvance</code> — Set Auto-Advance Mode</h3>
-<h4 id="syntax">Syntax</h4>
+<h3 id="autoadvance--set-auto-advance-mode"><code>autoadvance</code> — set auto-advance mode</h3>
+<h4 id="synopsis">Synopsis</h4>
 <p><code>autoadvance [on|off]</code></p>
-<h4 id="meaning">Meaning</h4>
+<h4 id="description">Description</h4>
 <p><code>autoadvance</code> sets the current auto-advance mode.</p>
 <p>An argument of <code>on</code> enables auto-advance; an argument of <code>off</code> disables it.
 If auto-advance is <code>on</code>, the server <strong>should</strong> handle <code>END</code> responses as
 described above; if auto-advance is <code>off</code>, the server <strong>should not</strong> do so.</p>
 <h2 id="responses">Responses</h2>
-<h3 id="autoadvance--current-auto-advance-mode"><code>AUTOADVANCE</code> — Current Auto-Advance Mode</h3>
-<h4 id="syntax">Syntax</h4>
+<h3 id="autoadvance--current-auto-advance-mode"><code>AUTOADVANCE</code> — current auto-advance mode</h3>
+<h4 id="synopsis">Synopsis</h4>
 <p><code>AUTOADVANCE [on|off]</code></p>
-<h4 id="meaning">Meaning</h4>
+<h4 id="description">Description</h4>
 <p><code>AUTOADVANCE</code> <strong>should</strong> be sent when:</p>
 <ul>
 <li>An upstream connects to this service, as part of the <em>initial responses</em>;

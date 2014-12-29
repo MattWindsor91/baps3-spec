@@ -4,10 +4,11 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
         <title>Feature: PlayStop | BAPS3 Specification</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.1.0">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
@@ -15,7 +16,7 @@
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
         
-    
+        
     
     
     <link rel="next" href="../../comms/internal/feature-seek.html" />
@@ -33,7 +34,7 @@
 
 
         
-    <div class="book" data-level="4.1.6" data-basepath="../.." data-revision="1411737619147">
+    <div class="book" data-level="4.1.6" data-basepath="../.." data-revision="1419896098637">
     
 
 <div class="book-summary">
@@ -661,10 +662,10 @@
 <h2 id="conflicts">Conflicts</h2>
 <p><code>PlayStop</code> may conflict with any other playback control sets.</p>
 <h2 id="states">States</h2>
-<h3 id="playing--playing-audio"><code>Playing</code> — Playing Audio</h3>
+<h3 id="playing--playing-audio"><code>Playing</code> — playing audio</h3>
 <p>The state in which the audio source is actively playing.  This state
 <strong>should</strong> be reachable only from <code>Stopped</code> (via <code>play</code>).</p>
-<h3 id="stopped--not-playing-audio"><code>Stopped</code> — Not Playing Audio</h3>
+<h3 id="stopped--not-playing-audio"><code>Stopped</code> — not playing audio</h3>
 <p>The state in which the audio source is stopped playing.  This state <strong>should</strong>
 be reachable from <code>Playing</code> (via <code>stop</code>), but may also be reachable from any
 state representing a lack of audio source (for example, <code>Ejected</code> from
@@ -674,18 +675,18 @@ a lack of audio source, <em>and</em> the server starts without any audio source 
 (For example, if <code>FileLoad</code> and <code>PlayStop</code> are both implemented, the <em>initial
 state</em> <strong>should</strong> be <code>Ejected</code>, not <code>Stopped</code>).</p>
 <h2 id="requests">Requests</h2>
-<h3 id="play--start-playing-audio"><code>play</code> — Start Playing Audio</h3>
-<h4 id="syntax">Syntax</h4>
+<h3 id="play--start-playing-audio"><code>play</code> — start playing audio</h3>
+<h4 id="synopsis">Synopsis</h4>
 <p><code>play</code></p>
-<h4 id="meaning">Meaning</h4>
+<h4 id="description">Description</h4>
 <p>If the current state is <code>Stopped</code>, the current state <strong>should</strong> be set to
 <code>Playing</code> and the audio source <strong>should</strong> begin playing.  If the audio source is
 a file, it should be played from its last stopped position, or the beginning of
 the file if it has not been stopped since loading.</p>
-<h3 id="stop--stop-playing-audio"><code>stop</code> — Stop Playing Audio</h3>
-<h4 id="syntax">Syntax</h4>
+<h3 id="stop--stop-playing-audio"><code>stop</code> — stop playing audio</h3>
+<h4 id="synopsis">Synopsis</h4>
 <p><code>stop</code></p>
-<h4 id="meaning">Meaning</h4>
+<h4 id="description">Description</h4>
 <p>If the current state is <code>Playing</code>, the current state <strong>should</strong> be set to
 <code>Stopped</code> and the audio source <strong>should</strong> stop playing.  If the audio source
 is a file, its current position <strong>should</strong> be carried over to any subsequent

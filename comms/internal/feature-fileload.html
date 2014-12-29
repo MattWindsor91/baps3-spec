@@ -4,10 +4,11 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
         <title>Feature: FileLoad | BAPS3 Specification</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.1.0">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
@@ -15,7 +16,7 @@
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
         
-    
+        
     
     
     <link rel="next" href="../../comms/internal/feature-playstop.html" />
@@ -33,7 +34,7 @@
 
 
         
-    <div class="book" data-level="4.1.5" data-basepath="../.." data-revision="1411737619147">
+    <div class="book" data-level="4.1.5" data-basepath="../.." data-revision="1419896098637">
     
 
 <div class="book-summary">
@@ -661,25 +662,25 @@ for notifying upstream that a file has been loaded.</p>
 <h2 id="conflicts">Conflicts</h2>
 <p><code>FileLoad</code> may conflict with any other loading features.</p>
 <h2 id="states">States</h2>
-<h3 id="ejected--no-file-loaded"><code>Ejected</code> — No File Loaded</h3>
+<h3 id="ejected--no-file-loaded"><code>Ejected</code> — no file loaded</h3>
 <p>The state in which no file is loaded.  Unless the server starts with a file
 loaded, this <strong>should</strong> be the <em>initial state</em>, overriding any initial state
 provided by a playback control feature (such as <code>PlayStop</code>), unless explicitly
 overridden by another feature.</p>
 <h2 id="requests">Requests</h2>
-<h3 id="load--load-file"><code>load</code> — Load File</h3>
-<h4 id="syntax">Syntax</h4>
+<h3 id="load--load-file"><code>load</code> — load file</h3>
+<h4 id="synopsis">Synopsis</h4>
 <p><code>load &lt;PATH&gt;</code></p>
-<h4 id="meaning">Meaning</h4>
+<h4 id="description">Description</h4>
 <p>Loads the file at <code>PATH</code>, replacing any previously loaded file.</p>
 <p>Will succeed and send <code>FILE</code> if the file has been loaded successfully.  The
 state <strong>should</strong> then be set to <code>Stopped</code>.</p>
 <p>If the load failed, the state <strong>should</strong> be set to <code>Ejected</code>.</p>
 <h2 id="responses">Responses</h2>
-<h3 id="file--file-loaded"><code>FILE</code> — File Loaded</h3>
-<h4 id="syntax">Syntax</h4>
+<h3 id="file--file-loaded"><code>FILE</code> — file loaded</h3>
+<h4 id="synopsis">Synopsis</h4>
 <p><code>FILE &lt;PATH&gt;</code></p>
-<h4 id="meaning">Meaning</h4>
+<h4 id="description">Description</h4>
 <p><code>FILE</code> <strong>should</strong> be sent when:</p>
 <ul>
 <li>A new upstream connects to a server with the <code>FileLoad</code> feature, as part of
