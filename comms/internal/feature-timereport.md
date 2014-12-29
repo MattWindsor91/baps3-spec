@@ -14,11 +14,11 @@ Provides the `TIME` response, for reporting changes in audio position.
 
 ### `TIME` — Current Time
 
-#### Syntax
+#### Synopsis
 
 `TIME <MICROS>`
 
-#### Meaning
+#### Description
 
 Reports the current position in the audio as being `MICROS` microseconds.
 `MICROS` __must__ be a non-negative integer for the `TIME` response to be

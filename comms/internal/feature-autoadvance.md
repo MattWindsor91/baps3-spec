@@ -20,11 +20,11 @@ auto-advance functionality.
 
 ### `autoadvance` — Set Auto-Advance Mode
 
-#### Syntax
+#### Synopsis
 
 `autoadvance [on|off]`
 
-#### Meaning
+#### Description
 
 `autoadvance` sets the current auto-advance mode.
 
@@ -36,11 +36,11 @@ described above; if auto-advance is `off`, the server __should not__ do so.
 
 ### `AUTOADVANCE` — Current Auto-Advance Mode
 
-#### Syntax
+#### Synopsis
 
 `AUTOADVANCE [on|off]`
 
-#### Meaning
+#### Description
 
 `AUTOADVANCE` __should__ be sent when:
 

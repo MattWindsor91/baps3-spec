@@ -24,11 +24,11 @@ overridden by another feature.
 
 ### `load` — Load File
 
-#### Syntax
+#### Synopsis
 
 `load <PATH>`
 
-#### Meaning
+#### Description
 
 Loads the file at `PATH`, replacing any previously loaded file.
 
@@ -41,11 +41,11 @@ If the load failed, the state __should__ be set to `Ejected`.
 
 ### `FILE` — File Loaded
 
-#### Syntax
+#### Synopsis
 
 `FILE <PATH>`
 
-#### Meaning
+#### Description
 
 `FILE` __should__ be sent when:
 

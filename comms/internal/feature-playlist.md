@@ -73,11 +73,11 @@ As defined in the `FileLoad` feature.
 
 ### `dequeue` — Remove Item From Playlist
 
-#### Syntax
+#### Synopsis
 
 `dequeue <TARGET>`
 
-#### Meaning
+#### Description
 
 Removes the item at `TARGET`.  If `TARGET` begins with a digit or `-`, it will
 be interpreted as an _index_; else, a _hash_.
@@ -86,11 +86,11 @@ Fails if `TARGET` does not point to an item in the playlist.
 
 ### `enqueue` — Insert Item In Playlist
 
-#### Syntax
+#### Synopsis
 
 `enqueue <INDEX> <HASH> <TYPE> <ARGUMENTS..>`
 
-#### Meaning
+#### Description
 
 Inserts the item with type `TYPE` such that any immediately subsequent action
 on index `INDEX` on the playlist will reach this item.  Thus, for integral
@@ -110,22 +110,22 @@ hash, type, and arguments of the inserted item.
 
 ### `list` — Announce Playlist
 
-#### Syntax
+#### Synopsis
 
 `list`
 
-#### Meaning
+#### Description
 
 Causes the server to announce, via a `COUNT` and zero or more subsequent `ITEM`
 responses, the current state of the playlist.
 
 ### `select` — Change Selection
 
-#### Syntax
+#### Synopsis
 
 `select [<TARGET>]`
 
-#### Meaning
+#### Description
 
 If `TARGET` is not given, removes any current selection.  Else, attempts to
 select the item at _index_ or _hash_ `TARGET`.
@@ -137,22 +137,22 @@ selection.
 
 ### `COUNT` — Playlist Size
 
-#### Syntax
+#### Synopsis
 
 `COUNT <NUM>`
 
-#### Meaning
+#### Description
 
 Given before `ITEM` responses at the beginning of a response to a `list`
 request, to inform clients of how many items are to follow.
 
 ### `DEQUEUE` — Item Removed From Playlist
 
-#### Syntax
+#### Synopsis
 
 `DEQUEUE <INDEX> <HASH>`
 
-#### Meaning
+#### Description
 
 The item formerly at index `INDEX`, with hash `HASH`, has been removed.
 
@@ -162,11 +162,11 @@ item.
 
 ### `ENQUEUE` — Item Added To Playlist
 
-#### Syntax
+#### Synopsis
 
 `ENQUEUE <INDEX> <HASH> <TYPE> <ARGUMENTS...>`
 
-#### Meaning
+#### Description
 
 The index `INDEX` and hash `HASH` now point to an item of type `TYPE` with
 arguments `ARGUMENTS`.
@@ -184,11 +184,11 @@ If an `ENQUEUE` follows a `DEQUEUE` on the same `HASH` with the same `TYPE` and
 
 ### `ITEM` — Playlist Item
 
-#### Syntax
+#### Synopsis
 
 `ITEM <INDEX> <HASH> <TYPE> <ARGUMENTS...>`
 
-#### Meaning
+#### Description
 
 `ITEM` is announced as part of the response to a `list` request.  Each part of
 the `ITEM` request has the same meaning as given in `ENQUEUE`; the `INDEX`
@@ -196,11 +196,11 @@ represents the item's _current_ index, not its original.
 
 ### `SELECT` — Item Selected
 
-#### Syntax
+#### Synopsis
 
 `SELECT` __or__ `SELECT <INDEX> <HASH>`
 
-#### Meaning
+#### Description
 
 With no index or hash, the playlist has no item selected.  This means that
 playback controls __should not__ work, and the state __should__ be `Ejected`.

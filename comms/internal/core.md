@@ -8,11 +8,11 @@ These are enumerated here.
 
 ### `quit` — Quit Server Stack
 
-#### Syntax
+#### Synopsis
 
 `quit`
 
-#### Meaning
+#### Description
 
 `quit` is a request to a server, and all servers downstream from it, to
 close gracefully.
@@ -24,11 +24,11 @@ disconnecting upstream connections.
 
 ### `FAIL` — Server Failure
 
-#### Syntax
+#### Synopsis
 
 `FAIL <MESSAGE>`
 
-#### Meaning
+#### Description
 
 `FAIL` __must__ be sent to acknowledge a request that has _failed_.
 Said request __must__ be provided, in a form identical to the
@@ -40,11 +40,11 @@ Future revisions of the spec __may__ define a structure for this error message.
 
 ### `OK` — Command Received
 
-#### Syntax
+#### Synopsis
 
 `OK <COMMAND> [ARGS...]`
 
-#### Meaning
+#### Description
 
 `OK` __must__ be sent to acknowledge a request that has _successfully_
 terminated.  Said request __must__ be provided, in a form identical to the
@@ -53,11 +53,11 @@ later words of the `OK` response.
 
 ### `OHAI` — Server Welcome
 
-#### Syntax
+#### Synopsis
 
 `OHAI <IDENTIFIER>`
 
-#### Meaning
+#### Description
 
 `OHAI` __must__ be sent as the first _initial response_ given to any connecting
 upstream, and identifies the server (as well as the BAPS3 internal protocol).
@@ -79,11 +79,11 @@ instead).
 
 ### `STATE` — State Update
 
-#### Syntax
+#### Synopsis
 
 `STATE <STATE-NAME>`
 
-#### Meaning
+#### Description
 
 `STATE` __should__ be sent when:
 
@@ -106,11 +106,11 @@ better fits its present situation.
 
 ### `WHAT` — Bad Command
 
-#### Syntax
+#### Synopsis
 
 `WHAT <MESSAGE> <COMMAND> [ARGS...]`
 
-#### Meaning
+#### Description
 
 `WHAT` __must__ be sent to acknowledge an _invalid_ request: one that does not
 fit the syntax of its declared command, or one with an unknown command.

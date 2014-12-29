@@ -16,11 +16,11 @@ returning failure from a `seek` request.
 
 ### `seek` — Change Position
 
-#### Syntax
+#### Synopsis
 
 `seek <MICROS>`
 
-#### Meaning
+#### Description
 
 Seeks the currently playing audio to `MICROS` microseconds.  `MICROS` __must__
 be a non-negative integer for the `seek` request to be considered valid.

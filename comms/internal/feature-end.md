@@ -21,11 +21,11 @@ This feature mainly exists to enable other features, such as
 
 ### `END` — Audio Ended
 
-#### Syntax
+#### Synopsis
 
 `END`
 
-#### Meaning
+#### Description
 
 `END` __should__ be sent when:
 

@@ -34,11 +34,11 @@ state_ __should__ be `Ejected`, not `Stopped`).
 
 ### `play` — Start Playing Audio
 
-#### Syntax
+#### Synopsis
 
 `play`
 
-#### Meaning
+#### Description
 
 If the current state is `Stopped`, the current state __should__ be set to
 `Playing` and the audio source __should__ begin playing.  If the audio source is
@@ -47,11 +47,11 @@ the file if it has not been stopped since loading.
 
 ### `stop` — Stop Playing Audio
 
-#### Syntax
+#### Synopsis
 
 `stop`
 
-#### Meaning
+#### Description
 
 If the current state is `Playing`, the current state __should__ be set to
 `Stopped` and the audio source __should__ stop playing.  If the audio source
