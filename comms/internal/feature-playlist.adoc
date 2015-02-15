@@ -55,9 +55,11 @@ Useful hashes will try to distinguish between different items,
 different clients, and different periods of time.  For example, one
 might base a hash on:
 
-* The item arguments; * The item type; * The client's hostname and
-port; * Either the time of insertion (to a decent resolution) or a
-sequence number.
+* The item arguments;
+* The item type;
+* The client's hostname and port;
+* Either the time of insertion (to a decent resolution) or a sequence
+  number.
 
 Of course, if the client is a human, any sufficiently unique
 identifier will do.

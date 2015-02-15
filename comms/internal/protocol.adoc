@@ -108,9 +108,9 @@ specially, and has the effect of returning to unquoted mode.
 
 In double-quoted mode:
 
-* A backslash character begins escaped mode; * A double-quote
-character begins unquoted mode; * Any other character is echoed
-verbatim.
+* A backslash character begins escaped mode;
+* A double-quote character begins unquoted mode;
+* Any other character is echoed verbatim.
 
 ### Escaped mode
 
