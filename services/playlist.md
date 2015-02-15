@@ -22,7 +22,8 @@ to the interface:
 
 For a playlist, `quit` also closes any underlying player in addition.
 
-In addition, it _removes_ the following player requests:
+In addition, it _removes_ the following player requests (should they be
+present):
 
 * `load` — Replaced with `enqueue`;
 * `eject` — Replaced with `select` (with no arguments);

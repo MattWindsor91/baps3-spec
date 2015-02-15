@@ -24,6 +24,28 @@ possible services _not_ specified here include:
 * Digitising and cataloguing services;
 * Installation, deployment and configuration services.
 
+## Core Functionality
+
+All BAPS3 servers (consequently, all services) provide a minimum amount of
+functionality associated with the BAPS3 protocol.  This includes the
+following request:
+
+* `quit` — Quits the service (including any downstream services).
+
+In addition, the following responses _must_ be emitted by all services
+at start-up, in this order:
+
+* `OHAI` — Identifies the player implementation and welcomes the client;
+* `FEATURES` — The set of features implemented by the service;
+* `STATE` — The current service state (also emitted on state change).
+
+All services will respond to a client request with one of the following
+responses:
+
+* `OK` — A client request was successfully honoured;
+* `WHAT` — A client request was not understood;
+* `FAIL` — An error has occurred.
+
 ## Chapter Structure
 
 We begin this chapter by discussing the [rationale][] for dividing the BAPS3

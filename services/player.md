@@ -12,26 +12,21 @@ host more than one instance of the player service.
 ## Interface
 
 The player service uses the internal API to communicate with the playlist
-service.  It understands the following requests:
+service.  It understands the following requests in addition to the core
+requests mentioned earlier:
 
 * `play` — Plays the currently loaded file;
 * `stop` — Stops the currently loaded file;
 * `load` — Loads a new file;
 * `eject` — Unloads the currently loaded file;
 * `seek` — Seeks to a new position in the currently loaded file;
-* `quit` — Quits the player.
 
-It emits the following responses:
+It emits the following non-core responses:
 
-* `OHAI` — Identifies the player implementation and welcomes the client;
-* `STATE` — A state change has occurred;
-* `TIME` — The current position in the loaded file, sent periodically;
 * `END` — The file has ended of its own accord (not via user intervention);
-* `OKAY` — A client request was successfully honoured;
-* `WHAT` — A client request was not understood;
-* `FAIL` — An error has occurred;
 * `FILE` — The currently loaded file;
-* `FEATURES` — The set of features implemented by the player.
+* `STATE` — A state change has occurred;
+* `TIME` — The current position in the loaded file, sent periodically.
 
 ## Implemented Features
 
