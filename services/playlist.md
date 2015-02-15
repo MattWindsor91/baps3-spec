@@ -20,11 +20,12 @@ to the interface:
 * `select` — Selects a file item in the playlist, loading it into the player;
 * `list` — Enumerates the items in the playlist, alongside their types;
 
-In addition, it overrides the following player requests:
+For a playlist, `quit` also closes any underlying player in addition.
 
-* `load` — Clears the playlist, enqueues the requested file, and selects it;
-* `eject` — Deselects the current selected item and unloads it from the player;
-* `quit` — Quits both the playlist and player services.
+In addition, it _removes_ the following player requests:
+
+* `load` — Replaced with `enqueue`;
+* `eject` — Replaced with `select` (with no arguments);
 
 It also adds the following responses to those sent by the player:
 
