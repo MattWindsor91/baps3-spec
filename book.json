@@ -1,4 +1,6 @@
 {
+    "gitbook": "2.x.x",
+
     "pluginsConfig": {
         "fontSettings": {
             "theme": "white",
