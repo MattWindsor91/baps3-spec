@@ -1,7 +1,7 @@
 = Summary
 
 . link:meta/README.md[This document]
-.. link:meta/compiling.md[Compiling]
+.. link:meta/compiling.adoc[Compiling]
 .. link:meta/conventions.md[Conventions]
 . link:rationale/README.md[Rationale]
 . link:services/README.md[Services]
