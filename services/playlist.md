@@ -16,13 +16,13 @@ to the interface:
 
 * `enqueue` — Adds a file or text item into the playlist;
 * `dequeue` — Removes a file or text item from the playlist;
-* `clear` — Removes all items from the playlist.
+* `clear` — Removes all items from the playlist;
 * `select` — Selects a file item in the playlist, loading it into the player;
 * `list` — Enumerates the items in the playlist, alongside their types;
 
 In addition, it overrides the following player requests:
 
-* `load` — Clears the playlist, enqueues the requested file, and selects it.
+* `load` — Clears the playlist, enqueues the requested file, and selects it;
 * `eject` — Deselects the current selected item and unloads it from the player;
 * `quit` — Quits both the playlist and player services.
 
@@ -32,7 +32,7 @@ It also adds the following responses to those sent by the player:
 * `DEQUEUE` — An item has been dequeued;
 * `SELECT` — The selection has been changed;
 * `COUNT` — The current number of items in the playlist;
-* `LIST` — A playlist item.
+* `ITEM` — A playlist item.
 
 ## Implemented Features
 
