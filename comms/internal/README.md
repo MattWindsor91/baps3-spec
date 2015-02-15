@@ -1,6 +1,6 @@
 # Internal API
 
-The BAPS3 _Internal API_ is the API used for communication between BAPS3
+The BAPS3 _internal API_ is the API used for communication between BAPS3
 _service servers_.  It is designed to meet the following criteria:
 
 * __Composability.__  The API is intended to allow separate implementations of

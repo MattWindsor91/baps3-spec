@@ -1,6 +1,6 @@
 # Protocol
 
-The BAPS3 Internal API sits atop a text-based protocol based upon
+The BAPS3 internal API sits atop a text-based protocol based upon
 [POSIX shell][] conventions.
 
 ## Rationale
@@ -137,7 +137,7 @@ or more _lowercase_ ASCII characters, and __may__ be quoted.
 
 ### Responses
 
-_Requests_ are the subset of valid commands that originate from an API service,
+_Responses_ are the subset of valid commands that originate from an API service,
 and inform an API client.  Response command words __should__ consist of one
 or more _uppercase_ ASCII characters, and __may__ be quoted.
 
