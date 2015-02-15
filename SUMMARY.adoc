@@ -5,7 +5,7 @@
 .. link:meta/conventions.md[Conventions]
 . link:rationale/README.md[Rationale]
 . link:services/README.md[Services]
-.. link:services/rationale.md[Rationale]
+.. link:services/rationale.adoc[Rationale]
 .. link:services/player.md[Player]
 .. link:services/playlist.md[Playlist]
 .. link:services/platform.md[Platform]
