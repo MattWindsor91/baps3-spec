@@ -5,7 +5,9 @@ for notifying upstream that a file has been loaded.
 
 ## Dependencies
 
-`FileLoad` has no dependencies.
+`FileLoad` depends on the concept of an _initial file-loaded state_,
+which is supplied by another feature such as `PlayStop`.  Should no
+other feature provide such a state, the default state `Ready` __may__ be used.
 
 ## Conflicts
 
@@ -33,7 +35,7 @@ overridden by another feature.
 Loads the file at `PATH`, replacing any previously loaded file.
 
 Will succeed and send `FILE` if the file has been loaded successfully.  The
-state __should__ then be set to `Stopped`.
+state __should__ then be set to the initial file-loaded state.
 
 If the load failed, the state __should__ be set to `Ejected`.
 

@@ -9,7 +9,8 @@ Provides the `play` and `stop` requests, as well as the `Playing` and
 
 ## Conflicts
 
-`PlayStop` may conflict with any other playback control sets.
+`PlayStop` may conflict with any other playback control sets, and
+conflicts with any other feature providing an _initial file-loaded state_.
 
 ## States
 
@@ -29,6 +30,8 @@ This __should__ be the _initial state_, unless a state is available representing
 a lack of audio source, _and_ the server starts without any audio source loaded.
 (For example, if `FileLoad` and `PlayStop` are both implemented, the _initial
 state_ __should__ be `Ejected`, not `Stopped`).
+
+For the purposes of `FileLoad`, `Stopped` is the _initial file-loaded state_.
 
 ## Requests
 
