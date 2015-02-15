@@ -6,46 +6,58 @@ The playout system specified in this document.
 
 A user of a BAPS3 API; either a client or a server.
 
-# Client
+# client
 
-A program or user that consumes a service.
+A program or user that consumes services.
 
-# External API
+# external API
 
 The API used for communication between BAPS3 clients and the server stack
 providing BAPS3 services.
 
-# Internal API
+# internal API
 
 The API used for communication between servers.
 
-# Feature flag
+# feature flag
 
 A string, sent as part of a FEATURES request, that identifies a set of
 requests, responses, and/or states that constitute a feature provided by a
 server.
 
-# Server
+# server
 
-A program that provides a service.
+A program that provides services.
 
-# Service
+# service
 
-A specific rôle in the BAPS3 system, usually defined as a group of expected
+A specific role in the BAPS3 system, usually defined as a group of expected
 features.
 
-# Player service
+# player service
 
 The service responsible for playing single audio tracks.
 
-# Playlist service
+# playlist service
 
 The service responsible for maintaining track playlists for players.
 
-# Platform service
+# platform service
 
 The service responsible for unifying other services into a coherent unit.
 
 # URY
 
 University Radio York.
+
+# initial responses
+
+The responses sent from servers to their clients upon connection.
+
+# upstream
+
+The services/servers implemented on top of the current subject.
+
+# downstream
+
+The services/servers on top of which the current subject is implemented.
