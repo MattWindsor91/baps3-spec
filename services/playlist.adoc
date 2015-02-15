@@ -1,0 +1,70 @@
+= Playlist
+:Playlist:    link:../comms/internal/feature-playlist.adoc
+:AutoAdvance: link:../comms/internal/feature-autoadvance.adoc
+:TextItems:   link:../comms/internal/feature-textitems.adoc
+
+The _playlist service_ maintains a playlist on top of the player
+service.  The playlist contains both _file items_, which represent
+files available to load into the player, and _text items_, which
+are comments that can be added into the playlist, but are not
+loadable and will be skipped over by the playlist.
+
+== Interface
+
+The playlist service uses the internal API to communicate both with
+the platform service above it, and the player service below.
+
+The playlist service exposes an API atop that of the player service,
+delegating any commands it doesn't understand downstream.  It adds
+the following requests to the interface:
+
+* `enqueue` — Adds a file or text item into the playlist;
+* `dequeue` — Removes a file or text item from the playlist;
+* `clear` — Removes all items from the playlist;
+* `select` — Selects a file item in the playlist, loading it into the player;
+* `list` — Enumerates the items in the playlist, alongside their types;
+
+For a playlist, `quit` also closes any underlying player in addition.
+
+In addition, it _removes_ the following player requests (should
+they be present):
+
+* `load` — Replaced with `enqueue`;
+* `eject` — Replaced with `select` (with no arguments);
+
+It also adds the following responses to those sent by the player:
+
+* `ENQUEUE` — An item has been enqueued;
+* `DEQUEUE` — An item has been dequeued;
+* `SELECT` — The selection has been changed;
+* `COUNT` — The current number of items in the playlist;
+* `ITEM` — A playlist item.
+
+== Implemented Features
+
+The playlist __must__ implement, as a minimum, the {Playlist}[`Playlist`],
+{TextItems}[`Playlist.TextItems`], and
+{AutoAdvance}[`Playlist.AutoAdvance`] features.
+
+== Requirements
+
+Interface compatibility::
+  The playlist __must__ implement the above interface. It __may__
+  implement a superset of the interface, in order to implement more
+  features than those required by the playlist.
+File and text loading::
+  The playlist __should__ allow both files and text items to be
+  enqueued, and __must__ disregard text items for the purposes of
+  selection and auto-advancing.  If the playlist does not allow
+  text items, it __must__ notify the platform of this deficiency
+  via the `FEATURES` response.
+Features propagation::
+  The playlist __must__ announce those features of the player to
+  which it allows access, and __must__ hide those features of the
+  player to which it does not.
+Flexible player selection::
+  The playlist __should__ allow the configurable selection of the
+  player instance to which it will attach.  For example, a TCP/IP-based
+  playlist service should allow the player port and address to be
+  selected.  If the playlist spawns, or contains, its own player,
+  this may be disregarded.
