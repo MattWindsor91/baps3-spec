@@ -1,4 +1,4 @@
-# Summary
+= Summary
 
 . link:meta/README.md[This document]
 .. link:meta/compiling.md[Compiling]
