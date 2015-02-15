@@ -10,7 +10,7 @@
 
 BAPS3 is comprised of multiple logical _services_.  Each service
 is intended to be implemented as a separate server program, but
-__may__ be merged (for reasons of performance, maintainability, and
+*may* be merged (for reasons of performance, maintainability, and
 so on).
 
 == Core Services
@@ -26,7 +26,7 @@ There are six _core services_ that define BAPS3's minimal functionality:
 
 == Additional Services
 
-Implementations of BAPS3 __may__ define additional services.  Examples
+Implementations of BAPS3 *may* define additional services.  Examples
 of possible services _not_ specified here include:
 
 * Additional frontends (for debugging purposes, for example);

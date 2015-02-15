@@ -37,26 +37,26 @@ It emits the following non-core responses:
 
 == Implemented Features
 
-The player __must__ implement, as a minimum, the {End}[`End`],
+The player *must* implement, as a minimum, the {End}[`End`],
 {FileLoad}[`FileLoad`], {PlayStop}[`PlayStop`], {Seek}[`Seek`], and
 {TimeReport}[`TimeReport`] features.
 
 == Requirements
 
 Interface compatibility::
-  The player __must__ implement the above interface.  It __may__
+  The player *must* implement the above interface.  It *may*
   implement a superset of the interface, in order to implement more
   features than those required by the player.
 File loads::
-  The player __must__ be able to load and play files, given their
+  The player *must* be able to load and play files, given their
   absolute path on the local filesystem.
 Configurable audio sink::
-  The player __must__ allow its audio sink to be configured.  This
+  The player *must* allow its audio sink to be configured.  This
   allows a playout machine to direct each player to a separate
   physical or logical sound-card, which is important for allowing each
   playback channel to be routed to a separate mixing desk fader.
 Non-conflicting API endpoint::
-  The player __must__ allow its API end-point to be set up so as not
+  The player *must* allow its API end-point to be set up so as not
   to conflict with other BAPS3 services on the same machine.  For
   example, if it exposes a TCP socket, the port should be
   configurable; if it exposes a _stdin/stdout_ interface, then no

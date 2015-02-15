@@ -42,28 +42,28 @@ It also adds the following responses to those sent by the player:
 
 == Implemented Features
 
-The playlist __must__ implement, as a minimum, the {Playlist}[`Playlist`],
+The playlist *must* implement, as a minimum, the {Playlist}[`Playlist`],
 {TextItems}[`Playlist.TextItems`], and
 {AutoAdvance}[`Playlist.AutoAdvance`] features.
 
 == Requirements
 
 Interface compatibility::
-  The playlist __must__ implement the above interface. It __may__
+  The playlist *must* implement the above interface. It *may*
   implement a superset of the interface, in order to implement more
   features than those required by the playlist.
 File and text loading::
-  The playlist __should__ allow both files and text items to be
-  enqueued, and __must__ disregard text items for the purposes of
+  The playlist *should* allow both files and text items to be
+  enqueued, and *must* disregard text items for the purposes of
   selection and auto-advancing.  If the playlist does not allow
-  text items, it __must__ notify the platform of this deficiency
+  text items, it *must* notify the platform of this deficiency
   via the `FEATURES` response.
 Features propagation::
-  The playlist __must__ announce those features of the player to
-  which it allows access, and __must__ hide those features of the
+  The playlist *must* announce those features of the player to
+  which it allows access, and *must* hide those features of the
   player to which it does not.
 Flexible player selection::
-  The playlist __should__ allow the configurable selection of the
+  The playlist *should* allow the configurable selection of the
   player instance to which it will attach.  For example, a TCP/IP-based
   playlist service should allow the player port and address to be
   selected.  If the playlist spawns, or contains, its own player,
