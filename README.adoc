@@ -11,8 +11,8 @@ https://universityradioyork.github.io/baps3-spec[pre-rendered copy]
 is available via GitHub Pages, but may lag behind the main repository.
 
 NOTE: The _canonical_ specification for BAPS3, as it currently
-exists, is the latest version of the specification version maintained
-by URY.  Any future changes to this policy will be announced here.
+exists, is the latest specification version maintained by URY.  Any
+future changes to this policy will be announced here.
 
 The specification is licenced under the
 https://creativecommons.org/about/cc0[CC0] licence; that is, it is
