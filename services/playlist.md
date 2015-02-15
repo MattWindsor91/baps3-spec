@@ -36,8 +36,8 @@ It also adds the following responses to those sent by the player:
 
 ## Implemented Features
 
-The playlist __must__ implement, as a minimum, the `Playlist`,
-`Playlist.TextItems`, and `AutoAdvance` features.
+The playlist __must__ implement, as a minimum, the [`Playlist`],
+[`Playlist.TextItems`], and [`Playlist.AutoAdvance`] features.
 
 ## Requirements
 
@@ -59,3 +59,7 @@ selection of the player instance to which it will attach.  For example, a
 TCP/IP-based playlist service should allow the player port and address to be
 selected.  If the playlist spawns, or contains, its own player, this may be
 disregarded.
+
+[`Playlist`]:             ../comms/internal/feature-playlist.md
+[`Playlist.AutoAdvance`]: ../comms/internal/feature-autoadvance.md
+[`Playlist.TextItems`]:   ../comms/internal/feature-textitems.md
