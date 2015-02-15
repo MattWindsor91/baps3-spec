@@ -33,7 +33,7 @@ by -10 or 0; the next by -9 or 1; and so on, with the penultimate item being
 indexed by 8 or -2, and the last item by 9 or -1.
 
 Responses from the playlist server __must__ use non-negative indices
-_only_; negative indices are for the convenience of clients.
+_only_; negative indices are for the convenience of client requests.
 
 ## Playlist hashes
 
