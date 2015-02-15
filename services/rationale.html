@@ -35,7 +35,7 @@
     
 
         
-    <div class="book" data-level="3.1" data-basepath=".." data-revision="Sun Feb 15 2015 01:41:33 GMT+0000 (GMT)">
+    <div class="book" data-level="3.1" data-basepath=".." data-revision="Sun Feb 15 2015 23:37:26 GMT+0000 (GMT)">
     
 
 <div class="book-summary">
@@ -611,39 +611,57 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="rationale">Rationale</h1>
-<p>The division of the <a href="../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a> system into multiple services is an unusual aspect
-of its design, and is inspired primarily by <a href="http://www.catb.org/esr/writings/taoup/html/ch01s06.html" target="_blank">UNIX philosophy</a>.  We argue for
-this unconventional approach as follows:</p>
-<ul>
-<li><strong>Modularity:</strong> Each large chunk of functionality is clearly defined in
-a modular style, with defined inputs and outputs.  This allows for a clean
-distinction between the components of the playout system;</li>
-<li><strong>Ease of replacement:</strong> As the services may be implemented separately, each
-resulting <a href="../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> can be swapped out at any time with a compliant alternative,
-with little to no disruption to the rest of the system;</li>
-<li><strong>Robustness:</strong> If a <a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
-features.">service</a> <a href="../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> crashes, the remaining aspects of the
-system can continue in a degraded manner until the <a href="../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> can be replaced.
+                        <h1>Rationale</h1>
+<div class="paragraph">
+<p>The division of the <a href="../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a> system into multiple services is an unusual
+aspect of its design, and is inspired primarily by <a href="http://www.catb.org/esr/writings/taoup/html/ch01s06.html" target="_blank">UNIX
+philosophy</a>.  We argue for this unconventional approach as follows:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Modularity</dt>
+<dd>
+<p>Each large chunk of functionality is clearly defined in a modular
+style, with defined inputs and outputs.  This allows for a clean
+distinction between the components of the playout system.</p>
+</dd>
+<dt class="hdlist1">Ease of replacement</dt>
+<dd>
+<p>As the services may be implemented separately, each resulting
+<a href="../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> can be swapped out at any time with a compliant alternative,
+with little to no disruption to the rest of the system.</p>
+</dd>
+<dt class="hdlist1">Robustness</dt>
+<dd>
+<p>If a <a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
+features.">service</a> <a href="../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> crashes, the remaining aspects of the system
+can continue in a degraded manner until the <a href="../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> can be replaced.
 For example, if the playlist <a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
-features.">service</a> is lost, the player can continue to play
-the last selected song without disruption; if the player <a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
-features.">service</a> is lost, the
-playlist remains intact and can be backed up or used with a replacement
-player instance.</li>
-<li><strong>Composability:</strong> Services can be composed to form seamless pipelines of
-playout functionality: a player and playlist can be attached together to form
-a playout channel.  New services can be slotted into an existing pipeline to
-add new functionality, and services can be combined into a single <a href="../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> for
-performance reasons.</li>
-<li><strong>Network transparency:</strong> The only <a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
-features.">service</a> that needs to reside on the
-computer with sound output is (multiple instances of) the player <a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
-features.">service</a>.  Any
-other services can be allocated to other hardware to balance load and reuse
-resources.</li>
-</ul>
-
+features.">service</a> is lost, the player can
+continue to play the last selected song without disruption; if
+the player <a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
+features.">service</a> is lost, the playlist remains intact and can
+be backed up or used with a replacement player instance.</p>
+</dd>
+<dt class="hdlist1">Composability</dt>
+<dd>
+<p>Services can be composed to form seamless pipelines of playout
+functionality: a player and playlist can be attached together to
+form a playout channel.  New services can be slotted into an
+existing pipeline to add new functionality, and services can be
+combined into a single <a href="../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> for performance reasons.</p>
+</dd>
+<dt class="hdlist1">Network transparency</dt>
+<dd>
+<p>The only <a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
+features.">service</a> that needs to reside on the computer with sound
+output is (multiple instances of) the player <a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
+features.">service</a>.  Any other
+services can be allocated to other hardware to balance load and
+reuse resources.</p>
+</dd>
+</dl>
+</div>
                     
                     </section>
                 

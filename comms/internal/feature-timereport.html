@@ -35,7 +35,7 @@
     
 
         
-    <div class="book" data-level="4.1.9" data-basepath="../.." data-revision="Sun Feb 15 2015 01:41:33 GMT+0000 (GMT)">
+    <div class="book" data-level="4.1.9" data-basepath="../.." data-revision="Sun Feb 15 2015 23:37:26 GMT+0000 (GMT)">
     
 
 <div class="book-summary">
@@ -611,25 +611,59 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="feature-timereport">Feature: TimeReport</h1>
+                        <h1>Feature: TimeReport</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
 <p>Provides the <code>TIME</code> response, for reporting changes in audio position.</p>
-<h2 id="dependencies">Dependencies</h2>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dependencies">Dependencies</h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p><code>TimeReport</code> has no dependencies.</p>
-<h2 id="conflicts">Conflicts</h2>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conflicts">Conflicts</h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p><code>TimeReport</code> may conflict with other time-reporting features.</p>
-<h2 id="responses">Responses</h2>
-<h3 id="-time-%E2%80%94-current-time"><code>TIME</code> &#x2014; current time</h3>
-<h4 id="synopsis">Synopsis</h4>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_responses">Responses</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="__code_time_code_current_time"><code>TIME</code> &#x2014; current time</h3>
+<div class="sect3">
+<h4 id="_synopsis">Synopsis</h4>
+<div class="paragraph">
 <p><code>TIME &lt;MICROS&gt;</code></p>
-<h4 id="description">Description</h4>
-<p>Reports the current position in the audio as being <code>MICROS</code> microseconds.
-<code>MICROS</code> <strong>must</strong> be a non-negative integer for the <code>TIME</code> response to be
-considered valid.</p>
-<p>The <code>TIME</code> response <strong>should</strong> be sent as part of the <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a>&apos;s <em>initial
-responses</em>, if it is currently playing audio.  It <strong>may</strong> be sent by the <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a>
-at any time, and <strong>should</strong> ideally be sent at a periodic rate of less than one
-second to allow clients to update their position counters in a smooth manner.</p>
-
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description">Description</h4>
+<div class="paragraph">
+<p>Reports the current position in the audio as being <code>MICROS</code>
+microseconds.  <code>MICROS</code> <strong>must</strong> be a non-negative integer for the
+<code>TIME</code> response to be considered valid.</p>
+</div>
+<div class="paragraph">
+<p>The <code>TIME</code> response <strong>should</strong> be sent as part of the <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a>&#x2019;s <em>initial
+responses</em>, if it is currently playing audio.  It <strong>may</strong> be sent by
+the <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> at any time, and <strong>should</strong> ideally be sent at a periodic
+rate of less than one second to allow clients to update their
+position counters in a smooth manner.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
                     
                     </section>
                 

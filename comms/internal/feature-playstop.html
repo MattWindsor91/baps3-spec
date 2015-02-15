@@ -35,7 +35,7 @@
     
 
         
-    <div class="book" data-level="4.1.6" data-basepath="../.." data-revision="Sun Feb 15 2015 01:41:33 GMT+0000 (GMT)">
+    <div class="book" data-level="4.1.6" data-basepath="../.." data-revision="Sun Feb 15 2015 23:37:26 GMT+0000 (GMT)">
     
 
 <div class="book-summary">
@@ -611,49 +611,116 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="feature-playstop">Feature: PlayStop</h1>
-<p>Provides the <code>play</code> and <code>stop</code> requests, as well as the <code>Playing</code> and
-<code>Stopped</code> states.</p>
-<h2 id="dependencies">Dependencies</h2>
+                        <h1>Feature: PlayStop</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Provides the <code>play</code> and <code>stop</code> requests, as well as the <code>Playing</code>
+and <code>Stopped</code> states.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dependencies">Dependencies</h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p><code>PlayStop</code> has no dependencies.</p>
-<h2 id="conflicts">Conflicts</h2>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conflicts">Conflicts</h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p><code>PlayStop</code> may conflict with any other playback control sets, and
-conflicts with any other feature providing an <em>initial file-loaded state</em>.</p>
-<h2 id="states">States</h2>
-<h3 id="-playing-%E2%80%94-playing-audio"><code>Playing</code> &#x2014; playing audio</h3>
+conflicts with any other feature providing an <em>initial file-loaded
+state</em>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_states">States</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="__code_playing_code_playing_audio"><code>Playing</code> &#x2014; playing audio</h3>
+<div class="paragraph">
 <p>The state in which the audio source is actively playing.  This state
 <strong>should</strong> be reachable only from <code>Stopped</code> (via <code>play</code>).</p>
-<h3 id="-stopped-%E2%80%94-not-playing-audio"><code>Stopped</code> &#x2014; not playing audio</h3>
-<p>The state in which the audio source is stopped playing.  This state <strong>should</strong>
-be reachable from <code>Playing</code> (via <code>stop</code>), but may also be reachable from any
-state representing a lack of audio source (for example, <code>Ejected</code> from
-<code>FileLoad</code>).</p>
-<p>This <strong>should</strong> be the <em>initial state</em>, unless a state is available representing
-a lack of audio source, <em>and</em> the <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> starts without any audio source loaded.
-(For example, if <code>FileLoad</code> and <code>PlayStop</code> are both implemented, the <em>initial
-state</em> <strong>should</strong> be <code>Ejected</code>, not <code>Stopped</code>).</p>
-<p>For the purposes of <code>FileLoad</code>, <code>Stopped</code> is the <em>initial file-loaded state</em>.</p>
-<h2 id="requests">Requests</h2>
-<h3 id="-play-%E2%80%94-start-playing-audio"><code>play</code> &#x2014; start playing audio</h3>
-<h4 id="synopsis">Synopsis</h4>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__code_stopped_code_not_playing_audio"><code>Stopped</code> &#x2014; not playing audio</h3>
+<div class="paragraph">
+<p>The state in which the audio source is stopped playing.  This state
+<strong>should</strong> be reachable from <code>Playing</code> (via <code>stop</code>), but may also be
+reachable from any state representing a lack of audio source (for
+example, <code>Ejected</code> from <code>FileLoad</code>).</p>
+</div>
+<div class="paragraph">
+<p>This <strong>should</strong> be the <em>initial state</em>, unless a state is available
+representing a lack of audio source, <em>and</em> the <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> starts without
+any audio source loaded.  (For example, if <code>FileLoad</code> and <code>PlayStop</code>
+are both implemented, the <em>initial state</em> <strong>should</strong> be <code>Ejected</code>,
+not <code>Stopped</code>).</p>
+</div>
+<div class="paragraph">
+<p>For the purposes of <code>FileLoad</code>, <code>Stopped</code> is the <em>initial file-loaded
+state</em>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_requests">Requests</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="__code_play_code_start_playing_audio"><code>play</code> &#x2014; start playing audio</h3>
+<div class="sect3">
+<h4 id="_synopsis">Synopsis</h4>
+<div class="paragraph">
 <p><code>play</code></p>
-<h4 id="description">Description</h4>
-<p>If the current state is <code>Stopped</code>, the current state <strong>should</strong> be set to
-<code>Playing</code> and the audio source <strong>should</strong> begin playing.  If the audio source is
-a file, it should be played from its last stopped position, or the beginning of
-the file if it has not been stopped since loading.</p>
-<h3 id="-stop-%E2%80%94-stop-playing-audio"><code>stop</code> &#x2014; stop playing audio</h3>
-<h4 id="synopsis">Synopsis</h4>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description">Description</h4>
+<div class="paragraph">
+<p>If the current state is <code>Stopped</code>, the current state <strong>should</strong> be
+set to <code>Playing</code> and the audio source <strong>should</strong> begin playing.  If
+the audio source is a file, it should be played from its last stopped
+position, or the beginning of the file if it has not been stopped
+since loading.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__code_stop_code_stop_playing_audio"><code>stop</code> &#x2014; stop playing audio</h3>
+<div class="sect3">
+<h4 id="_synopsis_2">Synopsis</h4>
+<div class="paragraph">
 <p><code>stop</code></p>
-<h4 id="description">Description</h4>
-<p>If the current state is <code>Playing</code>, the current state <strong>should</strong> be set to
-<code>Stopped</code> and the audio source <strong>should</strong> stop playing.  If the audio source
-is a file, its current position <strong>should</strong> be carried over to any subsequent
-<code>play</code> command.</p>
-<h2 id="responses">Responses</h2>
-<p><code>PlayStop</code> provides no responses.  Confirmation of the <code>play</code> and <code>stop</code>
-requests is provided through the core <code>STATE</code> response.</p>
-
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description_2">Description</h4>
+<div class="paragraph">
+<p>If the current state is <code>Playing</code>, the current state <strong>should</strong> be
+set to <code>Stopped</code> and the audio source <strong>should</strong> stop playing.  If
+the audio source is a file, its current position <strong>should</strong> be carried
+over to any subsequent <code>play</code> command.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_responses">Responses</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>PlayStop</code> provides no responses.  Confirmation of the <code>play</code> and
+<code>stop</code> requests is provided through the core <code>STATE</code> response.</p>
+</div>
+</div>
+</div>
                     
                     </section>
                 

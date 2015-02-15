@@ -35,7 +35,7 @@
     
 
         
-    <div class="book" data-level="4.1.1" data-basepath="../.." data-revision="Sun Feb 15 2015 01:41:33 GMT+0000 (GMT)">
+    <div class="book" data-level="4.1.1" data-basepath="../.." data-revision="Sun Feb 15 2015 23:37:26 GMT+0000 (GMT)">
     
 
 <div class="book-summary">
@@ -611,133 +611,314 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="protocol">Protocol</h1>
+                        <h1>Protocol</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
 <p>The <a href="../../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a> <a href="../../GLOSSARY.html#internal_api" class="glossary-term" title="The API used for communication between servers.">internal API</a> sits atop a text-based protocol based upon
 <a href="http://pubs.opengroup.org/onlinepubs/009604599/utilities/xcu_chap02.html" target="_blank">POSIX shell</a> conventions.</p>
-<h2 id="rationale">Rationale</h2>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_rationale">Rationale</h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p>We use a shell-style protocol because:</p>
+</div>
+<div class="ulist">
 <ul>
-<li>It is lightweight and relatively easy to parse;</li>
-<li>It is a good match for the command-and-arguments style of the <a href="../../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a> API;</li>
-<li>The shell style of escaping is convenient for escaping paths (especially on
-Windows, where the single-quote syntax can avoid needing to escape every
-backslash in a Windows path), which are common arguments to <a href="../../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a> commands
-(<code>load</code>, <code>enqueue</code>, and so on).</li>
+<li>
+<p>It is lightweight and relatively easy to parse;</p>
+</li>
+<li>
+<p>It is a good match for the command-and-arguments style of the <a href="../../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a>
+API;</p>
+</li>
+<li>
+<p>The shell style of escaping is convenient for escaping paths
+(especially on Windows, where the single-quote syntax can avoid
+needing to escape every backslash in a Windows path), which are
+common arguments to <a href="../../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a> commands (<code>load</code>, <code>enqueue</code>, and so on).</p>
+</li>
 </ul>
-<p>A disadvantage is that it is impossible to perform a context-free splitting of
-input into lines; the line-feed character could be escaped.  However, since the
-usual transport used by the <a href="../../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a> protocol is TCP, and most TCP libraries
-provide unbuffered input in chunks which may be smaller or larger than one line,
-we rarely need this luxury.</p>
-<h2 id="encoding">Encoding</h2>
-<p>The <a href="../../GLOSSARY.html#internal_api" class="glossary-term" title="The API used for communication between servers.">internal API</a> is designed to expect requests and responses in the <a href="http://www.ietf.org/rfc/rfc3629.txt" target="_blank">UTF-8</a>
-encoding.  However, to allow simple implementations that operate on a per-byte
-level, certain uses of UTF-8 beyond the single-byte (ASCII) range are
-discouraged.</p>
-<p>API users <strong>must</strong> support the sending and receiving of all single-byte UTF-8
-character codes (that is, ASCII), and <strong>should</strong> support the sending and
-receiving of the full UTF-8 range subject to the limitations below.</p>
-<h3 id="limitations">Limitations</h3>
+</div>
+<div class="paragraph">
+<p>A disadvantage is that it is impossible to perform a context-free
+splitting of input into lines; the line-feed character could be
+escaped.  However, since the usual transport used by the <a href="../../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a>
+protocol is TCP, and most TCP libraries provide unbuffered input
+in chunks which may be smaller or larger than one line, we rarely
+need this luxury.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_encoding">Encoding</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <a href="../../GLOSSARY.html#internal_api" class="glossary-term" title="The API used for communication between servers.">internal API</a> is designed to expect requests and responses in
+the <a href="http://www.ietf.org/rfc/rfc3629.txt" target="_blank">UTF-8</a> encoding.  However, to allow simple implementations
+that operate on a per-byte level, certain uses of UTF-8 beyond the
+single-byte (ASCII) range are discouraged.</p>
+</div>
+<div class="paragraph">
+<p>API users <strong>must</strong> support the sending and receiving of all single-byte
+UTF-8 character codes (that is, ASCII), and <strong>should</strong> support the
+sending and receiving of the full UTF-8 range subject to the
+limitations below.</p>
+</div>
+<div class="sect2">
+<h3 id="_limitations">Limitations</h3>
+<div class="paragraph">
 <p>It is <em>undefined behaviour</em> to:</p>
+</div>
+<div class="ulist">
 <ul>
-<li>Use a whitespace character not in the single-byte subset of UTF-8 to separate
-words.  (See below for recommendations on word-separating whitespace.)  This
-limitation allows implementations to make use of single-byte whitespace
-checks for word separation;</li>
-<li>Backslash-escape a character not in single-byte UTF-8.  (This should not be
-necessary, as single- and double-quote modes will allow these characters to
-be used without escape.)  This limitation allows backslash escaping to
-operate on a single-byte level;</li>
-<li>Backslash-escape the line-feed character.  This limitation is due to the
-special status of line-feed escaping as line continuation in shell
-tokenisation, and may change in future when a decision is made as to the
-necessity of keeping this status in the API.</li>
+<li>
+<p>Use a whitespace character not in the single-byte subset of UTF-8
+to separate words.  (See below for recommendations on
+word-separating whitespace.)  This limitation allows implementations
+to make use of single-byte whitespace checks for word separation;</p>
+</li>
+<li>
+<p>Backslash-escape a character not in single-byte UTF-8.  (This
+should not be necessary, as single- and double-quote modes will
+allow these characters to be used without escape.)  This limitation
+allows backslash escaping to operate on a single-byte level;</p>
+</li>
+<li>
+<p>Backslash-escape the line-feed character.  This limitation is due
+to the special status of line-feed escaping as line continuation in
+shell tokenisation, and may change in future when a decision is made
+as to the necessity of keeping this status in the API.</p>
+</li>
 </ul>
+</div>
+<div class="paragraph">
 <p>API users <strong>may</strong> make decisions as to how to interpret said undefined
-behaviour, but <strong>should not</strong> expect certain behaviour from other users without
-consulting the <code>FEATURES</code> flags and <code>OHAI</code> response for confirmation of said
-behaviour.</p>
-<h2 id="quoting-and-escaping">Quoting and Escaping</h2>
-<p>Most characters may be transmitted verbatim via the protocol.  However, in order
-to allow separation of protocol communications into the <em>words</em> and <em>commands</em>
-defined below, <a href="../../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a> gives special meaning to certain characters.  This is
-done according to four <em>quote modes</em>, specified below.</p>
-<p><strong>Note:</strong> In case of ambiguity, refer to the <a href="http://pubs.opengroup.org/onlinepubs/009604599/utilities/xcu_chap02.html" target="_blank">POSIX shell</a> quoting standards:
-we follow that style of quoting with the exception of disallowing variable and
-command interpolation (thus, backtick and dollar are not considered special).</p>
-<h3 id="unquoted-mode">Unquoted mode</h3>
-<p>A protocol tokeniser <strong>should</strong> start in <em>unquoted</em> mode.  In this mode:</p>
+behaviour, but <strong>should not</strong> expect certain behaviour from other
+users without consulting the <code>FEATURES</code> flags and <code>OHAI</code> response
+for confirmation of said behaviour.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_quoting_and_escaping">Quoting and Escaping</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Most characters may be transmitted verbatim via the protocol.
+However, in order to allow separation of protocol communications
+into the <em>words</em> and <em>commands</em> defined below, <a href="../../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a> gives special
+meaning to certain characters.  This is done according to four
+<em>quote modes</em>, specified below.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+In case of ambiguity, refer to the <a href="http://pubs.opengroup.org/onlinepubs/009604599/utilities/xcu_chap02.html" target="_blank">POSIX shell</a> quoting
+standards: we follow that style of quoting with the exception of
+disallowing variable and command interpolation (thus, backtick and
+dollar are not considered special).
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_unquoted_mode">Unquoted mode</h3>
+<div class="paragraph">
+<p>A protocol tokeniser <strong>should</strong> start in <em>unquoted</em> mode.  In this
+mode:</p>
+</div>
+<div class="ulist">
 <ul>
-<li>Any run of <em>whitespace characters</em> (see below) separates one word from the next;</li>
-<li>A <em>line-feed</em> character (<code>0x0A</code>) separates one command from the next, and
-ends any word preceding;</li>
-<li>A single-quote character (<code>&apos;</code>) begins <em>single-quoted</em> mode;</li>
-<li>A double-quote character (<code>&quot;</code>) begins <em>double-quoted</em> mode;</li>
-<li>A backslash character (<code>\</code>) begins <em>escaped</em> mode;</li>
-<li>Any other character is echoed verbatim.</li>
+<li>
+<p>Any run of <em>whitespace characters</em> (see below) separates one word
+from the next;</p>
+</li>
+<li>
+<p>A <em>line-feed</em> character (<code>0x0A</code>) separates one command from the
+next, and ends any word preceding;</p>
+</li>
+<li>
+<p>A single-quote character (<code>&apos;</code>) begins <em>single-quoted</em> mode;</p>
+</li>
+<li>
+<p>A double-quote character (<code>&quot;</code>) begins <em>double-quoted</em> mode;</p>
+</li>
+<li>
+<p>A backslash character (<code>\</code>) begins <em>escaped</em> mode;</p>
+</li>
+<li>
+<p>Any other character is echoed verbatim.</p>
+</li>
 </ul>
-<h4 id="whitespace">Whitespace</h4>
-<p>The whitespace characters permitted for word separation <strong>must not</strong> contain
-line-feed (<code>0x0A</code>), and <strong>must</strong> contain space (<code>0x20</code>) and horizontal tab
-(<code>0x09</code>).  Consequently, API users <strong>should</strong> use the latter two characters for
-word separation.  API users <strong>should not</strong> use multi-byte whitespace
-characters, for the reasons provided in <em>Encoding</em>.</p>
-<p>For implementations in C or C++, the C function <a href="http://pubs.opengroup.org/onlinepubs/009695399/functions/isspace.html" target="_blank">isspace()</a> <strong>may</strong> be used
-to identify word-separating whitespace, so long as line-feed is not interpreted
-as such.</p>
-<h3 id="single-quoted-mode">Single-quoted mode</h3>
-<p>In single-quoted mode, only the single-quote character is treated specially, and
-has the effect of returning to unquoted mode.</p>
-<h3 id="double-quoted-mode">Double-quoted mode</h3>
+</div>
+<div class="sect3">
+<h4 id="_whitespace">Whitespace</h4>
+<div class="paragraph">
+<p>The whitespace characters permitted for word separation <strong>must not</strong>
+contain line-feed (<code>0x0A</code>), and <strong>must</strong> contain space (<code>0x20</code>) and
+horizontal tab (<code>0x09</code>).  Consequently, API users <strong>should</strong> use the
+latter two characters for word separation.  API users <strong>should not</strong>
+use multi-byte whitespace characters, for the reasons provided in
+<em>Encoding</em>.</p>
+</div>
+<div class="paragraph">
+<p>For implementations in C or C++, the C function <a href="http://pubs.opengroup.org/onlinepubs/009695399/functions/isspace.html" target="_blank">isspace()</a>
+<strong>may</strong> be used to identify word-separating whitespace, so long as
+line-feed is not interpreted as such.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_single_quoted_mode">Single-quoted mode</h3>
+<div class="paragraph">
+<p>In single-quoted mode, only the single-quote character is treated
+specially, and has the effect of returning to unquoted mode.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_double_quoted_mode">Double-quoted mode</h3>
+<div class="paragraph">
 <p>In double-quoted mode:</p>
+</div>
+<div class="ulist">
 <ul>
-<li>A backslash character begins escaped mode;</li>
-<li>A double-quote character begins unquoted mode;</li>
-<li>Any other character is echoed verbatim.</li>
+<li>
+<p>A backslash character begins escaped mode;</p>
+</li>
+<li>
+<p>A double-quote character begins unquoted mode;</p>
+</li>
+<li>
+<p>Any other character is echoed verbatim.</p>
+</li>
 </ul>
-<h3 id="escaped-mode">Escaped mode</h3>
-<p>In escaped mode, any single character is treated verbatim; the mode then reverts
-to that in which the backslash beginning escaped mode was read.</p>
-<p>To allow implementations which escape single bytes instead of characters,
-clients <strong>should not</strong> expect servers to backslash-escape multiple-byte
-characters properly, and <strong>should</strong> instead use single-quoted or double-quoted
-mode to escape these characters.</p>
-<h2 id="words">Words</h2>
-<p>The core element of the protocol is the <em>word</em>, which is a sequence of
-zero or more characters delimited by any run of <em>unquoted</em> whitespace.</p>
-<p><strong>Note:</strong> There is <em>no</em> limit on the number of quote mode transitions inside a
-single word.  For example, <code>unquoted&quot;double&quot;unquoted&apos;single&apos;\ unquoted</code>
-<strong>should</strong> be considered one word (albeit a pathological one).</p>
-<h2 id="commands">Commands</h2>
-<p>Each communication over the <a href="../../GLOSSARY.html#internal_api" class="glossary-term" title="The API used for communication between servers.">Internal API</a> consists of a <em>command</em> of one or more
-words.  The first, mandatory, word is the <em>command word</em> and unambiguously
-identifies the command; any further words are <em>arguments</em> to that command.  In
-this respect, the <a href="../../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a> protocol perfectly mirrors shell usage.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_escaped_mode">Escaped mode</h3>
+<div class="paragraph">
+<p>In escaped mode, any single character is treated verbatim; the mode
+then reverts to that in which the backslash beginning escaped mode
+was read.</p>
+</div>
+<div class="paragraph">
+<p>To allow implementations which escape single bytes instead of
+characters, clients <strong>should not</strong> expect servers to backslash-escape
+multiple-byte characters properly, and <strong>should</strong> instead use
+single-quoted or double-quoted mode to escape these characters.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_words">Words</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The core element of the protocol is the <em>word</em>, which is a sequence
+of zero or more characters delimited by any run of <em>unquoted</em>
+whitespace.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+There is <em>no</em> limit on the number of quote mode transitions
+inside a single word.  For example, <code>unquoted&quot;double&quot;unquoted&#x2019;single&apos;\
+unquoted</code> <strong>should</strong> be considered one word (albeit a pathological
+one).
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_commands">Commands</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Each communication over the <a href="../../GLOSSARY.html#internal_api" class="glossary-term" title="The API used for communication between servers.">Internal API</a> consists of a <em>command</em>
+of one or more words.  The first, mandatory, word is the <em>command
+word</em> and unambiguously identifies the command; any further words
+are <em>arguments</em> to that command.  In this respect, the <a href="../../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a> protocol
+perfectly mirrors shell usage.</p>
+</div>
+<div class="paragraph">
 <p>Commands are divided into <em>requests</em> and <em>responses</em>.</p>
-<h3 id="requests">Requests</h3>
-<p><em>Requests</em> are the subset of valid commands that originate from an API <a href="../../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a>,
-and instruct an API <a href="../../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
-features.">service</a>.  Request command words <strong>should</strong> consist of one
-or more <em>lowercase</em> ASCII characters, and <strong>may</strong> be quoted.</p>
-<h3 id="responses">Responses</h3>
-<p><em>Responses</em> are the subset of valid commands that originate from an API <a href="../../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
-features.">service</a>,
-and inform an API <a href="../../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a>.  Response command words <strong>should</strong> consist of one
-or more <em>uppercase</em> ASCII characters, and <strong>may</strong> be quoted.</p>
-<h3 id="examples">Examples</h3>
+</div>
+<div class="sect2">
+<h3 id="_requests">Requests</h3>
+<div class="paragraph">
+<p><em>Requests</em> are the subset of valid commands that originate from an
+API <a href="../../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a>, and instruct an API <a href="../../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
+features.">service</a>.  Request command words
+<strong>should</strong> consist of one or more <em>lowercase</em> ASCII characters, and
+<strong>may</strong> be quoted.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_responses">Responses</h3>
+<div class="paragraph">
+<p><em>Responses</em> are the subset of valid commands that originate from
+an API <a href="../../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
+features.">service</a>, and inform an API <a href="../../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a>.  Response command words
+<strong>should</strong> consist of one or more <em>uppercase</em> ASCII characters, and
+<strong>may</strong> be quoted.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_examples">Examples</h3>
+<div class="paragraph">
 <p>The following are well-formed commands:</p>
+</div>
+<div class="ulist">
 <ul>
-<li><code>stop</code></li>
-<li><code>&quot;play&quot;</code></li>
-<li><code>&apos;quit&apos;</code></li>
-<li><code>enqueue file 0 /home/demo/music/test\ file.mp3</code></li>
-<li><code>load &quot;/home/demo/music/test file.mp3&quot;</code></li>
-<li><code>load &apos;C:\Users\Demo\Music\test file.mp3&apos;</code></li>
-<li><code>load &quot;C:\\Users\\Demo\\Music\\test file.mp3&quot;</code></li>
-<li><code>OHAI &apos;listmaster/playslave&apos;</code></li>
-<li><code>FEATURES FileLoad PlayStop Seek End TimeReport</code></li>
+<li>
+<p><code>stop</code></p>
+</li>
+<li>
+<p><code>&quot;play&quot;</code></p>
+</li>
+<li>
+<p><code>&apos;quit&apos;</code></p>
+</li>
+<li>
+<p><code>enqueue file 0 /home/demo/music/test\
+file.mp3</code></p>
+</li>
+<li>
+<p><code>load &quot;/home/demo/music/test file.mp3&quot;</code></p>
+</li>
+<li>
+<p><code>load
+&apos;C:\Users\Demo\Music\test file.mp3&apos;</code></p>
+</li>
+<li>
+<p><code>load &quot;C:\\Users\\Demo\\Music\\test
+file.mp3&quot;</code></p>
+</li>
+<li>
+<p><code>OHAI &apos;listmaster/playslave&apos;</code></p>
+</li>
+<li>
+<p><code>FEATURES FileLoad
+PlayStop Seek End TimeReport</code></p>
+</li>
 </ul>
-
+</div>
+</div>
+</div>
+</div>
                     
                     </section>
                 

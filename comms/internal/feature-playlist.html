@@ -35,7 +35,7 @@
     
 
         
-    <div class="book" data-level="4.1.10" data-basepath="../.." data-revision="Sun Feb 15 2015 01:41:33 GMT+0000 (GMT)">
+    <div class="book" data-level="4.1.10" data-basepath="../.." data-revision="Sun Feb 15 2015 23:37:26 GMT+0000 (GMT)">
     
 
 <div class="book-summary">
@@ -611,147 +611,348 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="feature-playlist">Feature: Playlist</h1>
-<p>Provides a base set of functionality for playlists: the <code>enqueue</code>, <code>dequeue</code>,
-<code>select</code>, and <code>list</code> requests; the <code>ENQUEUE</code>, <code>DEQUEUE</code>, <code>SELECT</code>, <code>COUNT</code>,
-and <code>ITEM</code> responses; and the <code>file</code> item type.</p>
-<p><code>Playlist</code> also allows use of the <code>Ejected</code> state from <code>FileLoad</code>, but
-supercedes that feature&apos;s requests and responses (see below).</p>
-<h2 id="dependencies">Dependencies</h2>
+                        <h1>Feature: Playlist</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Provides a base set of functionality for playlists: the <code>enqueue</code>,
+<code>dequeue</code>, <code>select</code>, and <code>list</code> requests; the <code>ENQUEUE</code>, <code>DEQUEUE</code>,
+<code>SELECT</code>, <code>COUNT</code>, and <code>ITEM</code> responses; and the <code>file</code> item type.</p>
+</div>
+<div class="paragraph">
+<p><code>Playlist</code> also allows use of the <code>Ejected</code> state from <code>FileLoad</code>,
+but supercedes that feature&#x2019;s requests and responses (see below).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dependencies">Dependencies</h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p><code>Playlist</code> has no dependencies.</p>
-<h2 id="conflicts">Conflicts</h2>
-<p><code>Playlist</code> conflicts somewhat with <code>FileLoad</code>: <code>load</code> from the latter is
-replaced by <code>select</code> from the former, and <code>eject</code> by <code>select</code> with no
-arguments.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conflicts">Conflicts</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>Playlist</code> conflicts somewhat with <code>FileLoad</code>: <code>load</code> from the
+latter is replaced by <code>select</code> from the former, and <code>eject</code> by
+<code>select</code> with no arguments.</p>
+</div>
+<div class="paragraph">
 <p>If a <code>Playlist</code> <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> is implemented by chaining onto a <code>FileLoad</code>
-<a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a>, the former <strong>should not</strong> advertise <code>FileLoad</code>.  It <strong>may</strong>, however,
-re-export the latter <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a>&apos;s <code>Ejected</code> state, as this is compatible with its
-meaning in <code>Playlist</code>.</p>
-<h2 id="playlist-indices">Playlist indices</h2>
-<p>Where <code>INDEX</code> occurs in the syntax of any below request or response, it
-represents an integral playlist index, such that the first item is indexed by
-0, subsequent items are indexed by ascending positive integers; in addition,
-the last item is indexed by -1, and precedent items are indexed by ascending
-negative integers.  Thus, in a 10-item playlist, the first item may be indexed
-by -10 or 0; the next by -9 or 1; and so on, with the penultimate item being
-indexed by 8 or -2, and the last item by 9 or -1.</p>
+<a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a>, the former <strong>should not</strong> advertise <code>FileLoad</code>.  It <strong>may</strong>,
+however, re-export the latter <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a>&#x2019;s <code>Ejected</code> state, as this is
+compatible with its meaning in <code>Playlist</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_playlist_indices">Playlist indices</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Where <code>INDEX</code> occurs in the syntax of any below request or response,
+it represents an integral playlist index, such that the first item
+is indexed by 0, subsequent items are indexed by ascending positive
+integers; in addition, the last item is indexed by -1, and precedent
+items are indexed by ascending negative integers.  Thus, in a 10-item
+playlist, the first item may be indexed by -10 or 0; the next by
+-9 or 1; and so on, with the penultimate item being indexed by 8
+or -2, and the last item by 9 or -1.</p>
+</div>
+<div class="paragraph">
 <p>Responses from the playlist <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> <strong>must</strong> use non-negative indices
 <em>only</em>; negative indices are for the convenience of <a href="../../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a> requests.</p>
-<h2 id="playlist-hashes">Playlist hashes</h2>
-<p>A problem with using position indexes for playlist items is that they are
-constantly changed by insertions and deletions.  Worse, a request to (say)
-delete an index <code>i</code> may be pre-empted by an insertion or deletion that changes
-where <code>i</code> points to, causing the wrong item to be deleted.</p>
-<p>Each playlist item, when enqueued, must be supplied with a <em>hash</em>: a string of
-characters that uniquely identifies that item for the purposes of further
-requests concerning the item.  For simplicity, all hashes are generated by
-clients, which must ensure that they never assign two items the same hash; the
-<a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a>&apos;s obligation is merely to reject any hashes that collide at the moment
-of insertion.</p>
-<p>Useful hashes will try to distinguish between different items, different
-clients, and different periods of time.  For example, one might base a hash on:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_playlist_hashes">Playlist hashes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A problem with using position indexes for playlist items is that
+they are constantly changed by insertions and deletions.  Worse, a
+request to (say) delete an index <code>i</code> may be pre-empted by an insertion
+or deletion that changes where <code>i</code> points to, causing the wrong
+item to be deleted.</p>
+</div>
+<div class="paragraph">
+<p>Each playlist item, when enqueued, must be supplied with a <em>hash</em>:
+a string of characters that uniquely identifies that item for the
+purposes of further requests concerning the item.  For simplicity,
+all hashes are generated by clients, which must ensure that they
+never assign two items the same hash; the <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a>&#x2019;s obligation is
+merely to reject any hashes that collide at the moment of insertion.</p>
+</div>
+<div class="paragraph">
+<p>Useful hashes will try to distinguish between different items,
+different clients, and different periods of time.  For example, one
+might base a hash on:</p>
+</div>
+<div class="ulist">
 <ul>
-<li>The item arguments;</li>
-<li>The item type;</li>
-<li>The <a href="../../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a>&apos;s hostname and port;</li>
-<li>Either the time of insertion (to a decent resolution) or a sequence number.</li>
+<li>
+<p>The item arguments;</p>
+</li>
+<li>
+<p>The item type;</p>
+</li>
+<li>
+<p>The <a href="../../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a>&#x2019;s hostname and port;</p>
+</li>
+<li>
+<p>Either the time of insertion (to a decent resolution) or a sequence
+number.</p>
+</li>
 </ul>
-<p>Of course, if the <a href="../../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a> is a human, any sufficiently unique identifier will
-do.</p>
-<p>Hashes <strong>must</strong> begin with a character other than <code>0123456789-</code>, to distinguish
-them from normal indices in <code>dequeue</code> and <code>select</code> responses.</p>
-<h2 id="states">States</h2>
-<h3 id="-ejected"><code>Ejected</code></h3>
+</div>
+<div class="paragraph">
+<p>Of course, if the <a href="../../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a> is a human, any sufficiently unique
+identifier will do.</p>
+</div>
+<div class="paragraph">
+<p>Hashes <strong>must</strong> begin with a character other than <code>0123456789-</code>, to
+distinguish them from normal indices in <code>dequeue</code> and <code>select</code>
+responses.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_states">States</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="__code_ejected_code"><code>Ejected</code></h3>
+<div class="paragraph">
 <p>As defined in the <code>FileLoad</code> feature.</p>
-<h2 id="requests">Requests</h2>
-<h3 id="-dequeue-%E2%80%94-remove-item-from-playlist"><code>dequeue</code> &#x2014; remove item from playlist</h3>
-<h4 id="synopsis">Synopsis</h4>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_requests">Requests</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="__code_dequeue_code_remove_item_from_playlist"><code>dequeue</code> &#x2014; remove item from playlist</h3>
+<div class="sect3">
+<h4 id="_synopsis">Synopsis</h4>
+<div class="paragraph">
 <p><code>dequeue &lt;TARGET&gt;</code></p>
-<h4 id="description">Description</h4>
-<p>Removes the item at <code>TARGET</code>.  If <code>TARGET</code> begins with a digit or <code>-</code>, it will
-be interpreted as an <em>index</em>; else, a <em>hash</em>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description">Description</h4>
+<div class="paragraph">
+<p>Removes the item at <code>TARGET</code>.  If <code>TARGET</code> begins with a digit or
+<code>-</code>, it will be interpreted as an <em>index</em>; else, a <em>hash</em>.</p>
+</div>
+<div class="paragraph">
 <p>Fails if <code>TARGET</code> does not point to an item in the playlist.</p>
-<h3 id="-enqueue-%E2%80%94-insert-item-in-playlist"><code>enqueue</code> &#x2014; insert item in playlist</h3>
-<h4 id="synopsis">Synopsis</h4>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__code_enqueue_code_insert_item_in_playlist"><code>enqueue</code> &#x2014; insert item in playlist</h3>
+<div class="sect3">
+<h4 id="_synopsis_2">Synopsis</h4>
+<div class="paragraph">
 <p><code>enqueue &lt;INDEX&gt; &lt;HASH&gt; &lt;TYPE&gt; &lt;ARGUMENTS..&gt;</code></p>
-<h4 id="description">Description</h4>
-<p>Inserts the item with type <code>TYPE</code> such that any immediately subsequent action
-on index <code>INDEX</code> on the playlist will reach this item.  Thus, for integral
-indexes, insertion at a positive index will place the new item <em>before</em> any
-item occupying that index, and insertion at a negative index <em>after</em> any
-occupant; consequently, use -1 to insert at the end of the playlist.</p>
-<p>A <code>HASH</code> (see above) must also be given.  The command <strong>should</strong> be rejected if
-the hash is presently in use.  The <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> <strong>may</strong> reject previously used
-hashes, but the <a href="../../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a> <strong>should</strong> take responsibility for doing this itself.</p>
-<p>The <code>ARGUMENTS</code> are interpreted according to <code>TYPE</code>.  For the basic <code>file</code> type
-of item, see below.</p>
-<p>An <code>ENQUEUE</code> response <strong>should</strong> be sent announcing the (non-negative) index,
-hash, type, and arguments of the inserted item.</p>
-<h3 id="-list-%E2%80%94-announce-playlist"><code>list</code> &#x2014; announce playlist</h3>
-<h4 id="synopsis">Synopsis</h4>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description_2">Description</h4>
+<div class="paragraph">
+<p>Inserts the item with type <code>TYPE</code> such that any immediately subsequent
+action on index <code>INDEX</code> on the playlist will reach this item.  Thus,
+for integral indexes, insertion at a positive index will place the
+new item <em>before</em> any item occupying that index, and insertion at
+a negative index <em>after</em> any occupant; consequently, use -1 to
+insert at the end of the playlist.</p>
+</div>
+<div class="paragraph">
+<p>A <code>HASH</code> (see above) must also be given.  The command <strong>should</strong> be
+rejected if the hash is presently in use.  The <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> <strong>may</strong> reject
+previously used hashes, but the <a href="../../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a> <strong>should</strong> take responsibility
+for doing this itself.</p>
+</div>
+<div class="paragraph">
+<p>The <code>ARGUMENTS</code> are interpreted according to <code>TYPE</code>.  For the basic
+<code>file</code> type of item, see below.</p>
+</div>
+<div class="paragraph">
+<p>An <code>ENQUEUE</code> response <strong>should</strong> be sent announcing the (non-negative)
+index, hash, type, and arguments of the inserted item.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__code_list_code_announce_playlist"><code>list</code> &#x2014; announce playlist</h3>
+<div class="sect3">
+<h4 id="_synopsis_3">Synopsis</h4>
+<div class="paragraph">
 <p><code>list</code></p>
-<h4 id="description">Description</h4>
-<p>Causes the <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> to announce, via a <code>COUNT</code> and zero or more subsequent <code>ITEM</code>
-responses, the current state of the playlist.</p>
-<h3 id="-select-%E2%80%94-change-selection"><code>select</code> &#x2014; change selection</h3>
-<h4 id="synopsis">Synopsis</h4>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description_3">Description</h4>
+<div class="paragraph">
+<p>Causes the <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> to announce, via a <code>COUNT</code> and zero or more
+subsequent <code>ITEM</code> responses, the current state of the playlist.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__code_select_code_change_selection"><code>select</code> &#x2014; change selection</h3>
+<div class="sect3">
+<h4 id="_synopsis_4">Synopsis</h4>
+<div class="paragraph">
 <p><code>select [&lt;TARGET&gt;]</code></p>
-<h4 id="description">Description</h4>
-<p>If <code>TARGET</code> is not given, removes any current selection.  Else, attempts to
-select the item at <em>index</em> or <em>hash</em> <code>TARGET</code>.</p>
-<p>If successful, a <code>SELECT</code> response will inform clients of the change in
-selection.</p>
-<h2 id="responses">Responses</h2>
-<h3 id="-count-%E2%80%94-playlist-size"><code>COUNT</code> &#x2014; playlist size</h3>
-<h4 id="synopsis">Synopsis</h4>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description_4">Description</h4>
+<div class="paragraph">
+<p>If <code>TARGET</code> is not given, removes any current selection.  Else,
+attempts to select the item at <em>index</em> or <em>hash</em> <code>TARGET</code>.</p>
+</div>
+<div class="paragraph">
+<p>If successful, a <code>SELECT</code> response will inform clients of the change
+in selection.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_responses">Responses</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="__code_count_code_playlist_size"><code>COUNT</code> &#x2014; playlist size</h3>
+<div class="sect3">
+<h4 id="_synopsis_5">Synopsis</h4>
+<div class="paragraph">
 <p><code>COUNT &lt;NUM&gt;</code></p>
-<h4 id="description">Description</h4>
-<p>Given before <code>ITEM</code> responses at the beginning of a response to a <code>list</code>
-request, to inform clients of how many items are to follow.</p>
-<h3 id="-dequeue-%E2%80%94-item-removed-from-playlist"><code>DEQUEUE</code> &#x2014; item removed from playlist</h3>
-<h4 id="synopsis">Synopsis</h4>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description_5">Description</h4>
+<div class="paragraph">
+<p>Given before <code>ITEM</code> responses at the beginning of a response to a
+<code>list</code> request, to inform clients of how many items are to follow.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__code_dequeue_code_item_removed_from_playlist"><code>DEQUEUE</code> &#x2014; item removed from playlist</h3>
+<div class="sect3">
+<h4 id="_synopsis_6">Synopsis</h4>
+<div class="paragraph">
 <p><code>DEQUEUE &lt;INDEX&gt; &lt;HASH&gt;</code></p>
-<h4 id="description">Description</h4>
-<p>The item formerly at index <code>INDEX</code>, with hash <code>HASH</code>, has been removed.</p>
-<p>Unless an <code>ENQUEUE</code> with the same <code>HASH</code> follows, <code>HASH</code> now no longer points
-to an item.  <code>INDEX</code> now points to the item, if any, following the dequeued
-item.</p>
-<h3 id="-enqueue-%E2%80%94-item-added-to-playlist"><code>ENQUEUE</code> &#x2014; item added to playlist</h3>
-<h4 id="synopsis">Synopsis</h4>
-<p><code>ENQUEUE &lt;INDEX&gt; &lt;HASH&gt; &lt;TYPE&gt; &lt;ARGUMENTS...&gt;</code></p>
-<h4 id="description">Description</h4>
-<p>The index <code>INDEX</code> and hash <code>HASH</code> now point to an item of type <code>TYPE</code> with
-arguments <code>ARGUMENTS</code>.</p>
-<p>Any items occurring on or after <code>INDEX</code> now follow this new item, and their
-positive indices have changed by 1.  (Any items before <code>INDEX</code> have now had
-their negative indices change by -1.)  As such,
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description_6">Description</h4>
+<div class="paragraph">
+<p>The item formerly at index <code>INDEX</code>, with hash <code>HASH</code>, has been
+removed.</p>
+</div>
+<div class="paragraph">
+<p>Unless an <code>ENQUEUE</code> with the same <code>HASH</code> follows, <code>HASH</code> now no
+longer points to an item.  <code>INDEX</code> now points to the item, if any,
+following the dequeued item.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__code_enqueue_code_item_added_to_playlist"><code>ENQUEUE</code> &#x2014; item added to playlist</h3>
+<div class="sect3">
+<h4 id="_synopsis_7">Synopsis</h4>
+<div class="paragraph">
+<p><code>ENQUEUE &lt;INDEX&gt; &lt;HASH&gt; &lt;TYPE&gt; &lt;ARGUMENTS&#x2026;&#x200B;&gt;</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description_7">Description</h4>
+<div class="paragraph">
+<p>The index <code>INDEX</code> and hash <code>HASH</code> now point to an item of type
+<code>TYPE</code> with arguments <code>ARGUMENTS</code>.</p>
+</div>
+<div class="paragraph">
+<p>Any items occurring on or after <code>INDEX</code> now follow this new item,
+and their positive indices have changed by 1.  (Any items before
+<code>INDEX</code> have now had their negative indices change by -1.)  As such,
 any attempt to reference items by index must be adjusted accordingly.</p>
-<p>None of the other items&apos; hashes are changed.  Thus, clients <strong>should</strong> use
-hashes where possible.</p>
-<p>If an <code>ENQUEUE</code> follows a <code>DEQUEUE</code> on the same <code>HASH</code> with the same <code>TYPE</code> and
-<code>ARGUMENTS</code>, it likely represents an attempt by a <a href="../../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a> to move an item.</p>
-<h3 id="-item-%E2%80%94-playlist-item"><code>ITEM</code> &#x2014; playlist item</h3>
-<h4 id="synopsis">Synopsis</h4>
-<p><code>ITEM &lt;INDEX&gt; &lt;HASH&gt; &lt;TYPE&gt; &lt;ARGUMENTS...&gt;</code></p>
-<h4 id="description">Description</h4>
-<p><code>ITEM</code> is announced as part of the response to a <code>list</code> request.  Each part of
-the <code>ITEM</code> request has the same meaning as given in <code>ENQUEUE</code>; the <code>INDEX</code>
-represents the item&apos;s <em>current</em> index, not its original.</p>
-<h3 id="-select-%E2%80%94-item-selected"><code>SELECT</code> &#x2014; item selected</h3>
-<h4 id="synopsis">Synopsis</h4>
+</div>
+<div class="paragraph">
+<p>None of the other items&apos; hashes are changed.  Thus, clients <strong>should</strong>
+use hashes where possible.</p>
+</div>
+<div class="paragraph">
+<p>If an <code>ENQUEUE</code> follows a <code>DEQUEUE</code> on the same <code>HASH</code> with the
+same <code>TYPE</code> and <code>ARGUMENTS</code>, it likely represents an attempt by a
+<a href="../../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a> to move an item.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__code_item_code_playlist_item"><code>ITEM</code> &#x2014; playlist item</h3>
+<div class="sect3">
+<h4 id="_synopsis_8">Synopsis</h4>
+<div class="paragraph">
+<p><code>ITEM &lt;INDEX&gt; &lt;HASH&gt; &lt;TYPE&gt; &lt;ARGUMENTS&#x2026;&#x200B;&gt;</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description_8">Description</h4>
+<div class="paragraph">
+<p><code>ITEM</code> is announced as part of the response to a <code>list</code> request.
+Each part of the <code>ITEM</code> request has the same meaning as given in
+<code>ENQUEUE</code>; the <code>INDEX</code> represents the item&#x2019;s <em>current</em> index, not
+its original.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__code_select_code_item_selected"><code>SELECT</code> &#x2014; item selected</h3>
+<div class="sect3">
+<h4 id="_synopsis_9">Synopsis</h4>
+<div class="paragraph">
 <p><code>SELECT</code> <strong>or</strong> <code>SELECT &lt;INDEX&gt; &lt;HASH&gt;</code></p>
-<h4 id="description">Description</h4>
-<p>With no index or hash, the playlist has no item selected.  This means that
-playback controls <strong>should not</strong> work, and the state <strong>should</strong> be <code>Ejected</code>.</p>
-<p>With an index and hash, the item at index <code>INDEX</code> and hash <code>HASH</code> is selected.
-Playback controls <strong>should</strong> work, and the state <strong>should not</strong> be <code>Ejected</code>.</p>
-<h2 id="item-types">Item Types</h2>
-<h3 id="-file"><code>file</code></h3>
-<p>A <code>file</code> item represents a file in a playlist.  The <code>file</code> type takes one
-argument, namely the <em>absolute</em> path of the file to load, as interpreted by the
-<code>load</code> request.</p>
-<p>Items with type <code>file</code> <strong>may</strong> be <code>select</code>ed.</p>
-
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description_9">Description</h4>
+<div class="paragraph">
+<p>With no index or hash, the playlist has no item selected.  This
+means that playback controls <strong>should not</strong> work, and the state
+<strong>should</strong> be <code>Ejected</code>.</p>
+</div>
+<div class="paragraph">
+<p>With an index and hash, the item at index <code>INDEX</code> and hash <code>HASH</code>
+is selected.  Playback controls <strong>should</strong> work, and the state <strong>should
+not</strong> be <code>Ejected</code>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_item_types">Item Types</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="__code_file_code"><code>file</code></h3>
+<div class="paragraph">
+<p>A <code>file</code> item represents a file in a playlist.  The <code>file</code> type
+takes one argument, namely the <em>absolute</em> path of the file to load,
+as interpreted by the <code>load</code> request.</p>
+</div>
+<div class="paragraph">
+<p>Items with type <code>file</code> <strong>may</strong> be <code>select</code>-ed.</p>
+</div>
+</div>
+</div>
+</div>
                     
                     </section>
                 

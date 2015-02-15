@@ -35,7 +35,7 @@
     
 
         
-    <div class="book" data-level="4" data-basepath=".." data-revision="Sun Feb 15 2015 01:41:33 GMT+0000 (GMT)">
+    <div class="book" data-level="4" data-basepath=".." data-revision="Sun Feb 15 2015 23:37:26 GMT+0000 (GMT)">
     
 
 <div class="book-summary">
@@ -611,42 +611,77 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="inter-service-communications">Inter-<a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
+                        <h1>Inter-<a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
 features.">Service</a> Communications</h1>
-<p>Unless <a href="../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a> is implemented as a single monolithic entity, its services need to
-communicate with each other to fulfil the tasks of a playout suite.  We specify
-two interfaces for inter-<a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
-features.">service</a> communication:</p>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Unless <a href="../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a> is implemented as a single monolithic entity, its
+services need to communicate with each other to fulfil the tasks
+of a playout suite.  We specify two interfaces for inter-<a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
+features.">service</a>
+communication:</p>
+</div>
+<div class="ulist">
 <ul>
-<li>The <em><a href="../GLOSSARY.html#internal_api" class="glossary-term" title="The API used for communication between servers.">internal API</a></em>, which is a lightweight, line-orientated textual API used
-for communication between <a href="../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a>-side services;</li>
-<li>The <em><a href="../GLOSSARY.html#external_api" class="glossary-term" title="The API used for communication between BAPS3 clients and the server stack
+<li>
+<p>The <em><a href="../GLOSSARY.html#internal_api" class="glossary-term" title="The API used for communication between servers.">internal API</a></em>, which is a lightweight, line-orientated textual API used
+for communication between <a href="../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a>-side services;</p>
+</li>
+<li>
+<p>The <em><a href="../GLOSSARY.html#external_api" class="glossary-term" title="The API used for communication between BAPS3 clients and the server stack
 providing BAPS3 services.">external API</a></em>, which is a HTTP-based <a href="http://json.org/" target="_blank">JSON</a> API used for communication
-specifically between the platform and <a href="../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a> services.</li>
+specifically between the platform and <a href="../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a> services.</p>
+</li>
 </ul>
-<h2 id="the-baps2-api">The BAPS2 API</h2>
-<p>We consciously chose not to use the existing BAPS2 API, for the following
-reasons:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_baps2_api">The BAPS2 API</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We consciously chose not to use the existing BAPS2 API, for the
+following reasons:</p>
+</div>
+<div class="ulist">
 <ul>
-<li>The BAPS2 API is based on a binary protocol that is difficult to debug, and
-provides a lack of transparency that outweighs the performance advantages of
-using the binary protocol;</li>
-<li>The HTTP-based <a href="../GLOSSARY.html#external_api" class="glossary-term" title="The API used for communication between BAPS3 clients and the server stack
+<li>
+<p>The BAPS2 API is based on a binary protocol that is difficult to debug, and
+provides a lack of transparency that outweighs the performance
+advantages of using the binary protocol;</p>
+</li>
+<li>
+<p>The HTTP-based <a href="../GLOSSARY.html#external_api" class="glossary-term" title="The API used for communication between BAPS3 clients and the server stack
 providing BAPS3 services.">external API</a> allows Web-based implementations of the <a href="../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a>
 <a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
-features.">service</a>, amongst other flexibility benefits;</li>
-<li>The change from BAPS2 to <a href="../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a> allowed us to correct some oddities and
-counter-intuitive design decisions in the BAPS2 API.</li>
+features.">service</a>, amongst other flexibility benefits;</p>
+</li>
+<li>
+<p>The change from BAPS2 to <a href="../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a> allowed us to correct some oddities and
+counter-intuitive design decisions in the BAPS2 API.</p>
+</li>
 </ul>
-<h2 id="chapter-structure">Chapter Structure</h2>
-<p>We define both APIs in turn, starting with the <a href="../GLOSSARY.html#internal_api" class="glossary-term" title="The API used for communication between servers.">internal API</a> and following with
-the <a href="../GLOSSARY.html#external_api" class="glossary-term" title="The API used for communication between BAPS3 clients and the server stack
-providing BAPS3 services.">external API</a>.  For each API, the protocols underlying the API are first
-described, followed by a detailed reference of
-the requests and responses used in that API.</p>
-<p>For the <a href="../GLOSSARY.html#internal_api" class="glossary-term" title="The API used for communication between servers.">internal API</a>, requests and responses are grouped by <em>feature flags</em>,
-which are used by the API to describe the feature set of an <a href="../GLOSSARY.html#internal_api" class="glossary-term" title="The API used for communication between servers.">internal API</a> <a href="../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a>.</p>
-
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_chapter_structure">Chapter Structure</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We define both APIs in turn, starting with the <a href="../GLOSSARY.html#internal_api" class="glossary-term" title="The API used for communication between servers.">internal API</a> and
+following with the <a href="../GLOSSARY.html#external_api" class="glossary-term" title="The API used for communication between BAPS3 clients and the server stack
+providing BAPS3 services.">external API</a>.  For each API, the protocols
+underlying the API are first described, followed by a detailed
+reference of the requests and responses used in that API.</p>
+</div>
+<div class="paragraph">
+<p>For the <a href="../GLOSSARY.html#internal_api" class="glossary-term" title="The API used for communication between servers.">internal API</a>, requests and responses are grouped by <em>feature
+flags</em>, which are used by the API to describe the feature set of
+an <a href="../GLOSSARY.html#internal_api" class="glossary-term" title="The API used for communication between servers.">internal API</a> <a href="../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a>.</p>
+</div>
+</div>
+</div>
                     
                     </section>
                 

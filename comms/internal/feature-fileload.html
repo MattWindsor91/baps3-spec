@@ -35,7 +35,7 @@
     
 
         
-    <div class="book" data-level="4.1.5" data-basepath="../.." data-revision="Sun Feb 15 2015 01:41:33 GMT+0000 (GMT)">
+    <div class="book" data-level="4.1.5" data-basepath="../.." data-revision="Sun Feb 15 2015 23:37:26 GMT+0000 (GMT)">
     
 
 <div class="book-summary">
@@ -611,42 +611,106 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="feature-fileload">Feature: FileLoad</h1>
-<p>Provides the <code>load</code> request, for loading audio files, and the <code>FILE</code> response,
-for notifying <a href="../../GLOSSARY.html#upstream" class="glossary-term" title="The services/servers implemented on top of the current subject.">upstream</a> that a file has been loaded.</p>
-<h2 id="dependencies">Dependencies</h2>
+                        <h1>Feature: FileLoad</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Provides the <code>load</code> request, for loading audio files, and the <code>FILE</code>
+response, for notifying <a href="../../GLOSSARY.html#upstream" class="glossary-term" title="The services/servers implemented on top of the current subject.">upstream</a> that a file has been loaded.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dependencies">Dependencies</h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p><code>FileLoad</code> depends on the concept of an <em>initial file-loaded state</em>,
-which is supplied by another feature such as <code>PlayStop</code>.  Should no
-other feature provide such a state, the default state <code>Ready</code> <strong>may</strong> be used.</p>
-<h2 id="conflicts">Conflicts</h2>
+which is supplied by another feature such as <code>PlayStop</code>.  Should
+no other feature provide such a state, the default state <code>Ready</code>
+<strong>may</strong> be used.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conflicts">Conflicts</h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p><code>FileLoad</code> may conflict with any other loading features.</p>
-<h2 id="states">States</h2>
-<h3 id="-ejected-%E2%80%94-no-file-loaded"><code>Ejected</code> &#x2014; no file loaded</h3>
-<p>The state in which no file is loaded.  Unless the <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> starts with a file
-loaded, this <strong>should</strong> be the <em>initial state</em>, overriding any initial state
-provided by a playback control feature (such as <code>PlayStop</code>), unless explicitly
-overridden by another feature.</p>
-<h2 id="requests">Requests</h2>
-<h3 id="-load-%E2%80%94-load-file"><code>load</code> &#x2014; load file</h3>
-<h4 id="synopsis">Synopsis</h4>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_states">States</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="__code_ejected_code_no_file_loaded"><code>Ejected</code> &#x2014; no file loaded</h3>
+<div class="paragraph">
+<p>The state in which no file is loaded.  Unless the <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> starts
+with a file loaded, this <strong>should</strong> be the <em>initial state</em>, overriding
+any initial state provided by a playback control feature (such as
+<code>PlayStop</code>), unless explicitly overridden by another feature.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_requests">Requests</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="__code_load_code_load_file"><code>load</code> &#x2014; load file</h3>
+<div class="sect3">
+<h4 id="_synopsis">Synopsis</h4>
+<div class="paragraph">
 <p><code>load &lt;PATH&gt;</code></p>
-<h4 id="description">Description</h4>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description">Description</h4>
+<div class="paragraph">
 <p>Loads the file at <code>PATH</code>, replacing any previously loaded file.</p>
-<p>Will succeed and send <code>FILE</code> if the file has been loaded successfully.  The
-state <strong>should</strong> then be set to the initial file-loaded state.</p>
+</div>
+<div class="paragraph">
+<p>Will succeed and send <code>FILE</code> if the file has been loaded successfully.
+The state <strong>should</strong> then be set to the initial file-loaded state.</p>
+</div>
+<div class="paragraph">
 <p>If the load failed, the state <strong>should</strong> be set to <code>Ejected</code>.</p>
-<h2 id="responses">Responses</h2>
-<h3 id="-file-%E2%80%94-file-loaded"><code>FILE</code> &#x2014; file loaded</h3>
-<h4 id="synopsis">Synopsis</h4>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_responses">Responses</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="__code_file_code_file_loaded"><code>FILE</code> &#x2014; file loaded</h3>
+<div class="sect3">
+<h4 id="_synopsis_2">Synopsis</h4>
+<div class="paragraph">
 <p><code>FILE &lt;PATH&gt;</code></p>
-<h4 id="description">Description</h4>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description_2">Description</h4>
+<div class="paragraph">
 <p><code>FILE</code> <strong>should</strong> be sent when:</p>
+</div>
+<div class="ulist">
 <ul>
-<li>A new <a href="../../GLOSSARY.html#upstream" class="glossary-term" title="The services/servers implemented on top of the current subject.">upstream</a> connects to a <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> with the <code>FileLoad</code> feature, as part of
-the <em><a href="../../GLOSSARY.html#initial_responses" class="glossary-term" title="The responses sent from servers to their clients upon connection.">initial responses</a></em>; <strong>or</strong></li>
-<li>A new file has been loaded.</li>
+<li>
+<p>A new <a href="../../GLOSSARY.html#upstream" class="glossary-term" title="The services/servers implemented on top of the current subject.">upstream</a> connects to a <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> with the <code>FileLoad</code> feature,
+as part of the <em><a href="../../GLOSSARY.html#initial_responses" class="glossary-term" title="The responses sent from servers to their clients upon connection.">initial responses</a></em>; <strong>or</strong></p>
+</li>
+<li>
+<p>A new file has been loaded.</p>
+</li>
 </ul>
-
+</div>
+</div>
+</div>
+</div>
+</div>
                     
                     </section>
                 

@@ -35,7 +35,7 @@
     
 
         
-    <div class="book" data-level="3.3" data-basepath=".." data-revision="Sun Feb 15 2015 01:41:33 GMT+0000 (GMT)">
+    <div class="book" data-level="3.3" data-basepath=".." data-revision="Sun Feb 15 2015 23:37:26 GMT+0000 (GMT)">
     
 
 <div class="book-summary">
@@ -611,67 +611,145 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="playlist">Playlist</h1>
+                        <h1>Playlist</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
 <p>The <em>playlist <a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
-features.">service</a></em> maintains a playlist on top of the player <a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
-features.">service</a>.  The
-playlist contains both <em>file items</em>, which represent files available to load
-into the player, and <em>text items</em>, which are comments that can be added into the
-playlist, but are not loadable and will be skipped over by the playlist.</p>
-<h2 id="interface">Interface</h2>
-<p>The playlist <a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
-features.">service</a> uses the <a href="../GLOSSARY.html#internal_api" class="glossary-term" title="The API used for communication between servers.">internal API</a> to communicate both with the platform
+features.">service</a></em> maintains a playlist on top of the player
 <a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
+features.">service</a>.  The playlist contains both <em>file items</em>, which represent
+files available to load into the player, and <em>text items</em>, which
+are comments that can be added into the playlist, but are not
+loadable and will be skipped over by the playlist.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_interface">Interface</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The playlist <a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
+features.">service</a> uses the <a href="../GLOSSARY.html#internal_api" class="glossary-term" title="The API used for communication between servers.">internal API</a> to communicate both with
+the platform <a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
 features.">service</a> above it, and the player <a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
 features.">service</a> below.</p>
+</div>
+<div class="paragraph">
 <p>The playlist <a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
 features.">service</a> exposes an API atop that of the player <a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
-features.">service</a>, delegating
-any commands it doesn&apos;t understand <a href="../GLOSSARY.html#downstream" class="glossary-term" title="The services/servers on top of which the current subject is implemented.">downstream</a>.  It adds the following requests
-to the interface:</p>
+features.">service</a>,
+delegating any commands it doesn&#x2019;t understand <a href="../GLOSSARY.html#downstream" class="glossary-term" title="The services/servers on top of which the current subject is implemented.">downstream</a>.  It adds
+the following requests to the interface:</p>
+</div>
+<div class="ulist">
 <ul>
-<li><code>enqueue</code> &#x2014; Adds a file or text item into the playlist;</li>
-<li><code>dequeue</code> &#x2014; Removes a file or text item from the playlist;</li>
-<li><code>clear</code> &#x2014; Removes all items from the playlist;</li>
-<li><code>select</code> &#x2014; Selects a file item in the playlist, loading it into the player;</li>
-<li><code>list</code> &#x2014; Enumerates the items in the playlist, alongside their types;</li>
+<li>
+<p><code>enqueue</code> &#x2014; Adds a file or text item into the playlist;</p>
+</li>
+<li>
+<p><code>dequeue</code> &#x2014; Removes a file or text item from the playlist;</p>
+</li>
+<li>
+<p><code>clear</code> &#x2014; Removes all items from the playlist;</p>
+</li>
+<li>
+<p><code>select</code> &#x2014; Selects a file item in the playlist, loading it into the player;</p>
+</li>
+<li>
+<p><code>list</code> &#x2014; Enumerates the items in the playlist, alongside their types;</p>
+</li>
 </ul>
+</div>
+<div class="paragraph">
 <p>For a playlist, <code>quit</code> also closes any underlying player in addition.</p>
-<p>In addition, it <em>removes</em> the following player requests (should they be
-present):</p>
+</div>
+<div class="paragraph">
+<p>In addition, it <em>removes</em> the following player requests (should
+they be present):</p>
+</div>
+<div class="ulist">
 <ul>
-<li><code>load</code> &#x2014; Replaced with <code>enqueue</code>;</li>
-<li><code>eject</code> &#x2014; Replaced with <code>select</code> (with no arguments);</li>
+<li>
+<p><code>load</code> &#x2014; Replaced with <code>enqueue</code>;</p>
+</li>
+<li>
+<p><code>eject</code> &#x2014; Replaced with <code>select</code> (with no arguments);</p>
+</li>
 </ul>
+</div>
+<div class="paragraph">
 <p>It also adds the following responses to those sent by the player:</p>
+</div>
+<div class="ulist">
 <ul>
-<li><code>ENQUEUE</code> &#x2014; An item has been enqueued;</li>
-<li><code>DEQUEUE</code> &#x2014; An item has been dequeued;</li>
-<li><code>SELECT</code> &#x2014; The selection has been changed;</li>
-<li><code>COUNT</code> &#x2014; The current number of items in the playlist;</li>
-<li><code>ITEM</code> &#x2014; A playlist item.</li>
+<li>
+<p><code>ENQUEUE</code> &#x2014; An item has been enqueued;</p>
+</li>
+<li>
+<p><code>DEQUEUE</code> &#x2014; An item has been dequeued;</p>
+</li>
+<li>
+<p><code>SELECT</code> &#x2014; The selection has been changed;</p>
+</li>
+<li>
+<p><code>COUNT</code> &#x2014; The current number of items in the playlist;</p>
+</li>
+<li>
+<p><code>ITEM</code> &#x2014; A playlist item.</p>
+</li>
 </ul>
-<h2 id="implemented-features">Implemented Features</h2>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_implemented_features">Implemented Features</h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p>The playlist <strong>must</strong> implement, as a minimum, the <a href="../comms/internal/feature-playlist.html"><code>Playlist</code></a>,
-<a href="../comms/internal/feature-textitems.html"><code>Playlist.TextItems</code></a>, and <a href="../comms/internal/feature-autoadvance.html"><code>Playlist.AutoAdvance</code></a> features.</p>
-<h2 id="requirements">Requirements</h2>
-<p><strong>Interface compatibility.</strong>  The playlist <strong>must</strong> implement the above
-interface. It <strong>may</strong> implement a superset of the interface, in order to
-implement more features than those required by the playlist.</p>
-<p><strong>File and text loading.</strong>  The playlist <strong>should</strong> allow both files and text
-items to be enqueued, and <strong>must</strong> disregard text items for the purposes of
-selection and auto-advancing.  If the playlist does not allow text items, it
-<strong>must</strong> notify the platform of this deficiency via the <code>FEATURES</code> response.</p>
-<p><strong>Features propagation.</strong>  The playlist <strong>must</strong> announce those features of the
-player to which it allows access, and <strong>must</strong> hide those features of the player
-to which it does not.</p>
-<p><strong>Flexible player selection.</strong>  The playlist <strong>should</strong> allow the configurable
-selection of the player instance to which it will attach.  For example, a
-TCP/IP-based playlist <a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
+<a href="../comms/internal/feature-textitems.html"><code>Playlist.TextItems</code></a>, and
+<a href="../comms/internal/feature-autoadvance.html"><code>Playlist.AutoAdvance</code></a> features.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_requirements">Requirements</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Interface compatibility</dt>
+<dd>
+<p>The playlist <strong>must</strong> implement the above interface. It <strong>may</strong>
+implement a superset of the interface, in order to implement more
+features than those required by the playlist.</p>
+</dd>
+<dt class="hdlist1">File and text loading</dt>
+<dd>
+<p>The playlist <strong>should</strong> allow both files and text items to be
+enqueued, and <strong>must</strong> disregard text items for the purposes of
+selection and auto-advancing.  If the playlist does not allow
+text items, it <strong>must</strong> notify the platform of this deficiency
+via the <code>FEATURES</code> response.</p>
+</dd>
+<dt class="hdlist1">Features propagation</dt>
+<dd>
+<p>The playlist <strong>must</strong> announce those features of the player to
+which it allows access, and <strong>must</strong> hide those features of the
+player to which it does not.</p>
+</dd>
+<dt class="hdlist1">Flexible player selection</dt>
+<dd>
+<p>The playlist <strong>should</strong> allow the configurable selection of the
+player instance to which it will attach.  For example, a TCP/IP-based
+playlist <a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
 features.">service</a> should allow the player port and address to be
-selected.  If the playlist spawns, or contains, its own player, this may be
-disregarded.</p>
-
+selected.  If the playlist spawns, or contains, its own player,
+this may be disregarded.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
                     
                     </section>
                 

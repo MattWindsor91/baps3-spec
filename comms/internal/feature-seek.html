@@ -35,7 +35,7 @@
     
 
         
-    <div class="book" data-level="4.1.7" data-basepath="../.." data-revision="Sun Feb 15 2015 01:41:33 GMT+0000 (GMT)">
+    <div class="book" data-level="4.1.7" data-basepath="../.." data-revision="Sun Feb 15 2015 23:37:26 GMT+0000 (GMT)">
     
 
 <div class="book-summary">
@@ -611,27 +611,63 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="feature-seek">Feature: Seek</h1>
+                        <h1>Feature: Seek</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
 <p>Provides the <code>seek</code> request, for changing the audio position.</p>
-<h2 id="dependencies">Dependencies</h2>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dependencies">Dependencies</h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p>The audio handled by servers implementing <code>Seek</code> <strong>should</strong> be seekable.
-<code>Seek</code> provides no means of handling or detecting unseekable audio, except
-returning failure from a <code>seek</code> request.</p>
-<h2 id="conflicts">Conflicts</h2>
+<code>Seek</code> provides no means of handling or detecting unseekable audio,
+except returning failure from a <code>seek</code> request.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conflicts">Conflicts</h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p><code>Seek</code> may conflict with other seeking features.</p>
-<h2 id="requests">Requests</h2>
-<h3 id="-seek-%E2%80%94-change-position"><code>seek</code> &#x2014; change position</h3>
-<h4 id="synopsis">Synopsis</h4>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_requests">Requests</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="__code_seek_code_change_position"><code>seek</code> &#x2014; change position</h3>
+<div class="sect3">
+<h4 id="_synopsis">Synopsis</h4>
+<div class="paragraph">
 <p><code>seek &lt;MICROS&gt;</code></p>
-<h4 id="description">Description</h4>
-<p>Seeks the currently playing audio to <code>MICROS</code> microseconds.  <code>MICROS</code> <strong>must</strong>
-be a non-negative integer for the <code>seek</code> request to be considered valid.</p>
-<p>The position after <code>seek</code> <strong>should</strong> be the closest possible position to
-<code>MICROS</code>.  If the position is past the end of audio, the <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> <strong>should</strong>
-behave as if the audio had ended of its own accord.</p>
-<p>The new position <strong>may</strong> be reported, for example via the <code>TIME</code> response, but
-this is outside the scope of this feature.</p>
-
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description">Description</h4>
+<div class="paragraph">
+<p>Seeks the currently playing audio to <code>MICROS</code> microseconds.  <code>MICROS</code>
+<strong>must</strong> be a non-negative integer for the <code>seek</code> request to be
+considered valid.</p>
+</div>
+<div class="paragraph">
+<p>The position after <code>seek</code> <strong>should</strong> be the closest possible position
+to <code>MICROS</code>.  If the position is past the end of audio, the <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a>
+<strong>should</strong> behave as if the audio had ended of its own accord.</p>
+</div>
+<div class="paragraph">
+<p>The new position <strong>may</strong> be reported, for example via the <code>TIME</code>
+response, but this is outside the scope of this feature.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
                     
                     </section>
                 

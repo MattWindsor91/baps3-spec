@@ -35,7 +35,7 @@
     
 
         
-    <div class="book" data-level="3" data-basepath=".." data-revision="Sun Feb 15 2015 01:41:33 GMT+0000 (GMT)">
+    <div class="book" data-level="3" data-basepath=".." data-revision="Sun Feb 15 2015 23:37:26 GMT+0000 (GMT)">
     
 
 <div class="book-summary">
@@ -611,67 +611,156 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="services">Services</h1>
+                        <h1>Services</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
 <p><a href="../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a> is comprised of multiple logical <em>services</em>.  Each <a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
-features.">service</a> is intended to
-be implemented as a separate <a href="../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> program, but <strong>may</strong> be merged (for
-reasons of performance, maintainability, and so on).</p>
-<h2 id="core-services">Core Services</h2>
-<p>There are six <em>core services</em> that define <a href="../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a>&apos;s minimal functionality:</p>
+features.">service</a>
+is intended to be implemented as a separate <a href="../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> program, but
+<strong>may</strong> be merged (for reasons of performance, maintainability, and
+so on).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_core_services">Core Services</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are six <em>core services</em> that define <a href="../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a>&#x2019;s minimal functionality:</p>
+</div>
+<div class="ulist">
 <ul>
-<li><a href="player.html">Player</a>;</li>
-<li><a href="playlist.html">Playlist</a>;</li>
-<li><a href="tracklister.html">Track Lister</a>;</li>
-<li><a href="trackresolver.html">Track Resolver</a>;</li>
-<li><a href="platform.html">Platform</a>;</li>
-<li><a href="client.html"><a href="../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">Client</a></a>.</li>
+<li>
+<p><a href="player.html">Player</a>;</p>
+</li>
+<li>
+<p><a href="playlist.html">Playlist</a>;</p>
+</li>
+<li>
+<p><a href="tracklister.html">Track Lister</a>;</p>
+</li>
+<li>
+<p><a href="trackresolver.html">Track Resolver</a>;</p>
+</li>
+<li>
+<p><a href="platform.html">Platform</a>;</p>
+</li>
+<li>
+<p><a href="client.html"><a href="../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">Client</a></a>.</p>
+</li>
 </ul>
-<h2 id="additional-services">Additional Services</h2>
-<p>Implementations of <a href="../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a> <strong>may</strong> define additional services.  Examples of
-possible services <em>not</em> specified here include:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_additional_services">Additional Services</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Implementations of <a href="../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a> <strong>may</strong> define additional services.  Examples
+of possible services <em>not</em> specified here include:</p>
+</div>
+<div class="ulist">
 <ul>
-<li>Additional frontends (for debugging purposes, for example);</li>
-<li>Digitising and cataloguing services;</li>
-<li>Installation, deployment and configuration services.</li>
+<li>
+<p>Additional frontends (for debugging purposes, for example);</p>
+</li>
+<li>
+<p>Digitising and cataloguing services;</p>
+</li>
+<li>
+<p>Installation, deployment and configuration services.</p>
+</li>
 </ul>
-<h2 id="core-functionality">Core Functionality</h2>
-<p>All <a href="../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a> servers (consequently, all services) provide a minimum amount of
-functionality associated with the <a href="../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a> protocol.  This includes the
-following request:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_core_functionality">Core Functionality</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>All <a href="../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a> servers (consequently, all services) provide a minimum
+amount of functionality associated with the <a href="../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a> protocol.  This
+includes the following request:</p>
+</div>
+<div class="ulist">
 <ul>
-<li><code>quit</code> &#x2014; Quits the <a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
-features.">service</a> (including any <a href="../GLOSSARY.html#downstream" class="glossary-term" title="The services/servers on top of which the current subject is implemented.">downstream</a> services).</li>
+<li>
+<p><code>quit</code> &#x2014; Quits the <a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
+features.">service</a> (including any <a href="../GLOSSARY.html#downstream" class="glossary-term" title="The services/servers on top of which the current subject is implemented.">downstream</a> services).</p>
+</li>
 </ul>
-<p>In addition, the following responses <em>must</em> be emitted by all services
-at start-up, in this order:</p>
+</div>
+<div class="paragraph">
+<p>In addition, the following responses <em>must</em> be emitted by all
+services at start-up, in this order:</p>
+</div>
+<div class="ulist">
 <ul>
-<li><code>OHAI</code> &#x2014; Identifies the player implementation and welcomes the <a href="../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a>;</li>
-<li><code>FEATURES</code> &#x2014; The set of features implemented by the <a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
-features.">service</a>;</li>
-<li><code>STATE</code> &#x2014; The current <a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
-features.">service</a> state (also emitted on state change).</li>
+<li>
+<p><code>OHAI</code> &#x2014; Identifies the player implementation and welcomes the <a href="../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a>;</p>
+</li>
+<li>
+<p><code>FEATURES</code> &#x2014; The set of features implemented by the <a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
+features.">service</a>;</p>
+</li>
+<li>
+<p><code>STATE</code> &#x2014; The current <a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
+features.">service</a> state (also emitted on state change).</p>
+</li>
 </ul>
-<p>All services will respond to a <a href="../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a> request with one of the following
-responses:</p>
+</div>
+<div class="paragraph">
+<p>All services will respond to a <a href="../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a> request with one of the
+following responses:</p>
+</div>
+<div class="ulist">
 <ul>
-<li><code>OK</code> &#x2014; A <a href="../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a> request was successfully honoured;</li>
-<li><code>WHAT</code> &#x2014; A <a href="../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a> request was not understood;</li>
-<li><code>FAIL</code> &#x2014; An error has occurred.</li>
+<li>
+<p><code>OK</code> &#x2014; A <a href="../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a> request was successfully honoured;</p>
+</li>
+<li>
+<p><code>WHAT</code> &#x2014; A <a href="../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a> request was not understood;</p>
+</li>
+<li>
+<p><code>FAIL</code> &#x2014; An error has occurred.</p>
+</li>
 </ul>
-<h2 id="chapter-structure">Chapter Structure</h2>
-<p>We begin this chapter by discussing the <a href="rationale.html">rationale</a> for dividing the <a href="../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a>
-system into a comparatively large number of small services.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_chapter_structure">Chapter Structure</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We begin this chapter by discussing the <a href="rationale.html">rationale</a> for
+dividing the <a href="../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a> system into a comparatively large number of small
+services.</p>
+</div>
+<div class="paragraph">
 <p>Next, each core <a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
 features.">service</a> is detailed in turn.  The services are
 defined in terms of:</p>
+</div>
+<div class="ulist">
 <ul>
-<li>Their remits;</li>
-<li>Their interfaces with other services (in brief; a more detailed specification
-follows in the next chapter);</li>
-<li>Their implementation requirements;</li>
-<li>Comparisons with existing software.</li>
+<li>
+<p>Their remits;</p>
+</li>
+<li>
+<p>Their interfaces with other services (in brief; a more detailed specification
+follows in the next chapter);</p>
+</li>
+<li>
+<p>Their implementation requirements;</p>
+</li>
+<li>
+<p>Comparisons with existing software.</p>
+</li>
 </ul>
-
+</div>
+</div>
+</div>
                     
                     </section>
                 
