@@ -37,6 +37,11 @@ The service responsible for maintaining track playlists for players.
 == platform service
 The service responsible for unifying other services into a coherent unit.
 
+== tokenisation
+The process of converting a _raw_ BAPS3 protocol message into a
+sequence of words, by separating on unquoted whitespace, removing
+quote delimters, and expanding escape sequences.
+
 == URY
 University Radio York.
 

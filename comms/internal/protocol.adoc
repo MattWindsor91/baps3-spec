@@ -125,9 +125,18 @@ single-quoted or double-quoted mode to escape these characters.
 
 == Words
 
-The core element of the protocol is the _word_, which is a sequence
-of zero or more characters delimited by any run of _unquoted_
-whitespace.
+The main protocol element is the _word_, which is a _well-formed_
+sequence of one or more raw characters delimited by any non-zero run
+of _unquoted_ whitespace.  A _well-formed_ word is one that ends in
+unquoted mode (quotes must be matched), and does not end with a
+backslash.
+
+By _raw_ characters, we mean that the criteria for a valid word hold
+_before_ tokenisation, and specifically that the special characters
+count towards the one-or-more limit.  This means that, while the empty
+string is _not_ a valid word, the quoted 'empty' string `''` is.
+Implicitly, the unquoted whitespace characters are not considered to
+count towards any words.
 
 NOTE: There is _no_ limit on the number of quote mode transitions
 inside a single word.  For example, `unquoted"double"unquoted'single'\
