@@ -169,18 +169,147 @@ an API service, and inform an API client.  Response command words
 
 === Examples
 
-The following are well-formed commands:
+Following is a non-exhaustive list of test cases for a conformant
+BAPS3 tokeniser.  The input is given as a single string using C-style
+escaping (specifically, that used by Go); the output is a
+comma-separated list of zero or more brace-delimited, comma-separated
+lines.  Each case is given a unique identifier to allow tracing to
+implemented automated tests, and a description outlining the
+particular behaviour under test.
 
-* `stop`
-* `"play"`
-* `'quit'`
-* `enqueue file 0 /home/demo/music/test\
-file.mp3`
-* `load "/home/demo/music/test file.mp3"`
-* `load
-'C:\Users\Demo\Music\test file.mp3'`
-* `load "C:\\Users\\Demo\\Music\\test
-file.mp3"`
-* `OHAI 'listmaster/playslave'`
-* `FEATURES FileLoad
-PlayStop Seek End TimeReport`
+Implementors *may* use these tests as a basis for automated testing of
+their implementations of a BAPS3 tokeniser.
+
+WARNING: Implementors automated tests based on this list *should* take
+input and output strings from the _source form_ of this page, due to
+potential differences in the rendered copy.  See
+link:../../meta/compiling.adoc[Compiling] for details on how to obtain
+the source.
+
+[cols="1,4,4,3", options="header", subs="none"]
+|===
+|ID
+|Input
+|Output
+|Description
+
+|E1
+|`""`
+|
+|Empty string (parsed as whitespace)
+
+|E2
+|`"\n"`
+|`{}`
+|Empty line
+
+|E3
+|`"''\n"`
+|`{""}`
+|Empty single-quoted string (parsed as empty string)
+
+|E4
+|`"\"\"\n"`
+|`{""}`
+|Empty double-quoted string (parsed as empty string)
+
+|W1
+|`"foo bar baz\n"`
+|`{"foo", "bar", "baz"}`
+|Space-delimited words
+
+|W2
+|`"foo\tbar\tbaz\n"`
+|`{"foo", "bar", "baz"}`
+|Tab-delimited words
+
+|W3
+|`"foo\rbar\rbaz\n"`
+|`{"foo", "bar", "baz"}`
+|Words delimited by odd, but valid, whitespace
+
+|W4
+|`"silly windows\r\n"`
+|`{"silly", "windows"}`
+|CRLF line ending tolerance
+
+|W5
+|`"     abc def\n"`
+|`{"abc", "def"}`
+|Leading whitespace
+
+|W6
+|`"ghi jkl     \n"`
+|`{"ghi", "jkl"}`
+|Trailing whitespace
+
+|W7
+|`"     mno pqr     \n"`
+|`{"mno", "pqr"}`
+|Surrounding whitespace
+
+|Q1
+|`"abc\\\ndef\n"`
+|`{"abc\ndef"}`
+|Backslash escaping
+
+|Q2
+|`"\"abc\ndef\"\n"`
+|`{"abc\ndef"}`
+|Double-quoting
+
+|Q3
+|`"\"abc\\\ndef\"\n"`
+|`{"abc\ndef"}`
+|Double-quoting with backslash escape
+
+|Q4
+|`"'abc\ndef'\n"`
+|`{"abc\\\ndef"}`
+|Single-quoting
+
+|Q5
+|`"'abc\\\ndef'\n"`
+|`{"abc\\\ndef"}`
+|Single-quoting with (failed) backslash escape
+
+|Q6
+|`"Scare\\\" quotes\\\"\n"`
+|`{"Scare\"", "quotes\""}`
+|Backslash-escaped double quote
+
+|Q7
+|`"I\\'m free\n"`
+|`{"I'm", "free"}`
+|Backslash-escaped single quote
+
+|Q8
+|`"'hello, I'\\''m an escaped single quote'\n"`
+|`{"hello, I'm an escaped single quote"}`
+|Single-quoted single quote
+
+|Q9
+|`"\"hello, this is an \\" escaped double quote\"\n"`
+|`{"hello, this is an \" escaped double quote"}`
+|Double-quoted double quote
+
+|M1
+|`"first line\nsecond line\n"`
+|`{"first", "line"}, {"second", "line"}`
+|Multiple lines in one tokenisation
+
+|U1
+|`"北野 武\n"`
+|`{"北野", "武"}`
+|Valid UTF-8 (provided the string literals are interpreted as UTF-8,
+for example in Go)
+
+|U2
+|`"f\xfcr\n"`
+|`{"f\xef\xbf\xbdr"}`
+|Invalid UTF-8 (ISO-8859-1, using Go syntax)
+
+|X1
+|`"enqueue file \"C:\\\\Users\\\\Test\\\\Artist - Title.mp3\" 1\n"`
+|`{"enqueue", "file", "C:\\Users\\Test\\Artist - Title.mp3", "1"}`
+|Representative command with Windows path
