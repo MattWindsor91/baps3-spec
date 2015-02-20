@@ -1,9 +1,9 @@
 = Player
-:End:        link:../comms/internal/feature-end.adoc
-:FileLoad:   link:../comms/internal/feature-fileload.adoc
-:PlayStop:   link:../comms/internal/feature-playstop.adoc
-:Seek:       link:../comms/internal/feature-seek.adoc
-:TimeReport: link:../comms/internal/feature-timereport.adoc
+:End:        link:../features/end.adoc
+:FileLoad:   link:../features/fileload.adoc
+:PlayStop:   link:../features/playstop.adoc
+:Seek:       link:../features/seek.adoc
+:TimeReport: link:../features/timereport.adoc
 
 The _player service_ plays audio files.  It is supplied a single
 file at a time, and allows the playback to be controlled by upstream
