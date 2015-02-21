@@ -1,11 +1,31 @@
 = Features
 
-The internal API uses the concept of _feature flags_ to disclose
-the available states, requests, and responses to clients of a
-service.
+The modularity of BAPS3 allows for discrete servers to collaborate
+together to implement services, and for clients to communicate with
+any such service that speaks one of the BAPS3 APIs.  However, services
+and their constituent servers may implement a variety of subsets of
+the full BAPS3 feature set as specified, and may even implement
+extensions or customisations of standardised behaviour.
 
-The feature flags supported by a service are exposed through the
-`FEATURES` core initial response.
+To allow a BAPS3 server to report a fine-grained set of capabilities
+it implements, either directly or via communication with other
+servers, BAPS3 supports the concept of _features_: distinct named
+collections of Internal API requests, states, and responses, as well
+as External API resources.  In addition, every server *should*
+implement the _core_ feature, comprising basic protocol functionality
+such as initial responses and server control.
+
+== Internal API
+
+In the internal API, the `FEATURES` core initial response provides the
+names of all features, core excepted, that the server directly or
+indirectly implements.  In turn, each feature enables various Internal
+API requests and responses, or new functionality on existing requests
+and responses.
+
+== External API
+
+This section is to be written at a later date.
 
 == Rationale
 

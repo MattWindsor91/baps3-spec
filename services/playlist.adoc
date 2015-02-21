@@ -1,7 +1,7 @@
 = Playlist
-:Playlist:    link:../comms/internal/feature-playlist.adoc
-:AutoAdvance: link:../comms/internal/feature-autoadvance.adoc
-:TextItems:   link:../comms/internal/feature-textitems.adoc
+:Playlist:    link:../features/playlist.adoc
+:AutoAdvance: link:../features/playlist-autoadvance.adoc
+:TextItems:   link:../features/playlist-textitems.adoc
 
 The _playlist service_ maintains a playlist on top of the player
 service.  The playlist contains both _file items_, which represent
