@@ -14,11 +14,17 @@ said resources.  This approach is inspired by the
 {REST}[Representational State Transfer] school of API design.
 
 == Resources
+
 BAPS3 {features}[features] *may* define a number of _resources_ that
 participate in the external API.  Resources are represented in the
-external API as elements in the URL hierarchy: a playlist service, for
-example, will define, through its constituent features, a 'playlist'
-resource and zero or more playlist items, at 'playlist/0' onwards.
+external API as elements in the URL hierarchy.
+
+For example, a playlist service might define, through its constituent
+features, a 'playlist' resource representing the current list of
+enqueued items.  Then, each playlist item would be available via its
+position (the first item would then be `playlist/0`), or its unique
+hash (perhaps `playlist/h39acf3a31d482`).
+
 HTTPS requests on these resources could either represent a query on
 the internal state of the service, or an equivalent Internal API
 request (for example, a DELETE on 'playlist/0' might represent a
