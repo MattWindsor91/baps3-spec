@@ -11,7 +11,7 @@ The external API uses HTTPS as an underlying protocol, and is based on
 the concept of projecting the visible state of a service as a resource
 hierarchy, with HTTP verbs representing the possible interactions with
 said resources.  This approach is inspired by the
-{REST}[Representational State Transfer} school of API design.
+{REST}[Representational State Transfer] school of API design.
 
 == Resources
 BAPS3 {features}[features] *may* define a number of _resources_ that
