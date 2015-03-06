@@ -127,3 +127,90 @@ as the third and later words of the `WHAT` response.
 The second word of the `WHAT` response is a human-readable error
 message.  Future revisions of the spec *may* define a structure for
 this error message.
+
+== Resources
+
+=== `/`
+
+The _root resource_.  Every resource is a descendant of this resource.
+
+Behaves as a simple composite resource for all actions.
+
+=== `/info`
+
+The _information resource_, which contains _read-only_ information
+about the _service itself_.
+
+Behaves as a simple composite resource for `GET`.  All other actions
+are forbidden.
+
+=== `/info/serverid`
+
+Contains the server identifier that would be returned by the `OHAI`
+Internal API response.
+
+All actions apart from `GET` are forbidden.
+
+==== Example
+
+If a service identifies as `OHAI listd-0.3.0/playd-0.3.0`, then the
+`GET` response value for `/info/serverid` shall be
+`"listd-0.3.0/playd-0.3.0"`.
+
+=== `/info/features`
+
+Contains a list of strings representing the implemented features on
+the queried service (those returned by a `FEATURES` Internal API
+response from this service).
+
+All actions apart from `GET` are forbidden.
+
+=== `GET`
+
+`GET` responses *must* return a list of strings that correspond
+exactly to the names of the features implemented by the queried
+service.  There is _no_ defined ordering on the strings.
+
+==== Example
+
+If a service provides `FEATURES PlayStop FileLoad End`, the `GET`
+response value for `/info/features` *may* be `["PlayStop", "FileLoad",
+"End"]` (or any permutation thereof).
+
+=== `/ctl`
+
+The _control resource_, which contains _writable flags_ that affect
+the service's running and configuration.
+
+Behaves as a simple composite resource for all actions.
+
+=== `/ctl/running`
+
+Whether the server is, or should be, running.
+
+Due to the obvious denial-of-service attack vector presented via
+unauthorised access to this control point, services *should* forbid
+non-`GET` access to `/ctl/running` unless explicitly required and a
+strong authentication mechanism is available to restrict said
+privilege.
+
+=== `GET`
+
+`GET` requests *should* return a Boolean: `false` if the service is
+known to be shutting down, and `true` otherwise.  Generally, this will
+be the latter, as non-running services will likely close their
+External API endpoints upon starting to exit.
+
+=== `PUT`
+
+If the payload value is `true`, the service *should* regard the
+request as a successful no-operation.
+
+If the payload value is `false`, the service *should* regard the
+request as equivalent to a `quit` Internal API request.
+
+Any other payload values *should* result in a malformed value error.
+
+=== `DELETE`
+
+Behaves as a `PUT` with the payload value `false`.
