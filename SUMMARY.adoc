@@ -18,6 +18,7 @@
 ... link:comms/internal/protocol.adoc[Protocol]
 ... link:comms/internal/changes.adoc[API Changes]
 .. link:comms/external/README.adoc[External API]
+... link:comms/external/composites.adoc[Composite Resources]
 . link:features/README.adoc[Features]
 .. link:features/core.adoc[Core]
 .. link:features/fileload.adoc[FileLoad]
