@@ -1,3 +1,5 @@
 _book/
 
 *.sw?
+*.sublime-workspace
+*.sublime-project
