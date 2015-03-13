@@ -184,15 +184,9 @@ the service's running and configuration.
 
 Behaves as a simple composite resource for all actions.
 
-=== `/ctl/running`
+=== `/ctl/state`
 
-Whether the server is, or should be, running.
-
-Due to the obvious denial-of-service attack vector presented via
-unauthorised access to this control point, services *should* forbid
-non-`GET` access to `/ctl/running` unless explicitly required and a
-strong authentication mechanism is available to restrict said
-privilege.
+The current state of this service.
 
 === `GET`
 
@@ -203,14 +197,21 @@ External API endpoints upon starting to exit.
 
 === `PUT`
 
-If the payload value is `true`, the service *should* regard the
-request as a successful no-operation.
+Attempts to set the state to the given state.  The state payload *must* be a string, and *should* be interpreted in a case-insensitive manner.
 
-If the payload value is `false`, the service *should* regard the
-request as equivalent to a `quit` Internal API request.
+Any unknown states, or malformed payloads, *should* result in a malformed value error.
 
-Any other payload values *should* result in a malformed value error.
+access
+The semantics of each state is specified alongside the documentation for the feature introducing that state.  The semantics of the two core states are as follows:
+
+==== `Ready`
+
+Services *should* reject an attempt to set the state to `Ready`.
+
+==== `Quitting`
+
+Services *should* interpret this as equivalent to a `QUIT` Internal API request.
 
 === `DELETE`
 
-Behaves as a `PUT` with the payload value `false`.
+Behaves as a `PUT` with the payload value `Quitting`.
