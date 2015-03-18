@@ -6,6 +6,20 @@ any `FEATURES` flag.  These are enumerated here.
 
 == Requests
 
+=== `dump` — dump snapshot of state
+
+==== Synopsis
+
+`dump`
+
+==== Description
+
+`dump` asks the service to relay as much of its current, variable
+state as possible.  This *should* consist of the initial responses,
+less `OHAI` and `FEATURES` if they cannot change over the service's
+lifetime.  It *may* omit other non-changing parts of the initial
+responses.
+
 === `quit` — quit server stack
 
 ==== Synopsis
