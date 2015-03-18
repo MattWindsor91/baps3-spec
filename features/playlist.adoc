@@ -81,9 +81,15 @@ As defined in the `FileLoad` feature.
 
 ==== Description
 
-Removes the item at index `INDEX`, providing it has the hash `HASH`.
+Removes the item at index `INDEX`, if it has the hash `HASH`.
 Fails if `INDEX` does not specify an item in the playlist, or if the
 item at `INDEX` does not have hash `HASH`.
+
+If successful, the server *must* send a `DEQUEUE` response informing
+all clients of the dequeue, and *must* send an `OK` to the sender.
+Else, `FAIL` *must* be sent to the sender with a message describing
+the error (eg. hash mismatch or bad index); the server *should not*
+send any other response.
 
 === `enqueue` — insert item in playlist
 
@@ -130,12 +136,16 @@ subsequent `ITEM` responses, the current state of the playlist.
 
 ==== Description
 
-If `HASH` is not given, removes any current selection.  Else, attempts
-to select the item at index `INDEX`, provided its hash is _hash_
-`HASH`.
+If `INDEX` and `HASH` are not given, removes any current selection.
+Else, selects the item at index `INDEX` if its hash is `HASH`.
+Fails if `INDEX` does not specify an item in the playlist, or if the
+item at `INDEX` does not have hash `HASH`.
 
-If successful, a `SELECT` response will inform clients of the change
-in selection.
+If successful, the server *must* send a `SELECT` response informing
+all clients of the selection change, and *must* send an `OK` to the
+sender.  Else, `FAIL` *must* be sent to the sender with a message
+describing the error (eg. hash mismatch or bad index); the server
+*should not* send any other response.
 
 == Responses
 
