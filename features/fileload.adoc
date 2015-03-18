@@ -55,3 +55,31 @@ If the load failed, the state *should* be set to `Ejected`.
 * A new upstream connects to a server with the `FileLoad` feature,
   as part of the _initial responses_; *or*
 * A new file has been loaded.
+
+== Resources
+
+=== `/player`
+
+Resource group for player-related resources.  Behaves as a simple composite resource.  If defined in other features, treat as if singly defined.
+
+=== `/player/file`
+
+The currently loaded file.
+
+==== `GET`
+
+The `GET` representation *should* be equivalent to the file path announced in the latest `FILE` response (if the state is not `Ejected`), or `nil` if there is no file loaded (the state is `Ejected`).  The value when the state is `Quitting` is undefined.
+
+==== `PUT`
+
+Given a string payload, this *should* behave as equivalent to the `load` Internal API request with the given string as the file path.
+
+Given the nil payload, this *should* behave as equivalent to an `eject` request.
+
+==== `DELETE`
+
+As `PUT` with the nil payload.
+
+=== `/control/state` (additional state)
+
+Provides the `Ejected` state.  Attempts to `PUT` the state to `Ejected` *should* behave in a manner equivalent to the `eject` Internal API request.

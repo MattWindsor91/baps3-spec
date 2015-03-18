@@ -28,6 +28,10 @@ A program that provides services.
 A specific role in the BAPS3 system, usually defined as a group of expected
 features.
 
+== simple compound resource
+A resource that relays requests to each of its child resources, and
+aggregates the results.
+
 == player service
 The service responsible for playing single audio tracks.
 

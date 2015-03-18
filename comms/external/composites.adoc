@@ -1,0 +1,31 @@
+= Composite Resources
+:RFC6902: http://www.ietf.org/rfc/rfc6902.txt
+
+Many of the resources specified for the external API serve no purpose
+but to contain other, more specific resources.  These _composite
+resources_ usually collect a group of resources related by feature,
+service, or ownership.
+
+== Simple composite resources
+
+To shorten the specification, we often describe a resource's behaviour
+under some or all methods as being 'as a simple composite resource'.
+Informally, this means that actions distribute over the children of
+the resource.  More specifically:
+
+* The `GET` representation of the resource *should* be an object whose
+  keys are the names of resource children the client has authorisation
+  to `GET`, and whose corresponding values are the `GET`
+  representations of said children;
+* A `PUT` action, with a payload consisting of an object of child
+  representations as described above, *should* be equivalent to a
+  `PUT` for each child present in the object (with its intended new
+  representation), and a `DELETE` for each absent child;
+* A `PATCH` action *may* be accepted, provided it follows
+  {RFC6902}[RFC 6902]: the behaviours of the `add`, `remove`, and
+  `replace` operations *should* then map onto `PUT`, `DELETE`, and
+  `PUT` (to an existing resource) respectively;
+* A `POST` action *should* always fail, as no new resources can be
+  added.
+
+Other actions *should not* be added.
