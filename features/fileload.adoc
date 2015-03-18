@@ -80,6 +80,6 @@ Given the nil payload, this *should* behave as equivalent to an `eject` request.
 
 As `PUT` with the nil payload.
 
-=== `/ctl/state` (additional state)
+=== `/control/state` (additional state)
 
 Provides the `Ejected` state.  Attempts to `PUT` the state to `Ejected` *should* behave in a manner equivalent to the `eject` Internal API request.

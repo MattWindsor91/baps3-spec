@@ -177,14 +177,14 @@ If a service provides `FEATURES PlayStop FileLoad End`, the `GET`
 response value for `/info/features` *may* be `["PlayStop", "FileLoad",
 "End"]` (or any permutation thereof).
 
-=== `/ctl`
+=== `/control`
 
 The _control resource_, which contains _writable flags_ that affect
 the service's running and configuration.
 
 Behaves as a simple composite resource for all actions.
 
-=== `/ctl/state`
+=== `/control/state`
 
 The current state of this service.
 
