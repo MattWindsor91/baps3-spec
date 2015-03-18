@@ -136,28 +136,15 @@ The _root resource_.  Every resource is a descendant of this resource.
 
 Behaves as a simple composite resource for all actions.
 
-=== `/info`
+=== `/control`
 
-The _information resource_, which contains _read-only_ information
-about the _service itself_.
+The _control resource_, which contains both _read-only_ information
+about the service, and _writable flags_ that affect the service's
+running and configuration.
 
-Behaves as a simple composite resource for `GET`.  All other actions
-are forbidden.
+Behaves as a simple composite resource for all actions.
 
-=== `/info/serverid`
-
-Contains the server identifier that would be returned by the `OHAI`
-Internal API response.
-
-All actions apart from `GET` are forbidden.
-
-==== Example
-
-If a service identifies as `OHAI listd-0.3.0/playd-0.3.0`, then the
-`GET` response value for `/info/serverid` shall be
-`"listd-0.3.0/playd-0.3.0"`.
-
-=== `/info/features`
+=== `/control/features`
 
 Contains a list of strings representing the implemented features on
 the queried service (those returned by a `FEATURES` Internal API
@@ -174,15 +161,21 @@ service.  There is _no_ defined ordering on the strings.
 ==== Example
 
 If a service provides `FEATURES PlayStop FileLoad End`, the `GET`
-response value for `/info/features` *may* be `["PlayStop", "FileLoad",
-"End"]` (or any permutation thereof).
+response value for `/control/features` *may* be `["PlayStop",
+"FileLoad", "End"]` (or any permutation thereof).
 
-=== `/control`
+=== `/control/serverid`
 
-The _control resource_, which contains _writable flags_ that affect
-the service's running and configuration.
+Contains the server identifier that would be returned by the `OHAI`
+Internal API response.
 
-Behaves as a simple composite resource for all actions.
+All actions apart from `GET` are forbidden.
+
+==== Example
+
+If a service identifies as `OHAI listd-0.3.0/playd-0.3.0`, then the
+`GET` response value for `/control/serverid` shall be
+`"listd-0.3.0/playd-0.3.0"`.
 
 === `/control/state`
 
