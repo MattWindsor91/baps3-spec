@@ -197,12 +197,16 @@ External API endpoints upon starting to exit.
 
 === `PUT`
 
-Attempts to set the state to the given state.  The state payload *must* be a string, and *should* be interpreted in a case-insensitive manner.
+Attempts to set the state to the given state.  The state payload
+*must* be a string, and *should* be interpreted in a case-insensitive
+manner.
 
-Any unknown states, or malformed payloads, *should* result in a malformed value error.
+Any unknown states, or malformed payloads, *should* result in a
+malformed value error.
 
-access
-The semantics of each state is specified alongside the documentation for the feature introducing that state.  The semantics of the two core states are as follows:
+access The semantics of each state is specified alongside the
+documentation for the feature introducing that state.  The semantics
+of the two core states are as follows:
 
 ==== `Ready`
 
@@ -210,7 +214,8 @@ Services *should* reject an attempt to set the state to `Ready`.
 
 ==== `Quitting`
 
-Services *should* interpret this as equivalent to a `QUIT` Internal API request.
+Services *should* interpret this as equivalent to a `QUIT` Internal
+API request.
 
 === `DELETE`
 
