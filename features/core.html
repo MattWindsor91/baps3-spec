@@ -35,7 +35,7 @@
     
 
         
-    <div class="book" data-level="5.1" data-basepath=".." data-revision="Wed Mar 18 2015 18:22:12 GMT+0000 (GMT)">
+    <div class="book" data-level="5.1" data-basepath=".." data-revision="Thu Mar 26 2015 22:28:53 GMT+0000 (GMT)">
     
 
 <div class="book-summary">
@@ -652,15 +652,36 @@ any <code>FEATURES</code> flag.  These are enumerated here.</p>
 <h2 id="_requests">Requests</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="__code_quit_code_quit_server_stack"><code>quit</code> &#x2014; quit <a href="../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> stack</h3>
+<h3 id="__code_dump_code_dump_snapshot_of_state"><code>dump</code> &#x2014; dump snapshot of state</h3>
 <div class="sect3">
 <h4 id="_synopsis">Synopsis</h4>
+<div class="paragraph">
+<p><code>dump</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description">Description</h4>
+<div class="paragraph">
+<p><code>dump</code> asks the <a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
+features.">service</a> to relay as much of its current, variable
+state as possible.  This <strong>should</strong> consist of the <a href="../GLOSSARY.html#initial_responses" class="glossary-term" title="The responses sent from servers to their clients upon connection.">initial responses</a>,
+less <code>OHAI</code> and <code>FEATURES</code> if they cannot change over the <a href="../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
+features.">service</a>&#x2019;s
+lifetime.  It <strong>may</strong> omit other non-changing parts of the initial
+responses.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__code_quit_code_quit_server_stack"><code>quit</code> &#x2014; quit <a href="../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> stack</h3>
+<div class="sect3">
+<h4 id="_synopsis_2">Synopsis</h4>
 <div class="paragraph">
 <p><code>quit</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_description">Description</h4>
+<h4 id="_description_2">Description</h4>
 <div class="paragraph">
 <p><code>quit</code> is a request to a <a href="../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a>, and all servers <a href="../GLOSSARY.html#downstream" class="glossary-term" title="The services/servers on top of which the current subject is implemented.">downstream</a> from
 it, to close gracefully.</p>
@@ -679,13 +700,13 @@ other than disconnecting <a href="../GLOSSARY.html#upstream" class="glossary-ter
 <div class="sect2">
 <h3 id="__code_fail_code_server_failure"><code>FAIL</code> &#x2014; <a href="../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> failure</h3>
 <div class="sect3">
-<h4 id="_synopsis_2">Synopsis</h4>
+<h4 id="_synopsis_3">Synopsis</h4>
 <div class="paragraph">
 <p><code>FAIL &lt;MESSAGE&gt;</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_description_2">Description</h4>
+<h4 id="_description_3">Description</h4>
 <div class="paragraph">
 <p><code>FAIL</code> <strong>must</strong> be sent to acknowledge a request that has <em>failed</em>.
 Said request <strong>must</strong> be provided, in a form identical to the original
@@ -702,13 +723,13 @@ this error message.</p>
 <div class="sect2">
 <h3 id="__code_ok_code_command_received"><code>OK</code> &#x2014; command received</h3>
 <div class="sect3">
-<h4 id="_synopsis_3">Synopsis</h4>
+<h4 id="_synopsis_4">Synopsis</h4>
 <div class="paragraph">
 <p><code>OK &lt;COMMAND&gt; [ARGS&#x2026;&#x200B;]</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_description_3">Description</h4>
+<h4 id="_description_4">Description</h4>
 <div class="paragraph">
 <p><code>OK</code> <strong>must</strong> be sent to acknowledge a request that has <em>successfully</em>
 terminated.  Said request <strong>must</strong> be provided, in a form identical
@@ -720,13 +741,13 @@ as the second and later words of the <code>OK</code> response.</p>
 <div class="sect2">
 <h3 id="__code_ohai_code_server_welcome"><code>OHAI</code> &#x2014; <a href="../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> welcome</h3>
 <div class="sect3">
-<h4 id="_synopsis_4">Synopsis</h4>
+<h4 id="_synopsis_5">Synopsis</h4>
 <div class="paragraph">
 <p><code>OHAI &lt;IDENTIFIER&gt;</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_description_4">Description</h4>
+<h4 id="_description_5">Description</h4>
 <div class="paragraph">
 <p><code>OHAI</code> <strong>must</strong> be sent as the first <em>initial response</em> given to any
 connecting <a href="../GLOSSARY.html#upstream" class="glossary-term" title="The services/servers implemented on top of the current subject.">upstream</a>, and identifies the <a href="../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> (as well as the <a href="../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a>
@@ -755,13 +776,13 @@ system should be preferred instead).</p>
 <div class="sect2">
 <h3 id="__code_state_code_state_update"><code>STATE</code> &#x2014; state update</h3>
 <div class="sect3">
-<h4 id="_synopsis_5">Synopsis</h4>
+<h4 id="_synopsis_6">Synopsis</h4>
 <div class="paragraph">
 <p><code>STATE &lt;STATE-NAME&gt;</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_description_5">Description</h4>
+<h4 id="_description_6">Description</h4>
 <div class="paragraph">
 <p><code>STATE</code> <strong>should</strong> be sent when:</p>
 </div>
@@ -807,13 +828,13 @@ situation.</p>
 <div class="sect2">
 <h3 id="__code_what_code_bad_command"><code>WHAT</code> &#x2014; bad command</h3>
 <div class="sect3">
-<h4 id="_synopsis_6">Synopsis</h4>
+<h4 id="_synopsis_7">Synopsis</h4>
 <div class="paragraph">
 <p><code>WHAT &lt;MESSAGE&gt; &lt;COMMAND&gt; [ARGS&#x2026;&#x200B;]</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_description_6">Description</h4>
+<h4 id="_description_7">Description</h4>
 <div class="paragraph">
 <p><code>WHAT</code> <strong>must</strong> be sent to acknowledge an <em>invalid</em> request: one that
 does not fit the syntax of its declared command, or one with an
