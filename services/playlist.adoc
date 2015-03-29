@@ -39,7 +39,7 @@ It also adds the following responses to those sent by the player:
 
 * `ENQUEUE` — An item has been enqueued;
 * `DEQUEUE` — An item has been dequeued;
-* `SELECT` — The selection has been changed;
+* `SELECT` — The current selected item, or lack thereof;
 * `COUNT` — The current number of items in the playlist;
 * `ITEM` — A playlist item.
 
