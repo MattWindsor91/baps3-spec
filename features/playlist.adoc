@@ -227,6 +227,11 @@ With an index and hash, the item at index `INDEX` and hash `HASH`
 is selected.  Playback controls *should* work, and the state *should
 not* be `Ejected`.
 
+This response *must* be sent when the selection changes or is cleared,
+and also *must* be sent as an _initial response_. It *may* also be
+sent at any other time, so long as its information is correct at time
+of sending.
+
 == Item Types
 
 === `file`
