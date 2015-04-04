@@ -265,7 +265,7 @@ the source.
 
 |Q4
 |`"'abc\ndef'\n"`
-|`{"abc\\\ndef"}`
+|`{"abc\ndef"}`
 |Single-quoting
 
 |Q5
@@ -289,7 +289,7 @@ the source.
 |Single-quoted single quote
 
 |Q9
-|`"\"hello, this is an \\" escaped double quote\"\n"`
+|`"\"hello, this is an \\\" escaped double quote\"\n"`
 |`{"hello, this is an \" escaped double quote"}`
 |Double-quoted double quote
 
