@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>API Changes | BAPS3 Specification</title>
+        <title>Internal API | BAPS3 Specification</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.0.0">
@@ -20,10 +20,10 @@
         
     
     
-    <link rel="next" href="../../comms/external/index.html" />
+    <link rel="next" href="../../comms/internal/protocol.html" />
     
     
-    <link rel="prev" href="../../comms/internal/protocol.html" />
+    <link rel="prev" href="../../comms/index.html" />
     
 
         
@@ -36,7 +36,7 @@
     
 
         
-    <div class="book" data-level="4.1.2" data-basepath="../.." data-revision="Sat Apr 04 2015 15:39:33 GMT+0100 (BST)">
+    <div class="book" data-level="4.1" data-basepath="../.." data-revision="Sat Apr 04 2015 15:39:33 GMT+0100 (BST)">
     
 
 <div class="book-summary">
@@ -289,7 +289,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="4.1" data-path="comms/internal/index.html">
+        <li class="chapter active" data-level="4.1" data-path="comms/internal/index.html">
             
                 
                     <a href="../../comms/internal/index.html">
@@ -320,7 +320,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="4.1.2" data-path="comms/internal/changes.html">
+        <li class="chapter " data-level="4.1.2" data-path="comms/internal/changes.html">
             
                 
                     <a href="../../comms/internal/changes.html">
@@ -675,98 +675,60 @@
                 
                     <section class="normal" id="section-">
                     
-                        <div class="sect1">
-<h2 id="_api_changes">API Changes</h2>
-<div class="sectionbody">
+                        <h1><a href="../../GLOSSARY.html#internal_api" class="glossary-term" title="The API used for communication between servers.">Internal API</a></h1>
 <div class="paragraph">
-<p>The <a href="../../GLOSSARY.html#internal_api" class="glossary-term" title="The API used for communication between servers.">internal API</a> is intended to be extensible and changeable.  Its
-main feature for supporting change is the <code>FEATURES</code> response, which
-announces to a <a href="../../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
-features.">service</a> <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a>&#x2019;s clients the abilities of that <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a>.</p>
+<p>The <a href="../../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a> <em><a href="../../GLOSSARY.html#internal_api" class="glossary-term" title="The API used for communication between servers.">internal API</a></em> is the API used for communication between
+<a href="../../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a> <em><a href="../../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
+features.">service</a> servers</em>.  It is designed to meet the following
+criteria:</p>
 </div>
-<div class="paragraph">
-<p>This section discusses the matter of dealing with API extensions
-and changes in a clean and backwards-compatible manner.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_adding_new_features">Adding New Features</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>When adding new requests or responses to the API for a given <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a>,
-the <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> <strong>should</strong> identify the additional features provided by
-use of one or more <code>FEATURES</code> flags.</p>
-</div>
-<div class="paragraph">
-<p>Certain sets of requests and responses have corresponding <code>FEATURES</code>
-flags defined in the <a href="../../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a> specification.  For example, the <code>seek</code>
-request and <code>TIME</code> response (when sent as a response to a <code>seek</code>
-request) are part of the <code>Seek</code> feature, and the <code>TIME</code> response
-(when sent periodically by the <a href="../../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
-features.">service</a>) is part of the <code>TimeReport</code>
-feature.  Services <strong>must not</strong> use requests or responses specified
-in this document without announcing the appropriate feature, <strong>must
-not</strong> use request or response words that are specified as part of a
-feature in an incompatible manner, and <strong>must</strong> follow the specifications
-for those standard <a href="../../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a> requests, responses and features implemented.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_extending_existing_features">Extending Existing Features</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>When adding additional functionality on top of an existing feature,
-without changing the meaning of the feature&#x2019;s current requests and
-responses, the new functionality <strong>should</strong> be reported as a <em>separate</em>
-<a href="../../GLOSSARY.html#feature_flag" class="glossary-term" title="A string, sent as part of a FEATURES request, that identifies a set of
-requests, responses, and/or states that constitute a feature provided by a
-server.">feature flag</a>.  The flag <strong>may</strong> denote its relationship to the original
-feature by using a string of the form <code>EXISTING.NEW</code>, where <code>EXISTING</code>
-is the existing feature name and <code>NEW</code> is the new feature name.
-The new feature <strong>should</strong> require the presence of the old feature.</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Composability</dt>
+<dd>
+<p>The API is intended to allow separate implementations of single
+services to be composed into a single logical <a href="../../GLOSSARY.html#service" class="glossary-term" title="A specific role in the BAPS3 system, usually defined as a group of expected
+features.">service</a>, by connecting
+servers together through the API.  Responses and requests not
+intended for a <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> with <a href="../../GLOSSARY.html#upstream" class="glossary-term" title="The services/servers implemented on top of the current subject.">upstream</a> and <a href="../../GLOSSARY.html#downstream" class="glossary-term" title="The services/servers on top of which the current subject is implemented.">downstream</a> connections
+respectively can be <em>forwarded</em> transparently along the API
+connections;</p>
+</dd>
+<dt class="hdlist1">Transparency</dt>
+<dd>
+<p>The API is text-based, and can be inspected by humans using either
+TCP/IP packet sniffing or connecting directly to services to be
+inspected;</p>
+</dd>
+<dt class="hdlist1">Simplicity</dt>
+<dd>
+<p>The API uses a minimalistic line-orientated protocol, in which
+each line is comprised of one or more words, and uses shell-style
+word-escaping conventions (as well as C-style backslash escapes).
+It is relatively simple to implement, requires little to no
+external dependencies, and is modest in its usage of network
+bandwidth.</p>
+</dd>
+</dl>
 </div>
 <div class="paragraph">
-<p>For example, the <code>Playlist</code> feature denotes a playlist that allows,
-by default, the enqueueing of files only.  To allow text items to
-be added to the playlist, the <code>Playlist.TextItems</code> feature is also
-specified.  This does not alter the <code>Playlist</code> feature&#x2019;s semantics.</p>
+<p>In this section, we discuss the <a href="../../GLOSSARY.html#internal_api" class="glossary-term" title="The API used for communication between servers.">internal API</a> comprehensively,
+including:</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_backwards_incompatible_feature_changes">Backwards-Incompatible Feature Changes</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Any changes to a feature that change the semantics of that feature
-<strong>must</strong> be expressed by changing to a different feature string.  A
-convention that <strong>may</strong> be used is appending a revision number to the
-original feature.  For example, a backwards-incompatible change to
-the <code>Seek</code> feature could result in a <code>Seek-2</code> feature.</p>
-</div>
-<div class="paragraph">
-<p>Services <strong>may</strong> attempt to parse the <code>FEATURES</code> flags of <a href="../../GLOSSARY.html#downstream" class="glossary-term" title="The services/servers on top of which the current subject is implemented.">downstream</a>
-services for version information encoded in this manner, but it is
-not a required capability.</p>
-</div>
-<div class="paragraph">
-<p>Changes to the core requests and responses are considered to create
-a new protocol version, which is discussed below.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_protocol_changes">Protocol Changes</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Any changes to the core <a href="../../GLOSSARY.html#internal_api" class="glossary-term" title="The API used for communication between servers.">internal API</a> protocol <strong>should</strong> result in
-the initial response (<code>OHAI</code>) being replaced with a string that
-cannot be parsed as an <code>OHAI</code> response.  This is to ensure that API
-implementations can detect the incompatible protocol change and
-either switch to the new protocol or terminate with an error.</p>
-</div>
-</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A specification of the underlying protocol;</p>
+</li>
+<li>
+<p>A discussion of how the API can be changed and extended, using the
+<code>FEATURES</code> response;</p>
+</li>
+<li>
+<p>The requests and responses available in both the core <a href="../../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a> API, and in
+each feature set specified as part of <a href="../../GLOSSARY.html#baps3" class="glossary-term" title="The playout system specified in this document.">BAPS3</a>.</p>
+</li>
+</ul>
 </div>
                     
                     </section>
@@ -777,10 +739,10 @@ either switch to the new protocol or terminate with an error.</p>
         </div>
 
         
-        <a href="../../comms/internal/protocol.html" class="navigation navigation-prev " aria-label="Previous page: Protocol"><i class="fa fa-angle-left"></i></a>
+        <a href="../../comms/index.html" class="navigation navigation-prev " aria-label="Previous page: Inter-Service Communications"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../comms/external/index.html" class="navigation navigation-next " aria-label="Next page: External API"><i class="fa fa-angle-right"></i></a>
+        <a href="../../comms/internal/protocol.html" class="navigation navigation-next " aria-label="Next page: Protocol"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
