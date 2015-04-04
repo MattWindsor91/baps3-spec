@@ -170,4 +170,4 @@ an API service, and inform an API client.  Response command words
 
 === Examples
 
-See the {tests}[internal API compliance tests].
+See the Internal API {tests}[compliance tests].
