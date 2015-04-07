@@ -96,9 +96,9 @@ emitted verbatim.
 |`"`
 
 |`\` (0x5C)
-|Begins backslash escape for next character only
+|Begins backslash escape for next byte only
 |`\`
-|Begins backslash escape for next character only
+|Begins backslash escape for next byte only
 |`\`
 
 |Any other byte 'b'
