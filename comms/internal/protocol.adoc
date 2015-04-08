@@ -51,7 +51,7 @@ run, is ok.
 == Overview
 
 The Internal API protocol uses the concept of linefeed-delimited
-_commands_, each consisting of zero or more whitespace-delimited
+_commands_, each consisting of one or more whitespace-delimited
 _words_.  Each word consists of a sequence of bytes (usually
 representing UTF-8 characters).
 
