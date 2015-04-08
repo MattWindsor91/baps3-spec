@@ -114,9 +114,7 @@ emitted verbatim.
 The internal API protocol adheres to the following BNF grammar:
 
 --------
-<command>     ::= "\n"
-               |  <whitespace> "\n"
-               |  <words> "\n"
+<command>     ::= <words> "\n"
                |  <whitespace> <words> "\n"
                |  <words> <whitespace> "\n"
                |  <whitespace> <words> <whitespace> "\n"
@@ -155,6 +153,9 @@ The internal API protocol adheres to the following BNF grammar:
 Each distinct `word` and `command` production denotes a separate word
 and command respectively.  Any `normal-char`, `double-char`,
 `single-char`, or `any-char` is emitted verbatim in its word.
+
+Syntax errors (for example, a line containing no words) *must* cause a
+`WHAT` response to be sent.
 
 Escape sequences in the above BNF may be interpreted as follows:
 [cols="1,1,2", options="header"]
