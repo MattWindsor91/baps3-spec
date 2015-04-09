@@ -134,9 +134,9 @@ the source.
 for example in Go)
 
 |U2
-|`"f\xfcr\n"`
-|`{"f\xef\xbf\xbdr"}`
-|Invalid UTF-8 (ISO-8859-1, using Go syntax)
+|N/A
+|N/A
+|This ID was used for a test which is no longer in use.
 
 |X1
 |`"enqueue file \"C:\\\\Users\\\\Test\\\\Artist - Title.mp3\" 1\n"`
