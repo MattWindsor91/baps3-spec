@@ -14,6 +14,7 @@
 .. link:services/client.adoc[Client]
 .. link:services/additional.adoc[Additional Services]
 . link:comms/README.adoc[Inter-Service Communications]
+.. link:comms/common.adoc[Common Structure]
 .. link:comms/internal/README.adoc[Internal API]
 ... link:comms/internal/protocol.adoc[Protocol]
 ... link:comms/internal/changes.adoc[API Changes]
