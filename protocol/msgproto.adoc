@@ -1,13 +1,37 @@
-= Protocol
+= Message Protocol
+
 :shell:    http://pubs.opengroup.org/onlinepubs/009604599/utilities/xcu_chap02.html
 :isspace:  http://pubs.opengroup.org/onlinepubs/009695399/functions/isspace.html
 :UTF-8:    http://www.ietf.org/rfc/rfc3629.txt
 :tests:    link:../../tests/internal.adoc
 
+The Bifrost _message protocol_ is the base protocol Bifrost servers and
+clients use to communicate.  It is designed to meet the following
+criteria:
+
+Composability::
+  The API is intended to allow separate implementations of single
+  services to be composed into a single logical service, by connecting
+  servers together through the API.  Responses and requests not
+  intended for a server with upstream and downstream connections
+  respectively can be _forwarded_ transparently along the API
+  connections;
+Transparency::
+  The API is text-based, and can be inspected by humans using either
+  TCP/IP packet sniffing or connecting directly to services to be
+  inspected;
+Simplicity::
+  The API uses a minimalistic line-orientated protocol, in which
+  each line is comprised of one or more words, and uses shell-style
+  word-escaping conventions (as well as C-style backslash escapes).
+  It is relatively simple to implement, requires little to no
+  external dependencies, and is modest in its usage of network
+  bandwidth.
+
+== Design
+
 The BAPS3 internal API sits atop a text-based protocol based upon
 {shell}[POSIX shell] conventions.
-
-== Rationale
 
 We use a shell-style protocol because:
 

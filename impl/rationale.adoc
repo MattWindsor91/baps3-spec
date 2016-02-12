@@ -21,3 +21,15 @@ In addition to this, we hope that BAPS3 will:
 . Allow a greater amount of flexibility within University Radio York than is
   currently available with BAPS2.
 
+== The BAPS2 API
+
+We consciously chose not to use the existing BAPS2 API, for the
+following reasons:
+
+* The BAPS2 API is based on a binary protocol that is difficult to
+  debug, and provides a lack of transparency that outweighs the
+  performance advantages of using the binary protocol;
+* The HTTP-based external API allows Web-based implementations of
+  the client service, amongst other flexibility benefits;
+* The change from BAPS2 to BAPS3 allowed us to correct some oddities
+  and counter-intuitive design decisions in the BAPS2 API.

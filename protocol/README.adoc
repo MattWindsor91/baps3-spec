@@ -1,0 +1,25 @@
+= Bifrost Protocol
+
+:msgproto:  link:msgproto.adoc
+:core:      link:core/README.adoc
+:roles:     link:roles/README.adoc
+:changes:   link:changes.adoc
+
+This chapter of the specification defines the _Bifrost protocol_: the
+set of conventions Bifrost-compatible clients and servers use to
+communicate.
+
+== Structure
+
+The Bifrost protocol is split into several stages:
+
+* the {msgproto}[Message Protocol], which defines the basic protocol
+  on top of TCP used by Bifrost;
+* the {core}[Core Protocol], which defines the structure and content
+  of messages (_requests_ and _responses_) used in Bifrost clients and
+  servers;
+* the {roles}[Roles], which define packages of requests and responses
+  that define part of a Bifrost system.
+
+We also discuss Bifrost's mechanisms for {changes}[changing and
+extending] the protocol.
