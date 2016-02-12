@@ -214,30 +214,6 @@ Escape sequences in the above BNF may be interpreted as follows:
 |Backslash
 |===
 
-== Commands
-
-Each communication over the Internal API consists of a _command_
-of one or more words.  The first, mandatory, word is the _command
-word_ and unambiguously identifies the command; any further words
-are _arguments_ to that command.  In this respect, the BAPS3 protocol
-perfectly mirrors shell usage.
-
-Commands are divided into _requests_ and _responses_.
-
-=== Requests
-
-_Requests_ are the subset of valid commands that originate from an
-API client, and instruct an API service.  Request command words
-*should* consist of one or more _lowercase_ ASCII characters, and
-*may* be quoted.
-
-=== Responses
-
-_Responses_ are the subset of valid commands that originate from
-an API service, and inform an API client.  Response command words
-*should* consist of one or more _uppercase_ ASCII characters, and
-*may* be quoted.
-
 === Examples
 
 See the Internal API {tests}[compliance tests].
