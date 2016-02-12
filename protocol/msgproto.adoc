@@ -3,7 +3,7 @@
 :shell:    http://pubs.opengroup.org/onlinepubs/009604599/utilities/xcu_chap02.html
 :isspace:  http://pubs.opengroup.org/onlinepubs/009695399/functions/isspace.html
 :UTF-8:    http://www.ietf.org/rfc/rfc3629.txt
-:tests:    link:../../tests/internal.adoc
+:tests:    link:../tests/msgproto.adoc
 
 The Bifrost _message protocol_ is the base protocol Bifrost servers and
 clients use to communicate.  It is designed to meet the following

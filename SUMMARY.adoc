@@ -25,6 +25,6 @@
 .. link:features/playlist-autoadvance.adoc[Playlist.AutoAdvance]
 .. link:features/playlist-textitems.adoc[Playlist.TextItems]
 . link:tests/README.adoc[Compliance Tests]
-.. link:tests/internal.adoc[Internal API]
+.. link:tests/msgproto.adoc[Message Protocol]
 . link:impl/README.adoc[Reference Implementation (BAPS3)]
 .. link:impl/rationale.adoc[Rationale]

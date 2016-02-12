@@ -1,18 +1,19 @@
-= Internal API
-:protocol: link:../comms/internal/protocol.adoc
+= Message Protocol
+:compiling: link:../meta/compiling.adoc
+:protocol: link:../protocol/msgproto.adoc
 
 This section contains compliance tests for implementations of the
-Internal API, including its {protocol}[protocol].
+{protocol}[Message Protocol].
 
 == Tokeniser
 
 Implementors *may* use these tests as a basis for automated testing of
-their implementations of a BAPS3 tokeniser.
+their implementations of a Bifrost tokeniser.
 
 WARNING: Implementors automated tests based on this list *should* take
 input and output strings from the _source form_ of this page, due to
 potential differences in the rendered copy.  See
-link:../../meta/compiling.adoc[Compiling] for details on how to obtain
+{compiling}[Compiling] for details on how to obtain
 the source.
 
 [cols="1,4,4,3", options="header", subs="none"]
