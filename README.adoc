@@ -1,29 +1,29 @@
-= BAPS3 Specification
+= Bifrost Specification
 :Licence:   https://creativecommons.org/about/cc0
 :GitHub:    https://github.com/UniversityRadioYork/baps3-spec
 :Rendered:  https://universityradioyork.github.io/baps3-spec
 :Issues:    https://github.com/UniversityRadioYork/baps3-spec/issues
 
-This is the specification for the BAPS3 playout system.  It may be
-read directly as a directory of _Markdown_ files, or compiled to
+This is the specification for the Bifrost playout system architecture.
+It may be read as a directory of _AsciiDoc_ files, or compiled to
 book format.
 
-The latest version of the specification may be found at its
-{GitHub}[GitHub repository] at all times.  A {Rendered}[pre-rendered
-copy] is available via GitHub Pages, but may lag behind the main
-repository.
+The latest specification version may be found at its
+{GitHub}[GitHub repository].  A {Rendered}[pre-rendered copy] is
+available via GitHub Pages, but may lag behind the main repository.
 
-NOTE: The _canonical_ specification for BAPS3, as it currently exists,
-is the latest specification version maintained by URY.  Any future
-changes to this policy will be announced here.
+NOTE: The _canonical_ Bifrost specification is the latest
+specification version maintained by URY.  Any future changes to this
+policy will be announced here.
 
 The specification is licenced under the {Licence}[CC0] licence; that
 is, it is under the public domain.  In the repository, this is
-available as the file `LICENSE`.
+available as the file `LICENSE`.  We make a polite but non-binding
+request that you call derived specifications something other than
+Bifrost to avoid confusion.
 
-When browsed as a repository, the _summary_ of the specification
-may be found at `SUMMARY.md`.  In book form, this is available as
-a side-bar.
+When browsed as a repository, the specification _summary_ may be found
+at `SUMMARY.md`.  In book form, this is available as a side-bar.
 
-Queries and comments on the specification should be made, when
-appropriate, on its GitHub {Issues}[issues] page.
+Queries and comments on should be made on the specification's GitHub
+{Issues}[issues] page, or against individual commits.
