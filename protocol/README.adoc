@@ -5,9 +5,9 @@
 :roles:     link:roles/README.adoc
 :changes:   link:changes.adoc
 
-This chapter of the specification defines the _Bifrost protocol_: the
-set of conventions Bifrost-compatible clients and servers use to
-communicate.
+This chapter of the specification defines the _Bifrost protocol_.
+This is the set of conventions Bifrost-compatible clients and servers
+use to communicate.
 
 == Structure
 

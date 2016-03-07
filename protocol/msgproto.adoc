@@ -30,25 +30,25 @@ Simplicity::
 
 == Design
 
-The BAPS3 internal API sits atop a text-based protocol based upon
+The message protocol sits atop a text-based protocol based upon
 {shell}[POSIX shell] conventions.
 
 We use a shell-style protocol because:
 
 * It is lightweight and relatively easy to parse;
-* It is a good match for the command-and-arguments style of the BAPS3
+* It is a good match for the command-and-arguments style of the protocol layer
+on top;
   API;
 * The shell style of escaping is convenient for escaping paths
   (especially on Windows, where the single-quote syntax can avoid
-  needing to escape every backslash in a Windows path), which are
-  common arguments to BAPS3 commands (`load`, `enqueue`, and so on).
+  needing to escape every backslash in a Windows path).
 
 A disadvantage is that it is impossible to perform a context-free
 splitting of input into lines; the line-feed character could be
-escaped.  However, since the usual transport used by the BAPS3
-protocol is TCP, and most TCP libraries provide unbuffered input
-in chunks which may be smaller or larger than one line, we rarely
-need this luxury.
+escaped.  However, since the usual transport used by the message
+protocol is TCP, and most TCP libraries provide unbuffered input in
+chunks which may be smaller or larger than one line, this is not a
+major issue.
 
 == Encoding
 

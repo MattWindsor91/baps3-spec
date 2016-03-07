@@ -1,0 +1,54 @@
+= Core Command Set
+
+Bifrost servers **must** implement a set of common requests and
+responses.  This is known as the _core command set_.
+
+This chapter discusses the core command set, which includes
+interfaces for welcoming clients and dumping.
+
+WARNING: Future major revisions to the Bifrost protocol **may** change
+the core command set.  Check here for changes.
+
+== Dumping
+
+Bifrost servers **must** implement a means to query all of the current
+server state in one command.  The `dump` request implements this.
+
+=== `dump` — dump server state
+
+==== Synopsis
+
+`dump`
+
+==== Description
+
+Requests that a summary of the server's state is unicast to the client
+as a sequence of responses.  The set of state to send depends on the
+role.
+
+All state **must** be sent by the server _before_ it sends the `ACK`
+for this request.  Each state response **must** use the request tag,
+to allow the client to identify it as part of the dump response.
+
+==== Responses sent
+
+1. **Broadcast** a series of responses, dependent on the role (see each
+  role page for information);
+2. **Unicast** `ACK` `OK` `success`.
+
+== Initial Responses
+
+On client connection, Bifrost servers **must** unicast a specific
+sequence of responses to the client.  This is to provide the client
+with the protocol version, as well as information it needs to set up
+for further communications with the server.
+
+The set of _initial responses_ is:
+
+. `!` ``OHAI`` _client-id_  ``bifrost-``__x.y.z__ ``server-``__x.y.z__
+. `!` ``IAMA`` _role_
+. (The equivalent of running a `dump` as this client, with tag `!`)
+. `!` ``ACK OK`` _message_
+
+Servers **should not** send other responses until finishing the `ACK`,
+and clients **should not** send requests until then.
