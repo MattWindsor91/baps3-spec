@@ -1,9 +1,4 @@
 = `player/file`
-:End:        link:../features/end.adoc
-:FileLoad:   link:../features/fileload.adoc
-:PlayStop:   link:../features/playstop.adoc
-:Seek:       link:../features/seek.adoc
-:TimeReport: link:../features/timereport.adoc
 
 The `player/file` role plays audio files.
 
