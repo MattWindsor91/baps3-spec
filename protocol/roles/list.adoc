@@ -1,74 +1,67 @@
-= Playlist
-:FileLoad:    link:../features/fileload.adoc
-:Playlist:    link:../features/playlist.adoc
-:AutoAdvance: link:../features/playlist-autoadvance.adoc
-:TextItems:   link:../features/playlist-textitems.adoc
+= `list`
 
-The _playlist service_ maintains a playlist on top of the player
-service.  The playlist contains both _file items_, which represent
+The `list` role maintains a playlist.
+
+The playlist contains both _file items_, which represent
 files available to load into the player, and _text items_, which
 are comments that can be added into the playlist, but are not
 loadable and will be skipped over by the playlist.
 
-== Interface
-
-The playlist service uses the internal API to communicate both with
-the platform service above it, and the player service below.
-
-The playlist service exposes an API atop that of the player service,
-delegating any commands it doesn't understand or outright reject
-downstream.  It adds the following requests to the interface:
-
-* `enqueue` — Adds a file or text item into the playlist;
-* `dequeue` — Removes a file or text item from the playlist;
-* `clear` — Removes all items from the playlist;
-* `select` — Selects a file item in the playlist, loading it into the player;
-* `list` — Enumerates the items in the playlist, alongside their types;
-
-For a playlist, `quit` also closes any underlying player in addition.
-
-In addition, should the player implement {FileLoad}[`FileLoad`], the
-{Playlist}[`Playlist`] feature replaces its functionality in
-incompatible ways; said feature *should* be disabled.  Thus, the
-player should _reject_ the following player requests:
-
-* `load` — Replaced with `enqueue`;
-* `eject` — Replaced with `select` (with no arguments);
-
-It also adds the following responses to those sent by the player:
-
-* `ENQUEUE` — An item has been enqueued;
-* `DEQUEUE` — An item has been dequeued;
-* `SELECT` — The current selected item, or lack thereof;
-* `COUNT` — The current number of items in the playlist;
-* `ITEM` — A playlist item.
-
-== Implemented Features
-
-The playlist *must* implement, as a minimum, the
-{Playlist}[`Playlist`] and {AutoAdvance}[`Playlist.AutoAdvance`]
-features.  It is recommended, but not critical, to implement
-{TextItems}[`Playlist.TextItems`].
-
-== Requirements
+Servers implementing `list` have the following requirements:
 
 Interface compatibility::
-  The playlist *must* implement the above interface. It *may*
-  implement a superset of the interface, in order to implement more
-  features than those required by the playlist.
-File and text loading::
-  The playlist *should* allow both files and text items to be
+  Servers *must* provide the command interface described below.
+  Servers *may* add further commands so long as they obey the specification.
+File and text loads::
+  Servers *must* allow both files and text items to be
   enqueued, and *must* disregard text items for the purposes of
-  selection and auto-advancing.  If the playlist does not allow
-  text items, it *must* notify the platform of this deficiency
-  via the `FEATURES` response.
-Features propagation::
-  The playlist *must* announce those features of the player to
-  which it allows access, and *must* hide those features of the
-  player to which it does not.
+  selection and auto-advancing.
+Player mounting::
+  Servers *must* expose a `player/file` at the mount point `player`.
+  This player **may** be integrated into the `list`, so long as it obeys
+  the mounting protocol.  The player **must** be fully controllable through
+  the mounting protocol.
 Flexible player selection::
-  The playlist *should* allow the configurable selection of the
-  player instance to which it will attach.  For example, a TCP/IP-based
-  playlist service should allow the player port and address to be
-  selected.  If the playlist spawns, or contains, its own player,
+  Servers *should* allow the configurable selection of the
+  player instance to which it will attach, via the mounting protocol.
+  If the playlist spawns, or contains, its own player,
   this may be disregarded.
+
+
+== Dump format
+
+The dump format for `list` is as follows.
+
+* `AUTO` _autoload-type_.
+* `COUNTL` _number-of-items_.
+* Item dump (see below) **for each** index from `0` to _number-of-items - 1_.
+* `ON` _player_ _request..._ **for each** dump item from the player.
+
+=== Item dump format
+
+*If* item _index_ is a file:
+
+* `FLOADL` _index_ _hash_ _absolute-path_;
+
+**Else if** item _index_ is text:
+
+* `TLOADL` _index_ _hash_ _contents_.
+
+== Commands
+
+The `list` role adds the following commands:
+
+=== Responses
+
+`TLOADL` _index_ _hash_ _contents_::
+  The playlist has enqueued a text item at index _index_ with the hash
+  _hash_ and text _contents_.  If _index_ is below the client's last
+  received `COUNTL`, the item previously at _index_ has been removed.
+  If _index_ is equal to the client's last received `COUNTL`, the
+  client **should** presume `COUNTL` has increased by one.  The server
+  **may** re-send `COUNTL` to confirm this.  If _index_ is greater
+  than the client's last received `COUNTL`, the client **should**
+  request a `dump` to fill in the missing files.
+`FLOADL` _index_ _hash_ _absolute-path_::
+  The playlist has enqueued a file item at index _index_ with the hash _hash_
+  and absolute path _absolute-path_.  The comments on indices above apply.

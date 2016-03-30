@@ -16,7 +16,7 @@ Servers implementing `player/file` have the following requirements:
 
 Interface compatibility::
   Servers *must* provide the command interface described below.
-  It *may* add further commands so long as they obey the specification.
+  Servers *may* add further commands so long as they obey the specification.
 File loads::
   Servers *must* be able to load and play files, given their
   absolute path on the local filesystem.
@@ -40,13 +40,13 @@ Non-conflicting end-point::
 
 The dump format for `player/file` is as follows.
 
-If a file with path _absolute-path_ is loaded and at position _microseconds_:
+*If* a file with path _absolute-path_ is loaded and at position _microseconds_:
 
 * `FLOAD` _absolute-path_.
 * `PLAY` if the file is playing; else, `STOP`.
-* `POS` _microseconds_.
+* `POS` _microseconds_;
 
-If no file is loaded:
+**Else if** no file is loaded:
 
 * `EJECT`.
 

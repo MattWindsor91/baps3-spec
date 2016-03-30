@@ -1,11 +1,10 @@
 = Services
 
-:Player:         link:player.adoc
-:Playlist:       link:playlist.adoc
-:TrackLister:    link:tracklister.adoc
-:TrackResolver:  link:trackresolver.adoc
-:Platform:       link:platform.adoc
-:Client:         link:client.adoc
+:player:         link:player.adoc
+:list:           link:list.adoc
+:tracklister:    link:tracklister.adoc
+:db:             link:db.adoc
+:mux:            link:mux.adoc
 :Rationale:      link:rationale.adoc
 
 Bifrost is comprised of multiple logical _roles_.  Each role
@@ -15,53 +14,20 @@ so on).
 
 == Core Roles
 
-There are six _core roles_ that define BAPS3's minimal functionality:
+Bifrost specifies six _core roles_:
 
-* {Player}[Player];
-* {Playlist}[Playlist];
-* {TrackLister}[Track Lister];
-* {TrackResolver}[Track Resolver];
-* {Platform}[Platform];
-* {Client}[Client].
+* {player}[`player/file`];
+* {list}[`list`];
+* {tracklister}[`tracklister`];
+* {db}[`db`];
+* {mux}[`mux`].
 
 == Additional Roles
 
-Implementations of BAPS3 *may* define additional roles.  Examples
-of possible roles _not_ specified here include:
+Bifrost implementations *may* define additional roles.  Examples of
+possible roles _not_ specified here include:
 
-* Additional frontends (for debugging purposes, for example);
 * Digitising and cataloguing roles;
 * Installation, deployment and configuration roles.
 
-== Core Functionality
-
-All BAPS3 servers (consequently, all roles) provide a minimum
-amount of functionality associated with the BAPS3 protocol.  This
-includes the following request:
-
-* `quit` — Quits the role (including any downstream roles).
-
-In addition, the following responses _must_ be emitted by all
-roles at start-up, in this order:
-
-* `OHAI` — Identifies the player implementation and welcomes the client;
-* `FEATURES` — The set of features implemented by the role;
-* `STATE` — The current role state (also emitted on state change).
-
-All roles will respond to a client request with one of the
-following responses:
-
-* `OK` — A client request was successfully honoured;
-* `WHAT` — A client request was not understood;
-* `FAIL` — An error has occurred.
-
-== Chapter Structure
-
-Each role is detailed in turn.  The roles are
-defined in terms of:
-
-* Their remits;
-* Their interfaces with other roles (in brief; a more detailed specification
-  follows in the next chapter);
-* Their implementation requirements;
-* Comparisons with existing software.
+Non-standard roles **must** begin with the prefix `x/`.
