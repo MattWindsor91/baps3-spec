@@ -34,7 +34,3 @@ one or more _uppercase_ ASCII characters, and *may* be quoted.
 == Tags and Routing
 
 TBC
-
-== Initial Responses
-
-TBC

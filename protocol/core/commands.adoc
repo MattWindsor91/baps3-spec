@@ -1,4 +1,7 @@
+
 = Core Command Set
+
+:roles:  link:../roles/README.adoc
 
 Bifrost servers **must** implement a set of common requests and
 responses.  This is known as the _core command set_.
@@ -8,6 +11,37 @@ interfaces for welcoming clients and dumping.
 
 WARNING: Future major revisions to the Bifrost protocol **may** change
 the core command set.  Check here for changes.
+
+== Command results
+
+Bifrost servers *must* send an `ACK` response once they have finished
+processing a request.  The response *must* be unicast with the same tag
+as the corresponding request.
+
+=== `ACK` — command result
+
+==== Synopsis
+
+`ACK` _type_ _details_
+
+==== Description
+
+`ACK` acknowledges the end of processing for a request.  The request
+being acknowledged can be found by checking the tag of the `ACK`.
+
+The _type_ of the `ACK` *must* be one of the following (case-sensitive):
+
+`OK`::
+    Command was processed successfully; _details_ *should* be `success`;
+`WHAT`::
+    Command was invalid and could not be processed;
+`FAIL`::
+    Command was valid, but an error occurred when the server tried to
+    process it.
+
+The _details_ string is a parseable, but human-readable, string denoting
+the type of error for `WHAT` or `FAIL`.  Examples of standard _details_
+values are given in the descriptions for requests that can fail.
 
 == Dumping
 
@@ -32,7 +66,7 @@ to allow the client to identify it as part of the dump response.
 
 ==== Responses sent
 
-1. **Broadcast** a series of responses, dependent on the role (see each
+1. **Unicast** a series of responses, dependent on the role (see each
   role page for information);
 2. **Unicast** `ACK` `OK` `success`.
 
@@ -48,7 +82,53 @@ The set of _initial responses_ is:
 . `!` ``OHAI`` _client-id_  ``bifrost-``__x.y.z__ ``server-``__x.y.z__
 . `!` ``IAMA`` _role_
 . (The equivalent of running a `dump` as this client, with tag `!`)
-. `!` ``ACK OK`` _message_
+. `!` ``ACK OK success``
 
 Servers **should not** send other responses until finishing the `ACK`,
 and clients **should not** send requests until then.
+
+=== `OHAI` — client welcome
+
+==== Synopsis
+
+`OHAI` _client-id_ _protocol-version_ _server-version_
+
+==== Description
+
+This *must* be the first response sent by the server.
+
+It contains the following arguments:
+
+. A string ID identifying the client within the set of clients currently
+  connected to the server.  This *must* be unique among the clients
+  connected at any given time;
+. A string, of the form `NAME-M.m.p`, giving the name of the protocol
+  (substitute for `NAME`) and its semantic version (substitute major,
+  minor and patch numbers for `M`, `m` , and `p`).
+  For servers complying to this specification, `NAME` *should* be
+  `bifrost` and the semantic version *should* be that given in the
+  introduction;
+. A string, of the form `NAME-M.n.p`, giving the name of the server
+  software and its semantic version as above.  Clients *should not*
+  alter their behaviour in any way due to the contents of this string,
+  except to work around known defects in existing server software.
+
+`OHAI` *must* be sent as a unicast, with the tag `!`.  It *must not* be
+sent multiple times.
+
+=== `IAMA` — server role
+
+==== Synopsis
+
+`IAMA` _role_
+
+==== Description
+
+This *must* be the second response sent by the server.
+
+It contains the name of the _role_ the server is implementing.  For
+standard roles, see {roles}[Roles].
+
+Servers *may* announce a non-standard role, but the role name *must*
+begin with `x-`.  For example `x-player-video` could describe a Bifrost
+server enabling video playback.
