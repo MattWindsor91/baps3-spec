@@ -35,6 +35,7 @@ The dump format for `list` is as follows.
 * `AUTO` _autoload-type_.
 * `COUNTL` _number-of-items_.
 * Item dump (see below) **for each** index from `0` to _number-of-items - 1_.
+* `SEL` _index_ _hash_.
 * `ON` _player_ _request..._ **for each** dump item from the player.
 
 === Item dump format
@@ -47,21 +48,78 @@ The dump format for `list` is as follows.
 
 * `TLOADL` _index_ _hash_ _contents_.
 
+== Autoload types
+
+Playlists **may** support autoloading of files when the underlying player
+reports an `END`.  The following autoload types, used with `AUTO` and `auto`,
+are standard (but optional):
+
+`off`::
+  No autoloading.  When a selected file ``END``s, the selection does not change.
+  This is the assumed default behaviour.
+`drop`::
+  When a selected file ``END``s, the selection is reset to ``-1``.
+`next`::
+  When a selected file ``END``s, the _file_ with the lowest index greater than
+  the original file is selected.  If none exists, the selection is reset to
+  ``-1``.
+`shuffle`::
+  In this mode, the server maintains a list of hashes that is reset when a
+  `sel` command is received.  When a selected file ``END``s, a random _file_
+  whose hash is not yet in the list is selected, and its hash stored in the list.
+  If all files in the playlist are stored in the list, the list is emptied and
+  the selection is reset to ``-1``.
+
 == Commands
 
-The `list` role adds the following commands:
+The `list` role adds the following commands: 
 
 === Responses
 
+`AUTO` _autoload-type_::
+  The playlist is now using _autoload-type_ as its autoload type.
+  If no `AUTO` is received, clients **should** assume no autoloading is
+  occurring
+`SEL` _index_ _hash_::
+  If _index_ is a non-negative number, the _file_ at index _index_ and with
+  hash _hash_ is currently selected (and is, or will be, loaded into the
+  player).  If _index_ is `-1`, no file is selected (and _hash_ is
+  undefined).  If the client does not have an file with the given index or
+  hash, the client **should** request a `dump`.
+`COUNTL` _number-of-items_::
+  The playlist has _number-of-items_ items enqueued.  If this number is
+  inconsistent with the client's expectations, the client **should**
+  request a `dump`.
+`FLOADL` _index_ _hash_ _absolute-path_::
+  The playlist has enqueued a file item at index _index_ with the hash _hash_
+  and absolute path _absolute-path_.  The comments on indices above apply.
 `TLOADL` _index_ _hash_ _contents_::
   The playlist has enqueued a text item at index _index_ with the hash
   _hash_ and text _contents_.  If _index_ is below the client's last
-  received `COUNTL`, the item previously at _index_ has been removed.
+  received `COUNTL`, the item previously at _index_ has been replaced by this
+  new item.
   If _index_ is equal to the client's last received `COUNTL`, the
   client **should** presume `COUNTL` has increased by one.  The server
   **may** re-send `COUNTL` to confirm this.  If _index_ is greater
   than the client's last received `COUNTL`, the client **should**
   request a `dump` to fill in the missing files.
-`FLOADL` _index_ _hash_ _absolute-path_::
-  The playlist has enqueued a file item at index _index_ with the hash _hash_
-  and absolute path _absolute-path_.  The comments on indices above apply.
+`EJECTL` _index_ _hash_::
+  The playlist has removed an item at index _index_ with the hash _hash_.
+  If _index_ is below or equal to the client's last received `COUNTL`,
+  the client **should** presume `COUNTL` has decreased by one.  The serve
+  **may** re-send `COUNTL` to confirm this.  If _index_ is greater than
+  the client's last received `COUNTL`, or the _hash_ does not match the
+  client's observaitions, the client **should** request a `dump`.
+
+=== Requests
+
+==== `auto` — changes the autoload style
+TODO
+==== `sel` — changes the selection
+TODO
+==== `tloadl` — loads a text item into the list
+TODO
+==== `floadl` — loads a file item into the list
+TODO
+==== `ejectl` — removes an item from the list
+TODO
