@@ -129,5 +129,8 @@ It contains the name of the _role_ the server is implementing.  For
 standard roles, see {roles}[Roles].
 
 Servers *may* announce a non-standard role, but the role name *must*
-begin with `x-`.  For example `x-player-video` could describe a Bifrost
+begin with `x/`.  For example `x/player/video` could describe a Bifrost
 server enabling video playback.
+
+Clients, on connecting to a server with an unsupported role, *should* disconnect
+and relay an error to the user.
