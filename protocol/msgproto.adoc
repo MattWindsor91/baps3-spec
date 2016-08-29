@@ -6,21 +6,21 @@
 :tests:    link:../tests/msgproto.adoc
 
 The Bifrost _message protocol_ is the base protocol Bifrost servers and
-clients use to communicate.  It is designed to meet the following
+clients use to communicate.  It is designed to be:
 criteria:
 
-Composability::
+Composable::
   The API is intended to allow separate implementations of single
   services to be composed into a single logical service, by connecting
   servers together through the API.  Responses and requests not
   intended for a server with upstream and downstream connections
   respectively can be _forwarded_ transparently along the API
   connections;
-Transparency::
+Transparent::
   The API is text-based, and can be inspected by humans using either
   TCP/IP packet sniffing or connecting directly to services to be
   inspected;
-Simplicity::
+Simple::
   The API uses a minimalistic line-orientated protocol, in which
   each line is comprised of one or more words, and uses shell-style
   word-escaping conventions (as well as C-style backslash escapes).
@@ -30,10 +30,8 @@ Simplicity::
 
 == Design
 
-The message protocol sits atop a text-based protocol based upon
-{shell}[POSIX shell] conventions.
-
-We use a shell-style protocol because:
+The message protocol is based upon {shell}[POSIX shell] conventions. This is
+because:
 
 * It is lightweight and relatively easy to parse;
 * It is a good match for the command-and-arguments style of the protocol layer
@@ -74,8 +72,8 @@ run, is ok.
 
 == Overview
 
-The Internal API protocol uses the concept of linefeed-delimited
-_commands_, each consisting of one or more whitespace-delimited
+The message protocol uses the linefeed-delimited _commands_, each
+containing one or more whitespace-delimited
 _words_.  Each word consists of a sequence of bytes (usually
 representing UTF-8 characters).
 
@@ -135,7 +133,7 @@ emitted verbatim.
 
 == Formal Specification
 
-The internal API protocol adheres to the following BNF grammar:
+The message protocol adheres to the following BNF grammar:
 
 --------
 <command>     ::= <words> "\n"

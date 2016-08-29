@@ -14,7 +14,6 @@
 ... link:protocol/roles/tracklister.adoc[`tracklister`]
 ... link:protocol/roles/db.adoc[`db`]
 ... link:protocol/roles/client.adoc[Client]
-... link:protocol/roles/additional.adoc[Additional Roles]
 . link:tests/README.adoc[Compliance Tests]
 .. link:tests/msgproto.adoc[Message Protocol]
 . link:impl/README.adoc[Reference Implementation (BAPS3)]

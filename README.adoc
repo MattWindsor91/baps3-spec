@@ -3,14 +3,14 @@
 :GitHub:    https://github.com/UniversityRadioYork/baps3-spec
 :Rendered:  https://universityradioyork.github.io/baps3-spec
 :Issues:    https://github.com/UniversityRadioYork/baps3-spec/issues
+:Gitbook:   https://github.com/GitbookIO/gitbook
 
 This is the specification for the Bifrost playout system architecture.
-It may be read as a directory of _AsciiDoc_ files, or compiled to
-book format.
 
-The latest specification version may be found at its
-{GitHub}[GitHub repository].  A {Rendered}[pre-rendered copy] is
-available via GitHub Pages, but may lag behind the main repository.
+The latest version may be found at its {GitHub}[GitHub repository].
+This can be read directly in _AsciiDoc_ format.  We also maintain a
+{Rendered}[pre-rendered copy], using {Gitbook}[_gitbook_], but it
+lag behind the main repository.
 
 NOTE: The _canonical_ Bifrost specification is the latest
 specification version maintained by URY.  Any future changes to this
@@ -18,9 +18,10 @@ policy will be announced here.
 
 The specification is licenced under the {Licence}[CC0] licence; that
 is, it is under the public domain.  In the repository, this is
-available as the file `LICENSE`.  We make a polite but non-binding
-request that you call derived specifications something other than
-Bifrost to avoid confusion.
+available as the file `LICENSE`.
+
+NOTE: When forking the Bifrost specification, we ask that you change
+the name to avoid confusion.
 
 When browsed as a repository, the specification _summary_ may be found
 at `SUMMARY.md`.  In book form, this is available as a side-bar.
