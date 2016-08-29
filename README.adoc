@@ -1,11 +1,11 @@
-= Bifrost Specification
+= Bifrost
 :Licence:   https://creativecommons.org/about/cc0
 :GitHub:    https://github.com/UniversityRadioYork/baps3-spec
 :Rendered:  https://universityradioyork.github.io/baps3-spec
 :Issues:    https://github.com/UniversityRadioYork/baps3-spec/issues
 :Gitbook:   https://github.com/GitbookIO/gitbook
 
-This is the specification for the Bifrost playout system architecture.
+This is the specification for the _Bifrost_ playout system architecture.
 
 The latest version may be found at its {GitHub}[GitHub repository].
 This can be read directly in _AsciiDoc_ format.  We also maintain a

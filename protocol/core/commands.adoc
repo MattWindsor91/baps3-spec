@@ -14,9 +14,8 @@ the core command set.  Check here for changes.
 
 == Command results
 
-Bifrost servers *must* send an `ACK` response once they have finished
-processing a request.  The response *must* be unicast with the same tag
-as the corresponding request.
+Bifrost servers *must* unicast an `ACK` response after processing a request,
+with the same tag as said request.
 
 === `ACK` — command result
 
@@ -26,8 +25,8 @@ as the corresponding request.
 
 ==== Description
 
-`ACK` acknowledges the end of processing for a request.  The request
-being acknowledged can be found by checking the tag of the `ACK`.
+`ACK` acknowledges the end of processing for a request.  Said request
+can be found by checking the tag of the `ACK`.
 
 The _type_ of the `ACK` *must* be one of the following (case-sensitive):
 
@@ -60,7 +59,7 @@ Requests that a summary of the server's state is unicast to the client
 as a sequence of responses.  The set of state to send depends on the
 role.
 
-All state **must** be sent by the server _before_ it sends the `ACK`
+All state **must** be unicast by the server _before_ it sends the `ACK`
 for this request.  Each state response **must** use the request tag,
 to allow the client to identify it as part of the dump response.
 
