@@ -12,7 +12,7 @@ loadable and will be skipped over by the playlist.
 === Non-command requirements
 
 Servers implementing `list` have the following requirements in addition to
-providing the command interface above:
+providing the command interface below:
 
 File and text loads::
   Servers *must* allow both files and text items to be

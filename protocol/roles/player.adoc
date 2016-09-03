@@ -12,11 +12,14 @@ channel_, with `list` providing the rest.  Bifrost systems will
 often use more than one channel, so a playout machine will likely host
 more than one instance of the player service via a `mux`.
 
-Servers implementing `player/file` have the following requirements:
 
-Interface compatibility::
-  Servers *must* provide the command interface described below.
-  Servers *may* add further commands so long as they obey the specification.
+== Items specific to this role
+
+=== Non-command requirements
+
+Servers implementing `player/file` have the following requirements in addition
+to providing the command interface below:
+
 File loads::
   Servers *must* be able to load and play files, given their
   absolute path on the local filesystem.

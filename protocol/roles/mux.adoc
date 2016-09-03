@@ -1,1 +1,23 @@
-= Platform
+= `mux`
+
+The `mux` role allows _multiplexing_ of multiple other Bifrost servers.
+
+
+== Items specific to this role
+
+=== Non-command requirements
+
+Servers implementing `mux` have the following requirements in addition to
+providing the command interface below:
+
+
+== Dump format
+
+The dump format for `mux` is as follows.
+
+== Commands
+
+The `mux` role adds the following commands:
+
+=== Responses
+=== Requests

@@ -1,1 +1,31 @@
-= Track Lister
+= `tracklister`
+
+The `tracklister` role allows auditing of played tracks.
+
+Tracklisters expose a manual API for inserting tracks into a tracklist, but may
+also use Bifrost's client-server architecture to perform automatic logging.
+
+== Items specific to this role
+
+=== Listener
+
+Unlike most roles, the `tracklister` *may* connect to the playout stack as a
+client, so it can intercept playback responses and use them to determine whether
+a file has been played. (details TBC).
+
+=== Non-command requirements
+
+Servers implementing `tracklister` have the following requirements in addition to
+providing the command interface below:
+
+
+== Dump format
+
+The dump format for `tracklister` is as follows.
+
+== Commands
+
+The `tracklister` role adds the following commands:
+
+=== Responses
+=== Requests
