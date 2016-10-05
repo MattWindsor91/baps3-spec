@@ -1,0 +1,36 @@
+= Core Protocol
+
+:msgproto:  link:../msgproto.adoc
+
+On top of the {msgproto}[Message Protocol], Bifrost defines a set of
+common conventions and features all Bifrost servers *must*
+implement.
+
+== Commands
+
+Each Bifrost message consists of a _command_ of two or more words.
+
+The first word is the _tag_, which both uniquely identifies the
+particular message and its intended path through a Bifrost stack.
+Tags are defined below.
+
+The second word is the _command word_ and identifies the type of
+command; any further words are _arguments_ to that command.
+
+Commands are divided into _requests_ and _responses_.
+
+=== Requests
+
+_Requests_ are the subset of valid commands that originate from an
+client, and instruct a server.  Request command words *must* consist
+of one or more _lowercase_ ASCII characters, and *may* be quoted.
+
+=== Responses
+
+_Responses_ are the subset of valid commands that originate from a
+server, and inform a client.  Response command words *must* consist of
+one or more _uppercase_ ASCII characters, and *may* be quoted.
+
+== Tags and Routing
+
+TBC

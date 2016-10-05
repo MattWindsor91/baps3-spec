@@ -1,0 +1,136 @@
+
+= Core Command Set
+
+:roles:  link:../roles/README.adoc
+
+Bifrost servers **must** implement a set of common requests and
+responses.  This is known as the _core command set_.
+
+This chapter discusses the core command set, which includes
+interfaces for welcoming clients and dumping.
+
+WARNING: Future major revisions to the Bifrost protocol **may** change
+the core command set.  Check here for changes.
+
+== Command results
+
+Bifrost servers *must* unicast an `ACK` response after processing a request,
+with the same tag as said request.
+
+=== `ACK` — command result
+
+==== Synopsis
+
+`ACK` _type_ _details_
+
+==== Description
+
+`ACK` acknowledges the end of processing for a request.  Said request
+can be found by checking the tag of the `ACK`.
+
+The _type_ of the `ACK` *must* be one of the following (case-sensitive):
+
+`OK`::
+    Command was processed successfully; _details_ *should* be `success`;
+`WHAT`::
+    Command was invalid and could not be processed;
+`FAIL`::
+    Command was valid, but an error occurred when the server tried to
+    process it.
+
+The _details_ string is a parseable, but human-readable, string denoting
+the type of error for `WHAT` or `FAIL`.  Examples of standard _details_
+values are given in the descriptions for requests that can fail.
+
+== Dumping
+
+Bifrost servers **must** implement a means to query all of the current
+server state in one command.  The `dump` request implements this.
+
+=== `dump` — dump server state
+
+==== Synopsis
+
+`dump`
+
+==== Description
+
+Requests that a summary of the server's state is unicast to the client
+as a sequence of responses.  The set of state to send depends on the
+role.
+
+All state **must** be unicast by the server _before_ it sends the `ACK`
+for this request.  Each state response **must** use the request tag,
+to allow the client to identify it as part of the dump response.
+
+==== Responses sent
+
+1. **Unicast** a series of responses, dependent on the role (see each
+  role page for information);
+2. **Unicast** `ACK` `OK` `success`.
+
+== Initial Responses
+
+On client connection, Bifrost servers **must** unicast a specific
+sequence of responses to the client.  This is to provide the client
+with the protocol version, as well as information it needs to set up
+for further communications with the server.
+
+The set of _initial responses_ is:
+
+. `!` ``OHAI`` _client-id_  ``bifrost-``__x.y.z__ ``server-``__x.y.z__
+. `!` ``IAMA`` _role_
+. (The equivalent of running a `dump` as this client, with tag `!`)
+. `!` ``ACK OK success``
+
+Servers **should not** send other responses until finishing the `ACK`,
+and clients **should not** send requests until then.
+
+=== `OHAI` — client welcome
+
+==== Synopsis
+
+`OHAI` _client-id_ _protocol-version_ _server-version_
+
+==== Description
+
+This *must* be the first response sent by the server.
+
+It contains the following arguments:
+
+. A string ID identifying the client within the set of clients currently
+  connected to the server.  This *must* be unique among the clients
+  connected at any given time;
+. A string, of the form `NAME-M.m.p`, giving the name of the protocol
+  (substitute for `NAME`) and its semantic version (substitute major,
+  minor and patch numbers for `M`, `m` , and `p`).
+  For servers complying to this specification, `NAME` *should* be
+  `bifrost` and the semantic version *should* be that given in the
+  introduction;
+. A string, of the form `NAME-M.n.p`, giving the name of the server
+  software and its semantic version as above.  Clients *should not*
+  alter their behaviour in any way due to the contents of this string,
+  except to work around known defects in existing server software.
+
+`OHAI` *must* be sent as a unicast, with the tag `!`.  It *must not* be
+sent multiple times.
+
+=== `IAMA` — server role
+
+==== Synopsis
+
+`IAMA` _role_
+
+==== Description
+
+This *must* be the second response sent by the server.
+
+It contains the name of the _role_ the server is implementing.  For
+standard roles, see {roles}[Roles].
+
+Servers *may* announce a non-standard role, but the role name *must*
+begin with `x/`.  For example `x/player/video` could describe a Bifrost
+server enabling video playback.
+
+Clients, on connecting to a server with an unsupported role, *should* disconnect
+and relay an error to the user.

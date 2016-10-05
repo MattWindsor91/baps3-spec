@@ -1,30 +1,52 @@
-= Protocol
+= Message Protocol
+
 :shell:    http://pubs.opengroup.org/onlinepubs/009604599/utilities/xcu_chap02.html
 :isspace:  http://pubs.opengroup.org/onlinepubs/009695399/functions/isspace.html
 :UTF-8:    http://www.ietf.org/rfc/rfc3629.txt
-:tests:    link:../../tests/internal.adoc
+:tests:    link:../tests/msgproto.adoc
 
-The BAPS3 internal API sits atop a text-based protocol based upon
-{shell}[POSIX shell] conventions.
+The Bifrost _message protocol_ is the base protocol Bifrost servers and
+clients use to communicate.  It is designed to be:
+criteria:
 
-== Rationale
+Composable::
+  The API is intended to allow separate implementations of single
+  services to be composed into a single logical service, by connecting
+  servers together through the API.  Responses and requests not
+  intended for a server with upstream and downstream connections
+  respectively can be _forwarded_ transparently along the API
+  connections;
+Transparent::
+  The API is text-based, and can be inspected by humans using either
+  TCP/IP packet sniffing or connecting directly to services to be
+  inspected;
+Simple::
+  The API uses a minimalistic line-orientated protocol, in which
+  each line is comprised of one or more words, and uses shell-style
+  word-escaping conventions (as well as C-style backslash escapes).
+  It is relatively simple to implement, requires little to no
+  external dependencies, and is modest in its usage of network
+  bandwidth.
 
-We use a shell-style protocol because:
+== Design
+
+The message protocol is based upon {shell}[POSIX shell] conventions. This is
+because:
 
 * It is lightweight and relatively easy to parse;
-* It is a good match for the command-and-arguments style of the BAPS3
+* It is a good match for the command-and-arguments style of the protocol layer
+on top;
   API;
 * The shell style of escaping is convenient for escaping paths
   (especially on Windows, where the single-quote syntax can avoid
-  needing to escape every backslash in a Windows path), which are
-  common arguments to BAPS3 commands (`load`, `enqueue`, and so on).
+  needing to escape every backslash in a Windows path).
 
 A disadvantage is that it is impossible to perform a context-free
 splitting of input into lines; the line-feed character could be
-escaped.  However, since the usual transport used by the BAPS3
-protocol is TCP, and most TCP libraries provide unbuffered input
-in chunks which may be smaller or larger than one line, we rarely
-need this luxury.
+escaped.  However, since the usual transport used by the message
+protocol is TCP, and most TCP libraries provide unbuffered input in
+chunks which may be smaller or larger than one line, this is not a
+major issue.
 
 == Encoding
 
@@ -50,8 +72,8 @@ run, is ok.
 
 == Overview
 
-The Internal API protocol uses the concept of linefeed-delimited
-_commands_, each consisting of one or more whitespace-delimited
+The message protocol uses the linefeed-delimited _commands_, each
+containing one or more whitespace-delimited
 _words_.  Each word consists of a sequence of bytes (usually
 representing UTF-8 characters).
 
@@ -111,7 +133,7 @@ emitted verbatim.
 
 == Formal Specification
 
-The internal API protocol adheres to the following BNF grammar:
+The message protocol adheres to the following BNF grammar:
 
 --------
 <command>     ::= <words> "\n"
@@ -189,30 +211,6 @@ Escape sequences in the above BNF may be interpreted as follows:
 |`0x5C`
 |Backslash
 |===
-
-== Commands
-
-Each communication over the Internal API consists of a _command_
-of one or more words.  The first, mandatory, word is the _command
-word_ and unambiguously identifies the command; any further words
-are _arguments_ to that command.  In this respect, the BAPS3 protocol
-perfectly mirrors shell usage.
-
-Commands are divided into _requests_ and _responses_.
-
-=== Requests
-
-_Requests_ are the subset of valid commands that originate from an
-API client, and instruct an API service.  Request command words
-*should* consist of one or more _lowercase_ ASCII characters, and
-*may* be quoted.
-
-=== Responses
-
-_Responses_ are the subset of valid commands that originate from
-an API service, and inform an API client.  Response command words
-*should* consist of one or more _uppercase_ ASCII characters, and
-*may* be quoted.
 
 === Examples
 

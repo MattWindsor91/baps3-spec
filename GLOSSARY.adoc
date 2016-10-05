@@ -1,32 +1,26 @@
 = Glossary
 
-== BAPS3
+== Bifrost
 The playout system specified in this document.
 
 == API user
-A user of a BAPS3 API; either a client or a server.
+A user of a Bifrost API; either a client or a server.
 
 == client
 A program or user that consumes services.
 
 == external API
-The API used for communication between BAPS3 clients and the server stack
-providing BAPS3 services.
+The API used for communication between Bifrost clients and the server stack
+providing Bifrost services.
 
 == internal API
 The API used for communication between servers.
 
-== feature flag
-A string, sent as part of a FEATURES request, that identifies a set of
-requests, responses, and/or states that constitute a feature provided by a
-server.
-
 == server
 A program that provides services.
 
-== service
-A specific role in the BAPS3 system, usually defined as a group of expected
-features.
+== role
+A specific service in the Bifrost system.
 
 == simple compound resource
 A resource that relays requests to each of its child resources, and
@@ -42,7 +36,7 @@ The service responsible for maintaining track playlists for players.
 The service responsible for unifying other services into a coherent unit.
 
 == tokenisation
-The process of converting a _raw_ BAPS3 protocol message into a
+The process of converting a _raw_ Bifrost protocol message into a
 sequence of words, by separating on unquoted whitespace, removing
 quote delimiters, and expanding escape sequences.
 

@@ -1,0 +1,317 @@
+= `player/file`
+
+The `player/file` role plays audio files.
+
+Servers with this role are supplied a single file at a time.  They
+allow the playback to be controlled by upstream services through a
+basic API (`stop`, `play`, `seek`, `load`, and `eject`, `end`, and
+`dump`).
+
+`player/file` represents part of a conceptual _playout
+channel_, with `list` providing the rest.  Bifrost systems will
+often use more than one channel, so a playout machine will likely host
+more than one instance of the player service via a `mux`.
+
+
+== Items specific to this role
+
+=== Non-command requirements
+
+Servers implementing `player/file` have the following requirements in addition
+to providing the command interface below:
+
+File loads::
+  Servers *must* be able to load and play files, given their
+  absolute path on the local filesystem.
+Configurable audio sink::
+  Servers *must* allow their audio sinks to be configured.  This
+  allows a playout machine to direct each player to a separate
+  physical or logical sound-card, which is important for allowing each
+  playback channel to be routed to a separate mixing desk fader.
+Non-conflicting end-point::
+  Servers *must* allow their end-points to be set up so as not
+  to conflict with other Bifrost servers on the same machine.  For
+  example, if it exposes a TCP socket, the port should be
+  configurable; if it exposes a _stdin/stdout_ interface, then no
+  action is needed as this cannot conflict with other services.  This
+  is to allow multiple such services to co-exist on the same machine,
+  which is important for the multiple-output-channel use case
+  mentioned above.
+
+
+== Dump format
+
+The dump format for `player/file` is as follows.
+
+*If* a file with path _absolute-path_ is loaded and at position _microseconds_:
+
+* `FLOAD` _absolute-path_.
+* `PLAY` if the file is playing; else, `STOP`.
+* `POS` _microseconds_;
+
+**Else if** no file is loaded:
+
+* `EJECT`.
+
+These responses may be given in any order.
+
+
+== Commands
+
+The `player/file` role adds the following commands:
+
+=== Responses
+
+`FLOAD` _absolute-path_::
+  The player has loaded _absolute-path_.  If no further requests specify the
+  position and playback state, assume position `0` and playback state
+  `STOP`.  Clients **must not** ignore this response if there was already a
+  file loaded, even if the path is the same.
+`EJECT`::
+  The player has no file loaded, or has just unloaded its existing file.
+  Clients **may** ignore this response if there was already no file loaded.
+`PLAY`::
+  The player is playing its loaded file.  Clients **may** ignore this response
+  if the file is already playing.
+`STOP`::
+  The player is not playing its loaded file.  Clients **may** ignore this
+  response if the file is already stopped.
+`END`::
+  The loaded file has ended.  This happens either when it finishes playing, or
+  an `end` request has been sent.  If no further requests specify otherwise,
+  assume the loaded file is now at position `0` and playback state `STOP`.
+  Clients **must not** ignore this response if the loaded file has already
+  ended.
+`POS` _microseconds_::
+  The file position is _microseconds_ microseconds from the start of the
+  file.  Servers **must** periodically broadcast the position to all clients,
+  for example every second, even if the position has not been manually
+  changed.  Clients **may** ignore this response if the position has not
+  changed since the last `POS`.
+
+
+=== `fload` — loads a new file
+
+==== Synopsis
+
+`fload` __absolute-path__
+
+==== Description
+
+Loads the file at __absolute-path__ into the player.
+
+The new file begins at position `0` and ``stop``ped.  Servers **may** make
+this explicit through `POS` and `STOP` responses.  This is only necessary if
+the position, state, or both have changed from these defaults for new
+files.
+
+Servers **may** broadcast `EJECT` before `FLOAD`, as if an implicit
+`eject` occurred before a new file was loaded.  This is not necessary.
+
+If the file failed to load, servers **must** broadcast `EJECT` before
+`ACK`, then behave as if no file is loaded.
+
+==== Responses sent
+
+On success:
+
+1. (Always optional.) **Broadcast** `EJECT`.
+2. **Broadcast** `FLOAD` __absolute-path__.
+3. **Unicast** `ACK` `OK` `success`.
+
+On failure, due to a missing file:
+
+1. (Mandatory only if file loaded.) **Broadcast** `EJECT`.
+2. **Unicast** `ACK` `WHAT` `file-not-found`.
+
+On failure, due to an unknown file format:
+
+1. (Mandatory only if file loaded.) **Broadcast** `EJECT`.
+2. **Unicast** `ACK` `WHAT` `file-type-not-supported`.
+
+On failure, due to a failure to load a supported file format:
+
+1. (Mandatory only if file loaded.) **Broadcast** `EJECT`.
+2. **Unicast** `ACK` `FAIL` `file-load-failed`.
+
+On any other failure:
+
+1. (Mandatory only if file loaded.) **Broadcast** `EJECT`.
+2. **Unicast** `ACK` `FAIL` `internal-error`.
+
+
+=== `eject` — unloads the currently loaded file
+
+==== Synopsis
+
+`eject`
+
+==== Description
+
+If a file is loaded, unload it.
+
+If a file was unloaded, servers **must** then send `EJECT` to confirm.
+Otherwise, servers **may** send `EJECT`, but this is unnecessary.
+
+This request always succeeds, even if no file is loaded.
+
+==== Responses sent
+
+1. (Mandatory only if file loaded.) **Broadcast** `EJECT`.
+2. **Unicast** `ACK` `OK` `success`.
+
+
+=== `play` — plays the currently loaded file
+
+==== Synopsis
+
+`play`
+
+==== Description
+
+If a file is loaded, begin playback.  Otherwise, fail.
+
+Playback begins at position `0` for newly loaded or ``end``ed files,
+or from the position at which the file was last ``stop``ped otherwise.
+
+Servers **may** send `PLAY` if the file is already playing.
+Otherwise, `play` on a playing file has no effect.
+
+==== Responses sent
+
+On success, if a file is loaded:
+
+1. (Mandatory only if file stopped.) **Broadcast** `PLAY`.
+2. **Unicast** `ACK` `OK` `success`.
+
+On failure, If a file is not loaded:
+
+1. **Unicast** `ACK` `WHAT` `no-file`.
+
+On any other failure:
+
+1. **Unicast** `ACK` `FAIL` `internal-error`.
+
+
+=== `stop` — stops (pauses) the currently loaded file
+
+==== Synopsis
+
+`stop`
+
+==== Description
+
+If a file is loaded, stop playback.  Otherwise, fail.
+
+``stop``ing a file **should not** change the file position.
+To stop and rewind a file while signalling the end of file to clients, use
+`end`.
+
+Servers **may** send `STOP` if the file is already stopped.
+Otherwise, `stop` on a stoppped file has no effect.
+
+==== Responses sent
+
+On success:
+
+1. (Mandatory only if file playing.) **Broadcast** `STOP`.
+2. **Unicast** `ACK` `OK` `success`.
+
+On failure, if a file is not loaded:
+
+1. **Unicast** `ACK` `WHAT` `no-file`.
+
+On any other failure:
+
+1. **Unicast** `ACK` `FAIL` `internal-error`.
+
+
+=== `end` — ends (rewinds) the currently loaded file
+
+==== Synopsis
+
+`end`
+
+==== Description
+
+If a file is loaded, finish it.  Otherwise, fail.
+
+The main use of this command is to send an `END` broadcast manually.
+This notifies clients that the file has reached its end, either by
+running out of data or through `end`.  Clients **may** then implement
+features such as autoloading using the `END` broadcast.
+
+Depending on any such client behaviour, a manual `end` can be used to
+skip or rewind the current file.
+
+As mentioned above, `END` implies that the file has returned to
+position `0` and is ``STOP``ped.  Servers intending other behaviour
+**must** make this explicit through `POS`, `PLAY` and `EJECT`
+responses, and **must** ensure any ``dump``s show the correct
+position and playback state.
+
+==== Responses sent
+
+On success:
+
+1. (Mandatory only if file playing.) **Broadcast** `END`.
+2. (Optional unless the file is not stopped and rewound to `0`).
+   **Broadcast** `POS` _microseconds_, `PLAY`/`STOP`/`EJECT` to give
+   clients the correct position and playback state.
+3. **Unicast** `ACK` `OK` `success`.
+
+On failure, if a file is not loaded:
+
+1. **Unicast** `ACK` `WHAT` `no-file`.
+
+On any other failure:
+
+1. **Unicast** `ACK` `FAIL` `internal-error`.
+
+
+=== `pos` — seeks to a new position in the currently loaded file
+
+==== Synopsis
+
+`pos` __microseconds__
+
+==== Description
+
+Seeks to the given position, in microseconds.
+
+Servers **should** reject non-positive-integral positions.  They
+**may** accept (or reject) positions in excess of the loaded file
+length.  In this case, they **should** behave as if the client asked
+to seek to the end of the file.
+
+Servers **may** be inaccurate in the actual position taken.
+They **must** show the actual position taken in the `POS` response,
+not the requested position.
+
+==== Responses sent
+
+On success:
+
+1. **Broadcast** `END`.
+2. (Optional unless the file is not stopped and rewound to `0`).
+   **Broadcast** `POS` _microseconds_, `PLAY`/`STOP`/`EJECT` to give
+   clients the correct position and playback state.
+3. **Unicast** `ACK` `OK` `success`.
+
+On failure, if a file is not loaded:
+
+1. **Unicast** `ACK` `WHAT` `no-file`.
+
+On failure, if the position is not valid (not a positive integer)
+
+1. **Unicast** `ACK` `WHAT` `pos-not-valid`.
+
+On failure, if the position cannot be seeked to (exceeds file length,
+if not allowed by the server; or the seek is not allowed for this file
+type; etc.):
+
+1. **Unicast** `ACK` `FAIL` `pos-impossible`.
+
+On any other failure:
+
+1. **Unicast** `ACK` `FAIL` `internal-error`.

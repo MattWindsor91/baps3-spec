@@ -1,0 +1,23 @@
+= `db`
+
+The `db` role allows searching of the track database.
+
+
+== Items specific to this role
+
+=== Non-command requirements
+
+Servers implementing `db` have the following requirements in addition to
+providing the command interface below:
+
+
+== Dump format
+
+The dump format for `db` is as follows.
+
+== Commands
+
+The `db` role adds the following commands:
+
+=== Responses
+=== Requests

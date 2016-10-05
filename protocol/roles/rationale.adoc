@@ -1,9 +1,9 @@
 = Rationale
 :UNIX:  http://www.catb.org/esr/writings/taoup/html/ch01s06.html
 
-The division of the BAPS3 system into multiple services is an unusual
-aspect of its design, and is inspired primarily by {UNIX}[UNIX
-philosophy].  We argue for this unconventional approach as follows:
+The division of Bifrost into multiple roles is inspired by
+{UNIX}[UNIX philosophy].  We argue for this unconventional approach
+as follows:
 
 Modularity::
   Each large chunk of functionality is clearly defined in a modular

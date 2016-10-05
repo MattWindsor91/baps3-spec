@@ -1,7 +1,7 @@
 = Conventions
 :rfc: https://www.ietf.org/rfc/rfc2119.txt
 
-We adopt several conventions in the BAPS3 specification.
+We adopt several conventions in this document.
 
 == Typographical Conventions
 

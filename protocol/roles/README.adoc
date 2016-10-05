@@ -1,0 +1,33 @@
+= Services
+
+:player:         link:player.adoc
+:list:           link:list.adoc
+:tracklister:    link:tracklister.adoc
+:db:             link:db.adoc
+:mux:            link:mux.adoc
+:Rationale:      link:rationale.adoc
+
+Bifrost is comprised of multiple logical _roles_.  Each role
+is intended to be implemented as a separate server program, but
+*may* be merged (for reasons of performance, maintainability, and
+so on).
+
+== Core Roles
+
+Bifrost specifies six _core roles_:
+
+* {player}[`player/file`];
+* {list}[`list`];
+* {tracklister}[`tracklister`];
+* {db}[`db`];
+* {mux}[`mux`].
+
+== Additional Roles
+
+Bifrost implementations *may* define additional roles.  Examples of
+possible roles _not_ specified here include:
+
+* Digitising and cataloguing roles;
+* Installation, deployment and configuration roles.
+
+Non-standard roles **must** begin with the prefix `x/`.
