@@ -4,9 +4,9 @@
 :roles:  link:../roles/README.adoc
 
 Bifrost servers **must** implement a set of common requests and
-responses.  This is known as the _core command set_.
+responses.  This is referred to as the _core command set_.
 
-This chapter discusses the core command set, which includes
+This chapter discusses said core command set, which includes
 interfaces for welcoming clients and dumping.
 
 WARNING: Future major revisions to the Bifrost protocol **may** change
@@ -113,7 +113,7 @@ It contains the following arguments:
   except to work around known defects in existing server software.
 
 `OHAI` *must* be sent as a unicast, with the tag `!`.  It *must not* be
-sent multiple times.
+sent multiple times during one connection.
 
 === `IAMA` — server role
 
@@ -129,8 +129,8 @@ It contains the name of the _role_ the server is implementing.  For
 standard roles, see {roles}[Roles].
 
 Servers *may* announce a non-standard role, but the role name *must*
-begin with `x/`.  For example `x/player/video` could describe a Bifrost
+begin with `x/`.  For example, `x/player/video` could describe a Bifrost
 server enabling video playback.
 
-Clients, on connecting to a server with an unsupported role, *should* disconnect
+Clients, upon connecting to a server with an unsupported role, *should* disconnect
 and relay an error to the user.
