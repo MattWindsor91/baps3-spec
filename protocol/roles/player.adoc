@@ -245,8 +245,8 @@ Depending on any such client behaviour, a manual `end` can be used to
 skip or rewind the current file.
 
 As mentioned above, `END` implies that the file has returned to
-position `0` and is ``STOP``ped.  Servers intending other behaviour
-**must** make this explicit through `POS`, `PLAY` and `EJECT`
+position `0` and is ``STOP``ped.  Servers **may** utilize other behaviour,
+but they **must** make this explicit through `POS`, `PLAY` and `EJECT`
 responses, and **must** ensure any ``dump``s show the correct
 position and playback state.
 
@@ -255,10 +255,13 @@ position and playback state.
 On success:
 
 1. (Mandatory only if file playing.) **Broadcast** `END`.
-2. (Optional unless the file is either playing or not at position `0`, otherwise mandatory).
+2. (Only required if the server doesn't return to position `0`.)
    **Broadcast** `POS` _microseconds_.
-3. (Mandatory only if file playing.) **Broadcast** `STOP`.
-4. **Unicast** `ACK` `OK` `success`.
+3. (Only required if the server doesn't `stop`.)
+   **Broadcast** `PLAY`.
+4. (Only required if the server performs an `eject`.)
+   **Broadcast** `EJECT`.
+5. **Unicast** `ACK` `OK` `success`.
 
 On failure, if a file is not loaded:
 
@@ -292,7 +295,7 @@ not the requested position.
 
 On success:
 
-1. (Optional unless the file is either playing or not at position `0`, otherwise mandatory).
+1. (Optional unless the file is either playing or not at position `0` in which case mandatory).
    **Broadcast** `POS` _microseconds_.
 2. **Unicast** `ACK` `OK` `success`.
 
