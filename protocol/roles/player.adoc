@@ -31,7 +31,7 @@ Configurable audio sink::
 Non-conflicting end-point::
   Servers *must* allow their end-points to be set up so as not
   to conflict with other Bifrost servers on the same machine.  For
-  example, if it exposes a TCP socket, the port should be
+  example, if it exposes a TCP socket, the port needs to be
   configurable; if it exposes a _stdin/stdout_ interface, then no
   action is needed as this cannot conflict with other services.  This
   is to allow multiple such services to co-exist on the same machine,
@@ -257,11 +257,10 @@ On success:
 1. (Mandatory only if file playing.) **Broadcast** `END`.
 2. (Only required if the server doesn't return to position `0`.)
    **Broadcast** `POS` _microseconds_.
-3. (Only required if the server doesn't `stop`.)
-   **Broadcast** `PLAY`.
-4. (Only required if the server performs an `eject`.)
-   **Broadcast** `EJECT`.
-5. **Unicast** `ACK` `OK` `success`.
+3. (`PLAY` or `EJECT` are required if the server doesn't `stop`.
+    Therefore, sending `STOP` is unnecessary, but can still be done.)
+    **Broadcast** `STOP` / **Broadcast** `PLAY` / **Broadcast** `EJECT`.   
+4. **Unicast** `ACK` `OK` `success`.
 
 On failure, if a file is not loaded:
 

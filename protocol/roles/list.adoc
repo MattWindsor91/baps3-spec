@@ -58,7 +58,7 @@ are standard (but optional):
 
 `off`::
   No autoloading.  When a selected file ``END``s, the selection does not change.
-  This *should be* assumed by the client to be the default behaviour.
+  This *should* be assumed by the client to be the default behaviour.
 `drop`::
   When a selected file ``END``s, the selection is reset to ``-1``.
 `next`::
