@@ -1,0 +1,685 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Core Command Set | Bifrost</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../../protocol/roles/index.html" />
+    
+    
+    <link rel="prev" href="../../protocol/core/index.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="2.2.1"
+        data-chapter-title="Core Command Set"
+        data-filepath="protocol/core/commands.adoc"
+        data-basepath="../.."
+        data-revision="Sun Oct 09 2016 11:47:30 GMT+0100 (BST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="meta/index.html">
+            
+                
+                    <a href="../../meta/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        This document
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="meta/compiling.html">
+            
+                
+                    <a href="../../meta/compiling.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Compiling
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="meta/conventions.html">
+            
+                
+                    <a href="../../meta/conventions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        Conventions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="protocol/index.html">
+            
+                
+                    <a href="../../protocol/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Bifrost Protocol
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="protocol/msgproto.html">
+            
+                
+                    <a href="../../protocol/msgproto.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Message Protocol
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="protocol/core/index.html">
+            
+                
+                    <a href="../../protocol/core/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        Core Protocol
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="2.2.1" data-path="protocol/core/commands.html">
+            
+                
+                    <a href="../../protocol/core/commands.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.1.</b>
+                        
+                        Core Command Set
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="protocol/roles/index.html">
+            
+                
+                    <a href="../../protocol/roles/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        Roles
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.3.1" data-path="protocol/roles/player.html">
+            
+                
+                    <a href="../../protocol/roles/player.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.1.</b>
+                        
+                        player/file
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.2" data-path="protocol/roles/list.html">
+            
+                
+                    <a href="../../protocol/roles/list.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.2.</b>
+                        
+                        list
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.3" data-path="protocol/roles/mux.html">
+            
+                
+                    <a href="../../protocol/roles/mux.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.3.</b>
+                        
+                        mux
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.4" data-path="protocol/roles/tracklister.html">
+            
+                
+                    <a href="../../protocol/roles/tracklister.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.4.</b>
+                        
+                        tracklister
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.5" data-path="protocol/roles/db.html">
+            
+                
+                    <a href="../../protocol/roles/db.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.5.</b>
+                        
+                        db
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="tests/index.html">
+            
+                
+                    <a href="../../tests/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Compliance Tests
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="tests/msgproto.html">
+            
+                
+                    <a href="../../tests/msgproto.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Message Protocol
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="impl/index.html">
+            
+                
+                    <a href="../../impl/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Reference Implementations
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="impl/rationale.html">
+            
+                
+                    <a href="../../impl/rationale.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Rationale
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+    <a href="../../GLOSSARY.html" class="btn pull-left" aria-label="Glossary"><i class="fa fa-sort-alpha-asc"></i></a>
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../" >Bifrost</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="core-command-set">Core Command Set</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="../../GLOSSARY.html#bifrost" class="glossary-term" title="The playout system specified in this document.">Bifrost</a> servers <strong>must</strong> implement a set of common requests and
+responses.  This is known as the <em>core command set</em>.</p>
+</div>
+<div class="paragraph">
+<p>This chapter discusses the core command set, which includes
+interfaces for welcoming clients and dumping.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+Future major revisions to the <a href="../../GLOSSARY.html#bifrost" class="glossary-term" title="The playout system specified in this document.">Bifrost</a> protocol <strong>may</strong> change
+the core command set.  Check here for changes.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_command_results">Command results</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="../../GLOSSARY.html#bifrost" class="glossary-term" title="The playout system specified in this document.">Bifrost</a> servers <strong>must</strong> unicast an <code>ACK</code> response after processing a request,
+with the same tag as said request.</p>
+</div>
+<div class="sect2">
+<h3 id="__code_ack_code_command_result"><code>ACK</code> &#x2014; command result</h3>
+<div class="sect3">
+<h4 id="_synopsis">Synopsis</h4>
+<div class="paragraph">
+<p><code>ACK</code> <em>type</em> <em>details</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description">Description</h4>
+<div class="paragraph">
+<p><code>ACK</code> acknowledges the end of processing for a request.  Said request
+can be found by checking the tag of the <code>ACK</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <em>type</em> of the <code>ACK</code> <strong>must</strong> be one of the following (case-sensitive):</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>OK</code></dt>
+<dd>
+<p>Command was processed successfully; <em>details</em> <strong>should</strong> be <code>success</code>;</p>
+</dd>
+<dt class="hdlist1"><code>WHAT</code></dt>
+<dd>
+<p>Command was invalid and could not be processed;</p>
+</dd>
+<dt class="hdlist1"><code>FAIL</code></dt>
+<dd>
+<p>Command was valid, but an error occurred when the <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> tried to
+process it.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>The <em>details</em> string is a parseable, but human-readable, string denoting
+the type of error for <code>WHAT</code> or <code>FAIL</code>.  Examples of standard <em>details</em>
+values are given in the descriptions for requests that can fail.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dumping">Dumping</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="../../GLOSSARY.html#bifrost" class="glossary-term" title="The playout system specified in this document.">Bifrost</a> servers <strong>must</strong> implement a means to query all of the current
+<a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> state in one command.  The <code>dump</code> request implements this.</p>
+</div>
+<div class="sect2">
+<h3 id="__code_dump_code_dump_server_state"><code>dump</code> &#x2014; dump <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> state</h3>
+<div class="sect3">
+<h4 id="_synopsis_2">Synopsis</h4>
+<div class="paragraph">
+<p><code>dump</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description_2">Description</h4>
+<div class="paragraph">
+<p>Requests that a summary of the <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a>&#x2019;s state is unicast to the <a href="../../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a>
+as a sequence of responses.  The set of state to send depends on the
+<a href="../../GLOSSARY.html#role" class="glossary-term" title="A specific service in the Bifrost system.">role</a>.</p>
+</div>
+<div class="paragraph">
+<p>All state <strong>must</strong> be unicast by the <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> <em>before</em> it sends the <code>ACK</code>
+for this request.  Each state response <strong>must</strong> use the request tag,
+to allow the <a href="../../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a> to identify it as part of the dump response.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_responses_sent">Responses sent</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Unicast</strong> a series of responses, dependent on the <a href="../../GLOSSARY.html#role" class="glossary-term" title="A specific service in the Bifrost system.">role</a> (see each
+<a href="../../GLOSSARY.html#role" class="glossary-term" title="A specific service in the Bifrost system.">role</a> page for information);</p>
+</li>
+<li>
+<p><strong>Unicast</strong> <code>ACK</code> <code>OK</code> <code>success</code>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_initial_responses"><a href="../../GLOSSARY.html#initial_responses" class="glossary-term" title="The responses sent from servers to their clients upon connection.">Initial Responses</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>On <a href="../../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a> connection, <a href="../../GLOSSARY.html#bifrost" class="glossary-term" title="The playout system specified in this document.">Bifrost</a> servers <strong>must</strong> unicast a specific
+sequence of responses to the <a href="../../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a>.  This is to provide the <a href="../../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a>
+with the protocol version, as well as information it needs to set up
+for further communications with the <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a>.</p>
+</div>
+<div class="paragraph">
+<p>The set of <em><a href="../../GLOSSARY.html#initial_responses" class="glossary-term" title="The responses sent from servers to their clients upon connection.">initial responses</a></em> is:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>!</code> <code>OHAI</code> <em><a href="../../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a>-id</em>  <code>bifrost-</code><em>x.y.z</em> <code>server-</code><em>x.y.z</em></p>
+</li>
+<li>
+<p><code>!</code> <code>IAMA</code> <em><a href="../../GLOSSARY.html#role" class="glossary-term" title="A specific service in the Bifrost system.">role</a></em></p>
+</li>
+<li>
+<p>(The equivalent of running a <code>dump</code> as this <a href="../../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a>, with tag <code>!</code>)</p>
+</li>
+<li>
+<p><code>!</code> <code>ACK OK success</code></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Servers <strong>should not</strong> send other responses until finishing the <code>ACK</code>,
+and clients <strong>should not</strong> send requests until then.</p>
+</div>
+<div class="sect2">
+<h3 id="__code_ohai_code_client_welcome"><code>OHAI</code> &#x2014; <a href="../../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a> welcome</h3>
+<div class="sect3">
+<h4 id="_synopsis_3">Synopsis</h4>
+<div class="paragraph">
+<p><code>OHAI</code> <em><a href="../../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a>-id</em> <em>protocol-version</em> <em><a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a>-version</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description_3">Description</h4>
+<div class="paragraph">
+<p>This <strong>must</strong> be the first response sent by the <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a>.</p>
+</div>
+<div class="paragraph">
+<p>It contains the following arguments:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>A string ID identifying the <a href="../../GLOSSARY.html#client" class="glossary-term" title="A program or user that consumes services.">client</a> within the set of clients currently
+connected to the <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a>.  This <strong>must</strong> be unique among the clients
+connected at any given time;</p>
+</li>
+<li>
+<p>A string, of the form <code>NAME-M.m.p</code>, giving the name of the protocol
+(substitute for <code>NAME</code>) and its semantic version (substitute major,
+minor and patch numbers for <code>M</code>, <code>m</code> , and <code>p</code>).
+For servers complying to this specification, <code>NAME</code> <strong>should</strong> be
+<code>bifrost</code> and the semantic version <strong>should</strong> be that given in the
+introduction;</p>
+</li>
+<li>
+<p>A string, of the form <code>NAME-M.n.p</code>, giving the name of the <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a>
+software and its semantic version as above.  Clients <strong>should not</strong>
+alter their behaviour in any way due to the contents of this string,
+except to work around known defects in existing <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> software.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><code>OHAI</code> <strong>must</strong> be sent as a unicast, with the tag <code>!</code>.  It <strong>must not</strong> be
+sent multiple times.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__code_iama_code_server_role"><code>IAMA</code> &#x2014; <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> <a href="../../GLOSSARY.html#role" class="glossary-term" title="A specific service in the Bifrost system.">role</a></h3>
+<div class="sect3">
+<h4 id="_synopsis_4">Synopsis</h4>
+<div class="paragraph">
+<p><code>IAMA</code> <em><a href="../../GLOSSARY.html#role" class="glossary-term" title="A specific service in the Bifrost system.">role</a></em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description_4">Description</h4>
+<div class="paragraph">
+<p>This <strong>must</strong> be the second response sent by the <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a>.</p>
+</div>
+<div class="paragraph">
+<p>It contains the name of the <em><a href="../../GLOSSARY.html#role" class="glossary-term" title="A specific service in the Bifrost system.">role</a></em> the <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> is implementing.  For
+standard roles, see <a href="../roles/index.html">Roles</a>.</p>
+</div>
+<div class="paragraph">
+<p>Servers <strong>may</strong> announce a non-standard <a href="../../GLOSSARY.html#role" class="glossary-term" title="A specific service in the Bifrost system.">role</a>, but the <a href="../../GLOSSARY.html#role" class="glossary-term" title="A specific service in the Bifrost system.">role</a> name <strong>must</strong>
+begin with <code>x/</code>.  For example <code>x/player/video</code> could describe a <a href="../../GLOSSARY.html#bifrost" class="glossary-term" title="The playout system specified in this document.">Bifrost</a>
+<a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> enabling video playback.</p>
+</div>
+<div class="paragraph">
+<p>Clients, on connecting to a <a href="../../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> with an unsupported <a href="../../GLOSSARY.html#role" class="glossary-term" title="A specific service in the Bifrost system.">role</a>, <strong>should</strong> disconnect
+and relay an error to the user.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../../protocol/core/index.html" class="navigation navigation-prev " aria-label="Previous page: Core Protocol"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../../protocol/roles/index.html" class="navigation navigation-next " aria-label="Next page: Roles"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../gitbook/app.js"></script>
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":"white","family":"serif","size":2},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

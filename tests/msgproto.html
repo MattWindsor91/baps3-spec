@@ -1,0 +1,656 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Message Protocol | Bifrost</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../impl/index.html" />
+    
+    
+    <link rel="prev" href="../tests/index.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="3.1"
+        data-chapter-title="Message Protocol"
+        data-filepath="tests/msgproto.adoc"
+        data-basepath=".."
+        data-revision="Sun Oct 09 2016 11:47:30 GMT+0100 (BST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="meta/index.html">
+            
+                
+                    <a href="../meta/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        This document
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="meta/compiling.html">
+            
+                
+                    <a href="../meta/compiling.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Compiling
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="meta/conventions.html">
+            
+                
+                    <a href="../meta/conventions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        Conventions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="protocol/index.html">
+            
+                
+                    <a href="../protocol/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Bifrost Protocol
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="protocol/msgproto.html">
+            
+                
+                    <a href="../protocol/msgproto.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Message Protocol
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="protocol/core/index.html">
+            
+                
+                    <a href="../protocol/core/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        Core Protocol
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.2.1" data-path="protocol/core/commands.html">
+            
+                
+                    <a href="../protocol/core/commands.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.1.</b>
+                        
+                        Core Command Set
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="protocol/roles/index.html">
+            
+                
+                    <a href="../protocol/roles/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        Roles
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.3.1" data-path="protocol/roles/player.html">
+            
+                
+                    <a href="../protocol/roles/player.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.1.</b>
+                        
+                        player/file
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.2" data-path="protocol/roles/list.html">
+            
+                
+                    <a href="../protocol/roles/list.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.2.</b>
+                        
+                        list
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.3" data-path="protocol/roles/mux.html">
+            
+                
+                    <a href="../protocol/roles/mux.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.3.</b>
+                        
+                        mux
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.4" data-path="protocol/roles/tracklister.html">
+            
+                
+                    <a href="../protocol/roles/tracklister.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.4.</b>
+                        
+                        tracklister
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.5" data-path="protocol/roles/db.html">
+            
+                
+                    <a href="../protocol/roles/db.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.5.</b>
+                        
+                        db
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="tests/index.html">
+            
+                
+                    <a href="../tests/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Compliance Tests
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="3.1" data-path="tests/msgproto.html">
+            
+                
+                    <a href="../tests/msgproto.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Message Protocol
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="impl/index.html">
+            
+                
+                    <a href="../impl/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Reference Implementations
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="impl/rationale.html">
+            
+                
+                    <a href="../impl/rationale.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Rationale
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+    <a href="../GLOSSARY.html" class="btn pull-left" aria-label="Glossary"><i class="fa fa-sort-alpha-asc"></i></a>
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >Bifrost</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="message-protocol">Message Protocol</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section contains compliance tests for implementations of the
+<a href="../protocol/msgproto.html">Message Protocol</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tokeniser">Tokeniser</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Implementors <strong>may</strong> use these tests as a basis for automated testing of
+their implementations of a <a href="../GLOSSARY.html#bifrost" class="glossary-term" title="The playout system specified in this document.">Bifrost</a> tokeniser.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+Implementors automated tests based on this list <strong>should</strong> take
+input and output strings from the <em>source form</em> of this page, due to
+potential differences in the rendered copy.  See
+<a href="../meta/compiling.html">Compiling</a> for details on how to obtain
+the source.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 8%;">
+<col style="width: 33%;">
+<col style="width: 33%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">ID</th>
+<th class="tableblock halign-left valign-top">Input</th>
+<th class="tableblock halign-left valign-top">Output</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">E1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&quot;&quot;</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Empty string (parsed as whitespace)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">E2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&quot;\n&quot;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Empty line</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">E3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&quot;&apos;&apos;\n&quot;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{&quot;&quot;}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Empty single-quoted string (parsed as empty string)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">E4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&quot;\&quot;\&quot;\n&quot;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{&quot;&quot;}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Empty double-quoted string (parsed as empty string)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">W1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&quot;foo bar baz\n&quot;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Space-delimited words</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">W2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&quot;foo\tbar\tbaz\n&quot;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tab-delimited words</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">W3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&quot;foo\rbar\rbaz\n&quot;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Words delimited by odd, but valid, whitespace</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">W4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&quot;silly windows\r\n&quot;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{&quot;silly&quot;, &quot;windows&quot;}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CRLF line ending tolerance</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">W5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&quot;     abc def\n&quot;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{&quot;abc&quot;, &quot;def&quot;}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Leading whitespace</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">W6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&quot;ghi jkl     \n&quot;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{&quot;ghi&quot;, &quot;jkl&quot;}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Trailing whitespace</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">W7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&quot;     mno pqr     \n&quot;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{&quot;mno&quot;, &quot;pqr&quot;}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Surrounding whitespace</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&quot;abc\\\ndef\n&quot;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{&quot;abc\ndef&quot;}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Backslash escaping</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&quot;\&quot;abc\ndef\&quot;\n&quot;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{&quot;abc\ndef&quot;}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Double-quoting</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&quot;\&quot;abc\\\ndef\&quot;\n&quot;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{&quot;abc\ndef&quot;}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Double-quoting with backslash escape</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&quot;&apos;abc\ndef&apos;\n&quot;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{&quot;abc\ndef&quot;}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Single-quoting</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&quot;&apos;abc\\\ndef&apos;\n&quot;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{&quot;abc\\\ndef&quot;}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Single-quoting with (failed) backslash escape</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&quot;Scare\\\&quot; quotes\\\&quot;\n&quot;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{&quot;Scare\&quot;&quot;, &quot;quotes\&quot;&quot;}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Backslash-escaped double quote</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&quot;I\\&apos;m free\n&quot;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{&quot;I&#x2019;m&quot;, &quot;free&quot;}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Backslash-escaped single quote</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&quot;&apos;hello, I&apos;\\&apos;&apos;m an escaped single quote&apos;\n&quot;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{&quot;hello, I&#x2019;m an escaped single quote&quot;}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Single-quoted single quote</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q9</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&quot;\&quot;hello, this is an \\\&quot; escaped double quote\&quot;\n&quot;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{&quot;hello, this is an \&quot; escaped double quote&quot;}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Double-quoted double quote</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&quot;first line\nsecond line\n&quot;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{&quot;first&quot;, &quot;line&quot;}, {&quot;second&quot;, &quot;line&quot;}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Multiple lines in one <a href="../GLOSSARY.html#tokenisation" class="glossary-term" title="The process of converting a raw Bifrost protocol message into a
+sequence of words, by separating on unquoted whitespace, removing
+quote delimiters, and expanding escape sequences.">tokenisation</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">U1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&quot;&#x5317;&#x91CE; &#x6B66;\n&quot;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{&quot;&#x5317;&#x91CE;&quot;, &quot;&#x6B66;&quot;}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Valid UTF-8 (provided the string literals are interpreted as UTF-8,
+for example in Go)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">U2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This ID was used for a test which is no longer in use.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">X1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&quot;enqueue file \&quot;C:\\\\Users\\\\Test\\\\Artist - Title.mp3\&quot; 1\n&quot;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{&quot;enqueue&quot;, &quot;file&quot;, &quot;C:\\Users\\Test\\Artist - Title.mp3&quot;, &quot;1&quot;}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Representative command with Windows path</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../tests/index.html" class="navigation navigation-prev " aria-label="Previous page: Compliance Tests"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../impl/index.html" class="navigation navigation-next " aria-label="Next page: Reference Implementations"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":"white","family":"serif","size":2},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

@@ -1,0 +1,753 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Message Protocol | Bifrost</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../protocol/core/index.html" />
+    
+    
+    <link rel="prev" href="../protocol/index.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="2.1"
+        data-chapter-title="Message Protocol"
+        data-filepath="protocol/msgproto.adoc"
+        data-basepath=".."
+        data-revision="Sun Oct 09 2016 11:47:30 GMT+0100 (BST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="meta/index.html">
+            
+                
+                    <a href="../meta/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        This document
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="meta/compiling.html">
+            
+                
+                    <a href="../meta/compiling.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Compiling
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="meta/conventions.html">
+            
+                
+                    <a href="../meta/conventions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        Conventions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="protocol/index.html">
+            
+                
+                    <a href="../protocol/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Bifrost Protocol
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="2.1" data-path="protocol/msgproto.html">
+            
+                
+                    <a href="../protocol/msgproto.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Message Protocol
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="protocol/core/index.html">
+            
+                
+                    <a href="../protocol/core/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        Core Protocol
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.2.1" data-path="protocol/core/commands.html">
+            
+                
+                    <a href="../protocol/core/commands.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.1.</b>
+                        
+                        Core Command Set
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="protocol/roles/index.html">
+            
+                
+                    <a href="../protocol/roles/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        Roles
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.3.1" data-path="protocol/roles/player.html">
+            
+                
+                    <a href="../protocol/roles/player.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.1.</b>
+                        
+                        player/file
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.2" data-path="protocol/roles/list.html">
+            
+                
+                    <a href="../protocol/roles/list.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.2.</b>
+                        
+                        list
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.3" data-path="protocol/roles/mux.html">
+            
+                
+                    <a href="../protocol/roles/mux.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.3.</b>
+                        
+                        mux
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.4" data-path="protocol/roles/tracklister.html">
+            
+                
+                    <a href="../protocol/roles/tracklister.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.4.</b>
+                        
+                        tracklister
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.5" data-path="protocol/roles/db.html">
+            
+                
+                    <a href="../protocol/roles/db.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.5.</b>
+                        
+                        db
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="tests/index.html">
+            
+                
+                    <a href="../tests/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Compliance Tests
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="tests/msgproto.html">
+            
+                
+                    <a href="../tests/msgproto.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Message Protocol
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="impl/index.html">
+            
+                
+                    <a href="../impl/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Reference Implementations
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="impl/rationale.html">
+            
+                
+                    <a href="../impl/rationale.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Rationale
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+    <a href="../GLOSSARY.html" class="btn pull-left" aria-label="Glossary"><i class="fa fa-sort-alpha-asc"></i></a>
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >Bifrost</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="message-protocol">Message Protocol</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <a href="../GLOSSARY.html#bifrost" class="glossary-term" title="The playout system specified in this document.">Bifrost</a> <em>message protocol</em> is the base protocol <a href="../GLOSSARY.html#bifrost" class="glossary-term" title="The playout system specified in this document.">Bifrost</a> servers and
+clients use to communicate.  It is designed to be:
+criteria:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Composable</dt>
+<dd>
+<p>The API is intended to allow separate implementations of single
+services to be composed into a single logical service, by connecting
+servers together through the API.  Responses and requests not
+intended for a <a href="../GLOSSARY.html#server" class="glossary-term" title="A program that provides services.">server</a> with <a href="../GLOSSARY.html#upstream" class="glossary-term" title="The services/servers implemented on top of the current subject.">upstream</a> and <a href="../GLOSSARY.html#downstream" class="glossary-term" title="The services/servers on top of which the current subject is implemented.">downstream</a> connections
+respectively can be <em>forwarded</em> transparently along the API
+connections;</p>
+</dd>
+<dt class="hdlist1">Transparent</dt>
+<dd>
+<p>The API is text-based, and can be inspected by humans using either
+TCP/IP packet sniffing or connecting directly to services to be
+inspected;</p>
+</dd>
+<dt class="hdlist1">Simple</dt>
+<dd>
+<p>The API uses a minimalistic line-orientated protocol, in which
+each line is comprised of one or more words, and uses shell-style
+word-escaping conventions (as well as C-style backslash escapes).
+It is relatively simple to implement, requires little to no
+external dependencies, and is modest in its usage of network
+bandwidth.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_design">Design</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The message protocol is based upon <a href="http://pubs.opengroup.org/onlinepubs/009604599/utilities/xcu_chap02.html" target="_blank">POSIX shell</a> conventions. This is
+because:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>It is lightweight and relatively easy to parse;</p>
+</li>
+<li>
+<p>It is a good match for the command-and-arguments style of the protocol layer
+on top;
+  API;</p>
+</li>
+<li>
+<p>The shell style of escaping is convenient for escaping paths
+(especially on Windows, where the single-quote syntax can avoid
+needing to escape every backslash in a Windows path).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A disadvantage is that it is impossible to perform a context-free
+splitting of input into lines; the line-feed character could be
+escaped.  However, since the usual transport used by the message
+protocol is TCP, and most TCP libraries provide unbuffered input in
+chunks which may be smaller or larger than one line, this is not a
+major issue.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_encoding">Encoding</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <a href="../GLOSSARY.html#internal_api" class="glossary-term" title="The API used for communication between servers.">internal API</a> is designed to expect requests and responses in
+the <a href="http://www.ietf.org/rfc/rfc3629.txt" target="_blank">UTF-8</a> encoding.  However, to allow simple implementations
+that operate on a per-byte level, all characters with special meaning
+are taken from the single-byte UTF-8 subset (that is, ASCII).  In
+addition, the backslash-escape mechanism (see below) operates only on
+one byte.</p>
+</div>
+<div class="paragraph">
+<p>API users <strong>must</strong> support the sending and receiving of all single-byte
+UTF-8 character codes (that is, ASCII), and <strong>should</strong> support the
+sending and receiving of the full UTF-8 range subject to the
+limitations below.</p>
+</div>
+<div class="paragraph">
+<p>While a message is in transit, API users <strong>must not</strong> alter its bytes in
+any way other than changing between equivalent quoting, escaping and
+line/word-delimiting forms.  This includes correcting, omitting, or
+replacing any non-UTF-8 byte sequences, as well as case folding or
+normalising.  However, changing from double quotes to single quotes, or
+introducing or removing more whitespace to an inter-word whitespace
+run, is ok.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_overview">Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The message protocol uses the linefeed-delimited <em>commands</em>, each
+containing one or more whitespace-delimited
+<em>words</em>.  Each word consists of a sequence of bytes (usually
+representing UTF-8 characters).</p>
+</div>
+<div class="sect2">
+<h3 id="_quoting_and_escaping">Quoting and escaping</h3>
+<div class="paragraph">
+<p>To allow all byte sequences to be represented in words, the protocol
+uses several quoting and escaping strategies, which are summarised in
+the below table and formalised later.</p>
+</div>
+<div class="paragraph">
+<p>Note that, while each quoting mechanism lasts until the matching (and
+non-backslash-escaped) quote is found, backslash-escape affects only
+the following byte (then, the previous quoting behaviour returns
+afterwards).</p>
+</div>
+<div class="paragraph">
+<p>Also note that backslash-escape only escapes the next <em>byte</em>: for this
+reason, clients and services <strong>should not</strong> backslash-escape multi-byte
+UTF-8 characters (such treatment is unnecessary, as all special
+characters are single-byte).</p>
+</div>
+<div class="paragraph">
+<p>Finally, backslashes <strong>must not</strong> be interpreted as starting an escape
+while in backslash-escape or double-quoted modes, and <strong>must</strong> be
+emitted verbatim.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Quoting and escaping strategies</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Character</th>
+<th class="tableblock halign-left valign-top">Meaning when unquoted</th>
+<th class="tableblock halign-left valign-top">Meaning when single-quoted</th>
+<th class="tableblock halign-left valign-top">Meaning when double-quoted</th>
+<th class="tableblock halign-left valign-top">Meaning when backslash-escaped</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&apos;</code> (0x27)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Begins single-quoted mode</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Begins unquoted mode</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&apos;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&apos;</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&quot;</code> (0x22)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Begins double-quoted mode</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&quot;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ends double-quoted mode</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&quot;</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>\</code> (0x5C)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Begins backslash escape for next byte only</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>\</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Begins backslash escape for next byte only</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>\</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Any other byte &apos;b&apos;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&apos;b&apos;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&apos;b&apos;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&apos;b&apos;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&apos;b&apos;</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_formal_specification">Formal Specification</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The message protocol adheres to the following BNF grammar:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>&lt;command&gt;     ::= &lt;words&gt; &quot;\n&quot;
+               |  &lt;whitespace&gt; &lt;words&gt; &quot;\n&quot;
+               |  &lt;words&gt; &lt;whitespace&gt; &quot;\n&quot;
+               |  &lt;whitespace&gt; &lt;words&gt; &lt;whitespace&gt; &quot;\n&quot;
+
+&lt;words&gt;       ::= &lt;word&gt;
+               |  &lt;word&gt; &lt;whitespace&gt; &lt;words&gt;
+
+&lt;word&gt;        ::= &quot;&apos;&quot; &lt;single&gt;
+               |  &quot;&apos;&quot; &lt;single&gt; &lt;word&gt;
+               |  &quot;\&quot;&quot; &lt;double&gt;
+               |  &quot;\&quot;&quot; &lt;double&gt; &lt;word&gt;
+               | &lt;escape&gt;
+               | &lt;escape&gt; &lt;word&gt;
+               | &lt;normal-char&gt;
+               | &lt;normal-char&gt; &lt;word&gt;
+
+&lt;single&gt;      ::= &quot;&apos;&quot;
+               |  &lt;single-char&gt; &lt;single&gt;
+
+&lt;double&gt;      ::= &quot;\&quot;&quot;
+               |  &lt;escape&gt; &lt;double&gt;
+               |  &lt;double-char&gt; &lt;double&gt;
+
+&lt;whitespace&gt;  ::= &lt;ws-char&gt;
+               |  &lt;ws-char&gt; &lt;whitespace&gt;
+
+&lt;escape&gt;      ::= &quot;\\&quot; &lt;any-char&gt;
+
+&lt;ws-char&gt;     ::= &quot; &quot; | &quot;\t&quot; | &quot;\v&quot; | &quot;\f&quot; | &quot;\r&quot;
+&lt;normal-char&gt; ::= (any byte not in &lt;ws-char&gt; or one of &quot; &apos; \ \n)
+&lt;double-char&gt; ::= (any byte except one of &quot; \)
+&lt;single-char&gt; ::= (any byte except &apos;)
+&lt;any-char&gt;    ::= (any byte)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Each distinct <code>word</code> and <code>command</code> production denotes a separate word
+and command respectively.  Any <code>normal-char</code>, <code>double-char</code>,
+<code>single-char</code>, or <code>any-char</code> is emitted verbatim in its word.</p>
+</div>
+<div class="paragraph">
+<p>Syntax errors (for example, a line containing no words) <strong>must</strong> cause a
+<code>WHAT</code> response to be sent.</p>
+</div>
+<div class="paragraph">
+<p>Escape sequences in the above BNF may be interpreted as follows:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 2. BNF escape sequences</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Sequence</th>
+<th class="tableblock halign-left valign-top">Byte</th>
+<th class="tableblock halign-left valign-top">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>\t</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0x09</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Horizontal tab</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>\n</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0x0A</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Line feed</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>\v</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0x0B</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Vertical tab</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>\f</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0x0C</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Form feed</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>\r</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0x0B</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Carriage return</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>\\</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0x5C</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Backslash</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="_examples">Examples</h3>
+<div class="paragraph">
+<p>See the <a href="../GLOSSARY.html#internal_api" class="glossary-term" title="The API used for communication between servers.">Internal API</a> <a href="../tests/msgproto.html">compliance tests</a>.</p>
+</div>
+</div>
+</div>
+</div>
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../protocol/index.html" class="navigation navigation-prev " aria-label="Previous page: Bifrost Protocol"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../protocol/core/index.html" class="navigation navigation-next " aria-label="Next page: Core Protocol"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":"white","family":"serif","size":2},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
