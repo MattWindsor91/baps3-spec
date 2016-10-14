@@ -31,7 +31,7 @@ Configurable audio sink::
 Non-conflicting end-point::
   Servers *must* allow their end-points to be set up so as not
   to conflict with other Bifrost servers on the same machine.  For
-  example, if it exposes a TCP socket, the port should be
+  example, if it exposes a TCP socket, the port needs to be
   configurable; if it exposes a _stdin/stdout_ interface, then no
   action is needed as this cannot conflict with other services.  This
   is to allow multiple such services to co-exist on the same machine,
@@ -115,28 +115,28 @@ If the file failed to load, servers **must** broadcast `EJECT` before
 
 On success:
 
-1. (Always optional.) **Broadcast** `EJECT`.
+1. (Optional due to success.) **Broadcast** `EJECT`.
 2. **Broadcast** `FLOAD` __absolute-path__.
 3. **Unicast** `ACK` `OK` `success`.
 
 On failure, due to a missing file:
 
-1. (Mandatory only if file loaded.) **Broadcast** `EJECT`.
+1. (Mandatory due to failure.) **Broadcast** `EJECT`.
 2. **Unicast** `ACK` `WHAT` `file-not-found`.
 
 On failure, due to an unknown file format:
 
-1. (Mandatory only if file loaded.) **Broadcast** `EJECT`.
+1. (Mandatory due to failure.) **Broadcast** `EJECT`.
 2. **Unicast** `ACK` `WHAT` `file-type-not-supported`.
 
 On failure, due to a failure to load a supported file format:
 
-1. (Mandatory only if file loaded.) **Broadcast** `EJECT`.
+1. (Mandatory due to failure.) **Broadcast** `EJECT`.
 2. **Unicast** `ACK` `FAIL` `file-load-failed`.
 
 On any other failure:
 
-1. (Mandatory only if file loaded.) **Broadcast** `EJECT`.
+1. (Mandatory due to failure.) **Broadcast** `EJECT`.
 2. **Unicast** `ACK` `FAIL` `internal-error`.
 
 
@@ -157,7 +157,7 @@ This request always succeeds, even if no file is loaded.
 
 ==== Responses sent
 
-1. (Mandatory only if file loaded.) **Broadcast** `EJECT`.
+1. (Mandatory only if a file was unloaded.) **Broadcast** `EJECT`.
 2. **Unicast** `ACK` `OK` `success`.
 
 
@@ -208,7 +208,7 @@ To stop and rewind a file while signalling the end of file to clients, use
 `end`.
 
 Servers **may** send `STOP` if the file is already stopped.
-Otherwise, `stop` on a stoppped file has no effect.
+Otherwise, `stop` on a stopped file has no effect.
 
 ==== Responses sent
 
@@ -245,8 +245,8 @@ Depending on any such client behaviour, a manual `end` can be used to
 skip or rewind the current file.
 
 As mentioned above, `END` implies that the file has returned to
-position `0` and is ``STOP``ped.  Servers intending other behaviour
-**must** make this explicit through `POS`, `PLAY` and `EJECT`
+position `0` and is ``STOP``ped.  Servers **may** utilize other behaviour,
+but they **must** make this explicit through `POS`, `PLAY` and `EJECT`
 responses, and **must** ensure any ``dump``s show the correct
 position and playback state.
 
@@ -255,10 +255,12 @@ position and playback state.
 On success:
 
 1. (Mandatory only if file playing.) **Broadcast** `END`.
-2. (Optional unless the file is not stopped and rewound to `0`).
-   **Broadcast** `POS` _microseconds_, `PLAY`/`STOP`/`EJECT` to give
-   clients the correct position and playback state.
-3. **Unicast** `ACK` `OK` `success`.
+2. (Only required if the server doesn't return to position `0`.)
+   **Broadcast** `POS` _microseconds_.
+3. (`PLAY` or `EJECT` are required if the server doesn't `stop`.
+    Therefore, sending `STOP` is unnecessary, but can still be done.)
+    **Broadcast** `STOP` / **Broadcast** `PLAY` / **Broadcast** `EJECT`.   
+4. **Unicast** `ACK` `OK` `success`.
 
 On failure, if a file is not loaded:
 
@@ -292,11 +294,9 @@ not the requested position.
 
 On success:
 
-1. **Broadcast** `END`.
-2. (Optional unless the file is not stopped and rewound to `0`).
-   **Broadcast** `POS` _microseconds_, `PLAY`/`STOP`/`EJECT` to give
-   clients the correct position and playback state.
-3. **Unicast** `ACK` `OK` `success`.
+1. (Optional unless the file is either playing or not at position `0` in which case mandatory).
+   **Broadcast** `POS` _microseconds_.
+2. **Unicast** `ACK` `OK` `success`.
 
 On failure, if a file is not loaded:
 

@@ -66,9 +66,9 @@ While a message is in transit, API users *must not* alter its bytes in
 any way other than changing between equivalent quoting, escaping and
 line/word-delimiting forms.  This includes correcting, omitting, or
 replacing any non-UTF-8 byte sequences, as well as case folding or
-normalising.  However, changing from double quotes to single quotes, or
-introducing or removing more whitespace to an inter-word whitespace
-run, is ok.
+normalising.  However, changing from double quotes to single quotes
+as well as introducing or removing more whitespace to an inter-word
+whitespace run is acceptable.
 
 == Overview
 

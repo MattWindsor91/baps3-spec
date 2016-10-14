@@ -14,14 +14,14 @@ The primary goals for Bifrost are:
 
 In addition, we hope that Bifrost will:
 
-. Be useful to other small radio stations;
-. Be adaptable to the changing world of student radio;
+. Be useful to other independent radio stations;
+. Be adaptable in the changing world of student radio;
 . Allow a greater amount of flexibility within University Radio York than is
   currently available with BAPS2.
 
 == The BAPS2 API
 
-We chose not to use the existing BAPS2 API, for the following reasons:
+We have chosen to replace the existing BAPS2 API for the following reasons:
 
 * The BAPS2 API is based on a binary protocol that is difficult to
   debug, and provides a lack of transparency that outweighs the
