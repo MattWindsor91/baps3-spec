@@ -43,17 +43,18 @@ Non-conflicting end-point::
 
 The dump format for `player/file` is as follows.
 
-*If* a file with path _absolute-path_ is loaded and at position _microseconds_:
+*If* a file with path _absolute-path_ is loaded with length _l_ microseconds and position _p_ microseconds:
 
 * `FLOAD` _absolute-path_.
 * `PLAY` if the file is playing; else, `STOP`.
-* `POS` _microseconds_;
+* `LEN` _l_ if the length is available;
+* `POS` _p_;
 
 **Else if** no file is loaded:
 
 * `EJECT`.
 
-These responses may be given in any order.
+These responses may be given in any order.  If `LEN` is omitted, the client **should** assume it is unavailable.
 
 
 == Commands
@@ -82,8 +83,13 @@ The `player/file` role adds the following commands:
   assume the loaded file is now at position `0` and playback state `STOP`.
   Clients **must not** ignore this response if the loaded file has already
   ended.
-`POS` _microseconds_::
-  The file position is _microseconds_ microseconds from the start of the
+`LEN` _l_::
+  The file's total length is estimated at _l_ microseconds.  This need not be
+  accurate, but **should** be an under-approximation of the total length.
+  Servers **may** omit `LEN`, and **should not** report `LEN` except as part
+  of a `DUMP` or after a file load.
+`POS` _p_::
+  The file position is _p_ microseconds from the start of the
   file.  Servers **must** periodically broadcast the position to all clients,
   for example every second, even if the position has not been manually
   changed.  Clients **may** ignore this response if the position has not
