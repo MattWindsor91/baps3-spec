@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Core Command Set :: Bifrost Specification</title>
+    <link rel="canonical" href="https://universityradioyork.github.io/baps3-spec/bifrost/core/commands.html">
+    <meta name="generator" content="Antora 2.2.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://universityradioyork.github.io/baps3-spec">Bifrost Specification</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://ury.org.uk">URY</a>
+        <a class="navbar-item" href="https://universityradioyork.github.io">GitHub</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="bifrost" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Bifrost Specification</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../index.html">Introduction</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../conventions.html">Conventions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../compiling.html">Compiling</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../message/index.html">The Message Protocol</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../message/spec.html">Specification</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../message/tests.html">Compliance Tests</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">The Core Protocol</a>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="commands.html">Core Command Set</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../role/index.html">Roles</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../role/player.html"><code>player/file</code></a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../role/list.html"><code>list</code></a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../role/mux.html"><code>mux</code></a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../role/tracklister.html"><code>tracklister</code></a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../role/db.html"><code>db</code></a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Bifrost Specification</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Bifrost Specification</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main>
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Bifrost Specification</a></li>
+    <li><a href="index.html">The Core Protocol</a></li>
+    <li><a href="commands.html">Core Command Set</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///Users/mattbw/Documents/git/baps3-spec/bifrost/modules/core/pages/commands.adoc">Edit this Page</a></div>
+</div>
+<article class="doc">
+<h1 class="page">Core Command Set</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Bifrost servers <strong>must</strong> implement a set of common requests and
+responses.  This is referred to as the <em>core command set</em>.</p>
+</div>
+<div class="paragraph">
+<p>This chapter discusses said core command set, which includes
+interfaces for welcoming clients and dumping.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Future major revisions to the Bifrost protocol <strong>may</strong> change
+the core command set.  Check here for changes.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_command_results"><a class="anchor" href="#_command_results"></a>Command results</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Bifrost servers <strong>must</strong> unicast an <code>ACK</code> response after processing a request,
+with the same tag as said request.</p>
+</div>
+<div class="sect2">
+<h3 id="_ack_command_result"><a class="anchor" href="#_ack_command_result"></a><code>ACK</code> — command result</h3>
+<div class="sect3">
+<h4 id="_synopsis"><a class="anchor" href="#_synopsis"></a>Synopsis</h4>
+<div class="paragraph">
+<p><code>ACK</code> <em>type</em> <em>details</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description"><a class="anchor" href="#_description"></a>Description</h4>
+<div class="paragraph">
+<p><code>ACK</code> acknowledges the end of processing for a request.  Said request
+can be found by checking the tag of the <code>ACK</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <em>type</em> of the <code>ACK</code> <strong>must</strong> be one of the following (case-sensitive):</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>OK</code></dt>
+<dd>
+<p>Command was processed successfully; <em>details</em> <strong>should</strong> be <code>success</code>;</p>
+</dd>
+<dt class="hdlist1"><code>WHAT</code></dt>
+<dd>
+<p>Command was invalid and could not be processed;</p>
+</dd>
+<dt class="hdlist1"><code>FAIL</code></dt>
+<dd>
+<p>Command was valid, but an error occurred when the server tried to
+process it.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>The <em>details</em> string is a parseable, but human-readable, string denoting
+the type of error for <code>WHAT</code> or <code>FAIL</code>.  Examples of standard <em>details</em>
+values are given in the descriptions for requests that can fail.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dumping"><a class="anchor" href="#_dumping"></a>Dumping</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Bifrost servers <strong>must</strong> implement a means to query all of the current
+server state in one command.  The <code>dump</code> request implements this.</p>
+</div>
+<div class="sect2">
+<h3 id="_dump_dump_server_state"><a class="anchor" href="#_dump_dump_server_state"></a><code>dump</code> — dump server state</h3>
+<div class="sect3">
+<h4 id="_synopsis_2"><a class="anchor" href="#_synopsis_2"></a>Synopsis</h4>
+<div class="paragraph">
+<p><code>dump</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description_2"><a class="anchor" href="#_description_2"></a>Description</h4>
+<div class="paragraph">
+<p>Requests that a summary of the server&#8217;s state is unicast to the client
+as a sequence of responses.  The set of state to send depends on the
+role.</p>
+</div>
+<div class="paragraph">
+<p>All state <strong>must</strong> be unicast by the server <em>before</em> it sends the <code>ACK</code>
+for this request.  Each state response <strong>must</strong> use the request tag,
+to allow the client to identify it as part of the dump response.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_responses_sent"><a class="anchor" href="#_responses_sent"></a>Responses sent</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Unicast</strong> a series of responses, dependent on the role (see each
+role page for information);</p>
+</li>
+<li>
+<p><strong>Unicast</strong> <code>ACK</code> <code>OK</code> <code>success</code>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_initial_responses"><a class="anchor" href="#_initial_responses"></a>Initial Responses</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>On client connection, Bifrost servers <strong>must</strong> unicast a specific
+sequence of responses to the client.  This is to provide the client
+with the protocol version, as well as information it needs to set up
+for further communications with the server.</p>
+</div>
+<div class="paragraph">
+<p>The set of <em>initial responses</em> is:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>!</code> <code>OHAI</code> <em>client-id</em>  <code>bifrost-</code><em>x.y.z</em> <code>server-</code><em>x.y.z</em></p>
+</li>
+<li>
+<p><code>!</code> <code>IAMA</code> <em>role</em></p>
+</li>
+<li>
+<p>(The equivalent of running a <code>dump</code> as this client, with tag <code>!</code>)</p>
+</li>
+<li>
+<p><code>!</code> <code>ACK OK success</code></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Servers <strong>should not</strong> send other responses until finishing the <code>ACK</code>,
+and clients <strong>should not</strong> send requests until then.</p>
+</div>
+<div class="sect2">
+<h3 id="_ohai_client_welcome"><a class="anchor" href="#_ohai_client_welcome"></a><code>OHAI</code> — client welcome</h3>
+<div class="sect3">
+<h4 id="_synopsis_3"><a class="anchor" href="#_synopsis_3"></a>Synopsis</h4>
+<div class="paragraph">
+<p><code>OHAI</code> <em>client-id</em> <em>protocol-version</em> <em>server-version</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description_3"><a class="anchor" href="#_description_3"></a>Description</h4>
+<div class="paragraph">
+<p>This <strong>must</strong> be the first response sent by the server.</p>
+</div>
+<div class="paragraph">
+<p>It contains the following arguments:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>A string ID identifying the client within the set of clients currently
+connected to the server.  This <strong>must</strong> be unique among the clients
+connected at any given time;</p>
+</li>
+<li>
+<p>A string, of the form <code>NAME-M.m.p</code>, giving the name of the protocol
+(substitute for <code>NAME</code>) and its semantic version (substitute major,
+minor and patch numbers for <code>M</code>, <code>m</code> , and <code>p</code>).
+For servers complying to this specification, <code>NAME</code> <strong>should</strong> be
+<code>bifrost</code> and the semantic version <strong>should</strong> be that given in the
+introduction;</p>
+</li>
+<li>
+<p>A string, of the form <code>NAME-M.n.p</code>, giving the name of the server
+software and its semantic version as above.  Clients <strong>should not</strong>
+alter their behaviour in any way due to the contents of this string,
+except to work around known defects in existing server software.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><code>OHAI</code> <strong>must</strong> be sent as a unicast, with the tag <code>!</code>.  It <strong>must not</strong> be
+sent multiple times during one connection.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_iama_server_role"><a class="anchor" href="#_iama_server_role"></a><code>IAMA</code> — server role</h3>
+<div class="sect3">
+<h4 id="_synopsis_4"><a class="anchor" href="#_synopsis_4"></a>Synopsis</h4>
+<div class="paragraph">
+<p><code>IAMA</code> <em>role</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description_4"><a class="anchor" href="#_description_4"></a>Description</h4>
+<div class="paragraph">
+<p>This <strong>must</strong> be the second response sent by the server.</p>
+</div>
+<div class="paragraph">
+<p>It contains the name of the <em>role</em> the server is implementing.  For
+standard roles, see <a href="#roles:index.adoc" class="page unresolved">Roles</a>.</p>
+</div>
+<div class="paragraph">
+<p>Servers <strong>may</strong> announce a non-standard role, but the role name <strong>must</strong>
+begin with <code>x/</code>.  For example, <code>x/player/video</code> could describe a Bifrost
+server enabling video playback.</p>
+</div>
+<div class="paragraph">
+<p>Clients, upon connecting to a server with an unsupported role, <strong>should</strong> disconnect
+and relay an error to the user.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

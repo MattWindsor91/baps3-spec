@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Message Protocol :: Bifrost Specification</title>
+    <link rel="canonical" href="https://universityradioyork.github.io/baps3-spec/bifrost/message/tests.html">
+    <meta name="generator" content="Antora 2.2.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://universityradioyork.github.io/baps3-spec">Bifrost Specification</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://ury.org.uk">URY</a>
+        <a class="navbar-item" href="https://universityradioyork.github.io">GitHub</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="bifrost" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Bifrost Specification</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../index.html">Introduction</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../conventions.html">Conventions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../compiling.html">Compiling</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">The Message Protocol</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="spec.html">Specification</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="tests.html">Compliance Tests</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/index.html">The Core Protocol</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../core/commands.html">Core Command Set</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../role/index.html">Roles</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../role/player.html"><code>player/file</code></a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../role/list.html"><code>list</code></a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../role/mux.html"><code>mux</code></a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../role/tracklister.html"><code>tracklister</code></a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../role/db.html"><code>db</code></a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Bifrost Specification</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Bifrost Specification</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main>
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Bifrost Specification</a></li>
+    <li><a href="index.html">The Message Protocol</a></li>
+    <li><a href="tests.html">Compliance Tests</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///Users/mattbw/Documents/git/baps3-spec/bifrost/modules/message/pages/tests.adoc">Edit this Page</a></div>
+</div>
+<article class="doc">
+<h1 class="page">Message Protocol</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section contains compliance tests for implementations of the
+<a href="spec.html" class="page">message protocol</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tokeniser"><a class="anchor" href="#_tokeniser"></a>Tokeniser</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Implementors <strong>may</strong> use these tests as a basis for automated testing of
+their implementations of a Bifrost tokeniser.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Implementors automated tests based on this list <strong>should</strong> take
+input and output strings from the <em>source form</em> of this page, due to
+potential differences in the rendered copy.  See
+<a href="../compiling.html" class="page">Compiling</a> for details on how to obtain
+the source.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 8.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 25.0001%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">ID</th>
+<th class="tableblock halign-left valign-top">Input</th>
+<th class="tableblock halign-left valign-top">Output</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">E1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>""</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Empty string (parsed as whitespace)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">E2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"\n"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Empty line</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">E3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"''\n"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{""}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Empty single-quoted string (parsed as empty string)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">E4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"\"\"\n"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{""}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Empty double-quoted string (parsed as empty string)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">W1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"foo bar baz\n"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"foo", "bar", "baz"}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Space-delimited words</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">W2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"foo\tbar\tbaz\n"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"foo", "bar", "baz"}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tab-delimited words</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">W3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"foo\rbar\rbaz\n"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"foo", "bar", "baz"}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Words delimited by odd, but valid, whitespace</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">W4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"silly windows\r\n"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"silly", "windows"}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CRLF line ending tolerance</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">W5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"     abc def\n"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"abc", "def"}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Leading whitespace</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">W6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"ghi jkl     \n"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"ghi", "jkl"}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Trailing whitespace</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">W7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"     mno pqr     \n"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"mno", "pqr"}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Surrounding whitespace</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"abc\\\ndef\n"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"abc\ndef"}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Backslash escaping</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"\"abc\ndef\"\n"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"abc\ndef"}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Double-quoting</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"\"abc\\\ndef\"\n"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"abc\ndef"}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Double-quoting with backslash escape</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"'abc\ndef'\n"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"abc\ndef"}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Single-quoting</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"'abc\\\ndef'\n"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"abc\\\ndef"}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Single-quoting with (failed) backslash escape</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Scare\\\" quotes\\\"\n"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"Scare\"", "quotes\""}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Backslash-escaped double quote</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"I\\'m free\n"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"I&#8217;m", "free"}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Backslash-escaped single quote</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"'hello, I'\\''m an escaped single quote'\n"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"hello, I&#8217;m an escaped single quote"}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Single-quoted single quote</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q9</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"\"hello, this is an \\\" escaped double quote\"\n"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"hello, this is an \" escaped double quote"}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Double-quoted double quote</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"first line\nsecond line\n"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"first", "line"}, {"second", "line"}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Multiple lines in one tokenisation</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">U1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"北野 武\n"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"北野", "武"}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Valid UTF-8 (provided the string literals are interpreted as UTF-8,
+for example in Go)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">U2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This ID was used for a test which is no longer in use.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">X1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"enqueue file \"C:\\\\Users\\\\Test\\\\Artist - Title.mp3\" 1\n"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"enqueue", "file", "C:\\Users\\Test\\Artist - Title.mp3", "1"}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Representative command with Windows path</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</article>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

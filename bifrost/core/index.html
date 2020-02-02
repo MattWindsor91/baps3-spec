@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>The Core Protocol :: Bifrost Specification</title>
+    <link rel="canonical" href="https://universityradioyork.github.io/baps3-spec/bifrost/core/index.html">
+    <meta name="generator" content="Antora 2.2.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://universityradioyork.github.io/baps3-spec">Bifrost Specification</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://ury.org.uk">URY</a>
+        <a class="navbar-item" href="https://universityradioyork.github.io">GitHub</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="bifrost" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Bifrost Specification</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../index.html">Introduction</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../conventions.html">Conventions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../compiling.html">Compiling</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../message/index.html">The Message Protocol</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../message/spec.html">Specification</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../message/tests.html">Compliance Tests</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item is-current-page" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">The Core Protocol</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="commands.html">Core Command Set</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../role/index.html">Roles</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../role/player.html"><code>player/file</code></a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../role/list.html"><code>list</code></a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../role/mux.html"><code>mux</code></a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../role/tracklister.html"><code>tracklister</code></a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../role/db.html"><code>db</code></a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Bifrost Specification</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Bifrost Specification</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main>
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Bifrost Specification</a></li>
+    <li><a href="index.html">The Core Protocol</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///Users/mattbw/Documents/git/baps3-spec/bifrost/modules/core/pages/index.adoc">Edit this Page</a></div>
+</div>
+<article class="doc">
+<h1 class="page">The Core Protocol</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>On top of the <a href="message:index.adoc">message protocol</a>, Bifrost defines a set of
+common conventions and features all Bifrost servers <strong>must</strong>
+implement.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_commands"><a class="anchor" href="#_commands"></a>Commands</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Each Bifrost message consists of a <em>command</em> of two or more words.</p>
+</div>
+<div class="paragraph">
+<p>The first word is the <em>tag</em>, which both uniquely identifies the
+particular message and its intended path through a Bifrost stack.
+Tags are defined below.</p>
+</div>
+<div class="paragraph">
+<p>The second word is the <em>command word</em> and identifies the type of
+command; any further words are <em>arguments</em> to that command.</p>
+</div>
+<div class="paragraph">
+<p>Commands are divided into <em>requests</em> and <em>responses</em>.</p>
+</div>
+<div class="sect2">
+<h3 id="_requests"><a class="anchor" href="#_requests"></a>Requests</h3>
+<div class="paragraph">
+<p><em>Requests</em> are the subset of valid commands that originate from an
+client, and instruct a server.  Request command words <strong>must</strong> consist
+of one or more <em>lowercase</em> ASCII characters, and <strong>may</strong> be quoted.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_responses"><a class="anchor" href="#_responses"></a>Responses</h3>
+<div class="paragraph">
+<p><em>Responses</em> are the subset of valid commands that originate from a
+server, and inform a client.  Response command words <strong>must</strong> consist of
+one or more <em>uppercase</em> ASCII characters, and <strong>may</strong> be quoted.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tags_and_routing"><a class="anchor" href="#_tags_and_routing"></a>Tags and Routing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>TBC</p>
+</div>
+</div>
+</div>
+</article>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>list :: Bifrost Specification</title>
+    <link rel="canonical" href="https://universityradioyork.github.io/baps3-spec/bifrost/role/list.html">
+    <meta name="generator" content="Antora 2.2.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://universityradioyork.github.io/baps3-spec">Bifrost Specification</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://ury.org.uk">URY</a>
+        <a class="navbar-item" href="https://universityradioyork.github.io">GitHub</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="bifrost" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Bifrost Specification</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../index.html">Introduction</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../conventions.html">Conventions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../compiling.html">Compiling</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../message/index.html">The Message Protocol</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../message/spec.html">Specification</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../message/tests.html">Compliance Tests</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/index.html">The Core Protocol</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../core/commands.html">Core Command Set</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Roles</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="player.html"><code>player/file</code></a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="list.html"><code>list</code></a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="mux.html"><code>mux</code></a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tracklister.html"><code>tracklister</code></a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="db.html"><code>db</code></a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Bifrost Specification</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Bifrost Specification</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main>
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Bifrost Specification</a></li>
+    <li><a href="index.html">Roles</a></li>
+    <li><a href="list.html"><code>list</code></a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///Users/mattbw/Documents/git/baps3-spec/bifrost/modules/role/pages/list.adoc">Edit this Page</a></div>
+</div>
+<article class="doc">
+<h1 class="page"><code>list</code></h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>list</code> role maintains a playlist.</p>
+</div>
+<div class="paragraph">
+<p>The playlist contains both <em>file items</em>, which represent
+files available to load into the player, and <em>text items</em>, which
+are comments that can be added into the playlist, but are not
+loadable and will be skipped over by the playlist.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_items_specific_to_this_role"><a class="anchor" href="#_items_specific_to_this_role"></a>Items specific to this role</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_non_command_requirements"><a class="anchor" href="#_non_command_requirements"></a>Non-command requirements</h3>
+<div class="paragraph">
+<p>Servers implementing <code>list</code> have the following requirements in addition to
+providing the command interface below:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">File and text loads</dt>
+<dd>
+<p>Servers <strong>must</strong> allow both files and text items to be
+enqueued, and <strong>must</strong> disregard text items for the purposes of
+selection and auto-advancing.</p>
+</dd>
+<dt class="hdlist1">Player mounting</dt>
+<dd>
+<p>Servers <strong>must</strong> expose a <code>player/file</code> at the mount point <code>player</code>.
+This player <strong>may</strong> be integrated into the <code>list</code>, so long as it obeys
+the mounting protocol.  The player <strong>must</strong> be fully controllable through
+the mounting protocol.</p>
+</dd>
+<dt class="hdlist1">Flexible player selection</dt>
+<dd>
+<p>Servers <strong>should</strong> allow the configurable selection of the
+player instance to which it will attach by using the mounting protocol.
+If the playlist spawns, or contains, its own player,
+this <strong>may</strong> be disregarded.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_selection"><a class="anchor" href="#_selection"></a>Selection</h3>
+<div class="paragraph">
+<p>Playlists <strong>must</strong> record the currently selected item, and allow it to be
+modified using the <code>select</code> request.  The current selection is visible through
+the <code>SELECT</code> response, which is part of the dump format for a <code>list</code>.</p>
+</div>
+<div class="paragraph">
+<p>Selections are zero-indexed, with the special selection <code>-1</code> representing a
+lack of selection.</p>
+</div>
+<div class="paragraph">
+<p>In addition to direct manipulation via a <code>select</code> request, the selection
+<strong>must</strong> be changed in the following situations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If the playlist receives an <code>EJECT</code> response from its player, the selection
+becomes <code>-1</code>;</p>
+</li>
+<li>
+<p>If the playlist receives an <code>FLOAD</code> response from the player, the selection
+becomes <code>-1</code> if the response was generated by the playlist (has a tag
+that the playlist has sent), and the index of the corresponding item in
+the playlist otherwise (the playlist should keep note of which specific
+item it was trying to <code>fload</code> into the player);</p>
+</li>
+<li>
+<p>If the player disconnects, the selection becomes <code>-1</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_autoload_types"><a class="anchor" href="#_autoload_types"></a>Autoload types</h3>
+<div class="paragraph">
+<p>Playlists <strong>may</strong> support autoloading of files when the underlying player
+reports an <code>END</code>.  The following autoload types, used with <code>AUTO</code> and <code>auto</code>,
+are standard (but optional):</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>off</code></dt>
+<dd>
+<p>No autoloading.  When a selected file <code>END</code>s, the selection does not change.
+This <strong>should</strong> be assumed by the client to be the default behaviour.</p>
+</dd>
+<dt class="hdlist1"><code>drop</code></dt>
+<dd>
+<p>When a selected file <code>END</code>s, the selection is reset to <code>-1</code>.</p>
+</dd>
+<dt class="hdlist1"><code>next</code></dt>
+<dd>
+<p>When a selected file <code>END</code>s, the <em>file</em> with the lowest index greater than
+the original file is selected.  If none exists, the selection is reset to
+<code>-1</code>.</p>
+</dd>
+<dt class="hdlist1"><code>shuffle</code></dt>
+<dd>
+<p>In this mode, the server maintains a list of hashes that is reset when a
+<code>sel</code> command is received.  When a selected file <code>END</code>s, a random <em>file</em>
+whose hash is not yet in the list is selected, and its hash stored in the list.
+If all files in the playlist are stored in the list, the list is emptied and
+the selection is reset to <code>-1</code>.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>If the default autoload type used by a playlist is not <code>off</code>, the user <strong>must</strong> be informed of this.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dump_format"><a class="anchor" href="#_dump_format"></a>Dump format</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The dump format for <code>list</code> is as follows.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AUTO</code> <em>autoload-type</em>.</p>
+</li>
+<li>
+<p><code>COUNTL</code> <em>number-of-items</em>.</p>
+</li>
+<li>
+<p>Item dump (see below) <strong>for each</strong> index from <code>0</code> to <em>number-of-items - 1</em>.</p>
+</li>
+<li>
+<p><code>SEL</code> <em>index</em> <em>hash</em>.</p>
+</li>
+<li>
+<p><code>ON</code> <em>player</em> <em>request&#8230;&#8203;</em> <strong>for each</strong> dump item from the player.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_item_dump_format"><a class="anchor" href="#_item_dump_format"></a>Item dump format</h3>
+<div class="paragraph">
+<p><strong>If</strong> item <em>index</em> is a file:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>FLOADL</code> <em>index</em> <em>hash</em> <em>absolute-path</em>;</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Else if</strong> item <em>index</em> is text:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>TLOADL</code> <em>index</em> <em>hash</em> <em>contents</em>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_commands"><a class="anchor" href="#_commands"></a>Commands</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>list</code> role adds the following commands:</p>
+</div>
+<div class="sect2">
+<h3 id="_responses"><a class="anchor" href="#_responses"></a>Responses</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>AUTO</code> <em>autoload-type</em></dt>
+<dd>
+<p>The playlist is now using <em>autoload-type</em> as its autoload type.
+If no <code>AUTO</code> is received, clients <strong>should</strong> assume no autoloading is
+occurring</p>
+</dd>
+<dt class="hdlist1"><code>SEL</code> <em>index</em> <em>hash</em></dt>
+<dd>
+<p>If <em>index</em> is a non-negative number, the <em>file</em> at index <em>index</em> and with
+hash <em>hash</em> is currently selected (and is, or will be, loaded into the
+player).  If <em>index</em> is <code>-1</code>, no file is selected (and <em>hash</em> is
+undefined).  If the client does not have an file with the given index or
+hash, the client <strong>should</strong> request a <code>dump</code>.</p>
+</dd>
+<dt class="hdlist1"><code>COUNTL</code> <em>number-of-items</em></dt>
+<dd>
+<p>The playlist has <em>number-of-items</em> items enqueued.  If this number is
+inconsistent with the client&#8217;s expectations, the client <strong>should</strong>
+request a <code>dump</code>.</p>
+</dd>
+<dt class="hdlist1"><code>FLOADL</code> <em>index</em> <em>hash</em> <em>absolute-path</em></dt>
+<dd>
+<p>The playlist has enqueued a file item at index <em>index</em> with the hash <em>hash</em>
+and absolute path <em>absolute-path</em>.  The comments on indices above apply.</p>
+</dd>
+<dt class="hdlist1"><code>TLOADL</code> <em>index</em> <em>hash</em> <em>contents</em></dt>
+<dd>
+<p>The playlist has enqueued a text item at index <em>index</em> with the hash
+<em>hash</em> and text <em>contents</em>.  If <em>index</em> is below the client&#8217;s last
+received <code>COUNTL</code>, the item previously at <em>index</em> has been replaced by this
+new item.
+If <em>index</em> is equal to the client&#8217;s last received <code>COUNTL</code>, the
+client <strong>should</strong> presume <code>COUNTL</code> has increased by one.  The server
+<strong>may</strong> re-send <code>COUNTL</code> to confirm this.  If <em>index</em> is greater
+than the client&#8217;s last received <code>COUNTL</code>, the client <strong>should</strong>
+request a <code>dump</code> to fill in the missing files.</p>
+</dd>
+<dt class="hdlist1"><code>EJECTL</code> <em>index</em> <em>hash</em></dt>
+<dd>
+<p>The playlist has removed an item at index <em>index</em> with the hash <em>hash</em>.
+If <em>index</em> is below or equal to the client&#8217;s last received <code>COUNTL</code>,
+the client <strong>should</strong> presume <code>COUNTL</code> has decreased by one.  The serve
+<strong>may</strong> re-send <code>COUNTL</code> to confirm this.  If <em>index</em> is greater than
+the client&#8217;s last received <code>COUNTL</code>, or the <em>hash</em> does not match the
+client&#8217;s observaitions, the client <strong>should</strong> request a <code>dump</code>.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_requests"><a class="anchor" href="#_requests"></a>Requests</h3>
+<div class="sect3">
+<h4 id="_auto_changes_the_autoload_style"><a class="anchor" href="#_auto_changes_the_autoload_style"></a><code>auto</code> — changes the autoload style</h4>
+<div class="paragraph">
+<p>TODO
+==== <code>sel</code> — changes the selection
+TODO
+==== <code>tloadl</code> — loads a text item into the list
+TODO
+==== <code>floadl</code> — loads a file item into the list
+TODO
+==== <code>ejectl</code> — removes an item from the list
+TODO</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

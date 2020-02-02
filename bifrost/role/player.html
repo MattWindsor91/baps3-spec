@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>player/file :: Bifrost Specification</title>
+    <link rel="canonical" href="https://universityradioyork.github.io/baps3-spec/bifrost/role/player.html">
+    <meta name="generator" content="Antora 2.2.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://universityradioyork.github.io/baps3-spec">Bifrost Specification</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://ury.org.uk">URY</a>
+        <a class="navbar-item" href="https://universityradioyork.github.io">GitHub</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="bifrost" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Bifrost Specification</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../index.html">Introduction</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../conventions.html">Conventions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../compiling.html">Compiling</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../message/index.html">The Message Protocol</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../message/spec.html">Specification</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../message/tests.html">Compliance Tests</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../core/index.html">The Core Protocol</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../core/commands.html">Core Command Set</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Roles</a>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="player.html"><code>player/file</code></a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="list.html"><code>list</code></a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="mux.html"><code>mux</code></a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tracklister.html"><code>tracklister</code></a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="db.html"><code>db</code></a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Bifrost Specification</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Bifrost Specification</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main>
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Bifrost Specification</a></li>
+    <li><a href="index.html">Roles</a></li>
+    <li><a href="player.html"><code>player/file</code></a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///Users/mattbw/Documents/git/baps3-spec/bifrost/modules/role/pages/player.adoc">Edit this Page</a></div>
+</div>
+<article class="doc">
+<h1 class="page"><code>player/file</code></h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>player/file</code> role plays audio files.</p>
+</div>
+<div class="paragraph">
+<p>Servers with this role are supplied a single file at a time.  They
+allow the playback to be controlled by upstream services through a
+basic API (<code>stop</code>, <code>play</code>, <code>seek</code>, <code>load</code>, and <code>eject</code>, <code>end</code>, and
+<code>dump</code>).</p>
+</div>
+<div class="paragraph">
+<p><code>player/file</code> represents part of a conceptual <em>playout
+channel</em>, with <code>list</code> providing the rest.  Bifrost systems will
+often use more than one channel, so a playout machine will likely host
+more than one instance of the player service via a <code>mux</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_items_specific_to_this_role"><a class="anchor" href="#_items_specific_to_this_role"></a>Items specific to this role</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_non_command_requirements"><a class="anchor" href="#_non_command_requirements"></a>Non-command requirements</h3>
+<div class="paragraph">
+<p>Servers implementing <code>player/file</code> have the following requirements in addition
+to providing the command interface below:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">File loads</dt>
+<dd>
+<p>Servers <strong>must</strong> be able to load and play files, given their
+absolute path on the local filesystem.</p>
+</dd>
+<dt class="hdlist1">Configurable audio sink</dt>
+<dd>
+<p>Servers <strong>must</strong> allow their audio sinks to be configured.  This
+allows a playout machine to direct each player to a separate
+physical or logical sound-card, which is important for allowing each
+playback channel to be routed to a separate mixing desk fader.</p>
+</dd>
+<dt class="hdlist1">Non-conflicting end-point</dt>
+<dd>
+<p>Servers <strong>must</strong> allow their end-points to be set up so as not
+to conflict with other Bifrost servers on the same machine.  For
+example, if it exposes a TCP socket, the port needs to be
+configurable; if it exposes a <em>stdin/stdout</em> interface, then no
+action is needed as this cannot conflict with other services.  This
+is to allow multiple such services to co-exist on the same machine,
+which is important for the multiple-output-channel use case
+mentioned above.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dump_format"><a class="anchor" href="#_dump_format"></a>Dump format</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The dump format for <code>player/file</code> is as follows.</p>
+</div>
+<div class="paragraph">
+<p><strong>If</strong> a file with path <em>absolute-path</em> is loaded with length <em>l</em> microseconds and position <em>p</em> microseconds:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>FLOAD</code> <em>absolute-path</em>.</p>
+</li>
+<li>
+<p><code>PLAY</code> if the file is playing; else, <code>STOP</code>.</p>
+</li>
+<li>
+<p><code>LEN</code> <em>l</em> if the length is available;</p>
+</li>
+<li>
+<p><code>POS</code> <em>p</em>;</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Else if</strong> no file is loaded:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>EJECT</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These responses may be given in any order.  If <code>LEN</code> is omitted, the client <strong>should</strong> assume it is unavailable.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_commands"><a class="anchor" href="#_commands"></a>Commands</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>player/file</code> role adds the following commands:</p>
+</div>
+<div class="sect2">
+<h3 id="_responses"><a class="anchor" href="#_responses"></a>Responses</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>FLOAD</code> <em>absolute-path</em></dt>
+<dd>
+<p>The player has loaded <em>absolute-path</em>.  If no further requests specify the
+position and playback state, assume position <code>0</code> and playback state
+<code>STOP</code>.  Clients <strong>must not</strong> ignore this response if there was already a
+file loaded, even if the path is the same.</p>
+</dd>
+<dt class="hdlist1"><code>EJECT</code></dt>
+<dd>
+<p>The player has no file loaded, or has just unloaded its existing file.
+Clients <strong>may</strong> ignore this response if there was already no file loaded.</p>
+</dd>
+<dt class="hdlist1"><code>PLAY</code></dt>
+<dd>
+<p>The player is playing its loaded file.  Clients <strong>may</strong> ignore this response
+if the file is already playing.</p>
+</dd>
+<dt class="hdlist1"><code>STOP</code></dt>
+<dd>
+<p>The player is not playing its loaded file.  Clients <strong>may</strong> ignore this
+response if the file is already stopped.</p>
+</dd>
+<dt class="hdlist1"><code>END</code></dt>
+<dd>
+<p>The loaded file has ended.  This happens either when it finishes playing, or
+an <code>end</code> request has been sent.  If no further requests specify otherwise,
+assume the loaded file is now at position <code>0</code> and playback state <code>STOP</code>.
+Clients <strong>must not</strong> ignore this response if the loaded file has already
+ended.</p>
+</dd>
+<dt class="hdlist1"><code>LEN</code> <em>l</em></dt>
+<dd>
+<p>The file&#8217;s total length is estimated at <em>l</em> microseconds.  This need not be
+accurate, but <strong>should</strong> be an under-approximation of the total length.
+Servers <strong>may</strong> omit <code>LEN</code>, and <strong>should not</strong> report <code>LEN</code> except as part
+of a <code>DUMP</code> or after a file load.</p>
+</dd>
+<dt class="hdlist1"><code>POS</code> <em>p</em></dt>
+<dd>
+<p>The file position is <em>p</em> microseconds from the start of the
+file.  Servers <strong>must</strong> periodically broadcast the position to all clients,
+for example every second, even if the position has not been manually
+changed.  Clients <strong>may</strong> ignore this response if the position has not
+changed since the last <code>POS</code>.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_fload_loads_a_new_file"><a class="anchor" href="#_fload_loads_a_new_file"></a><code>fload</code> — loads a new file</h3>
+<div class="sect3">
+<h4 id="_synopsis"><a class="anchor" href="#_synopsis"></a>Synopsis</h4>
+<div class="paragraph">
+<p><code>fload</code> <em>absolute-path</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description"><a class="anchor" href="#_description"></a>Description</h4>
+<div class="paragraph">
+<p>Loads the file at <em>absolute-path</em> into the player.</p>
+</div>
+<div class="paragraph">
+<p>The new file begins at position <code>0</code> and <code>stop</code>ped.  Servers <strong>may</strong> make
+this explicit through <code>POS</code> and <code>STOP</code> responses.  This is only necessary if
+the position, state, or both have changed from these defaults for new
+files.</p>
+</div>
+<div class="paragraph">
+<p>Servers <strong>may</strong> broadcast <code>EJECT</code> before <code>FLOAD</code>, as if an implicit
+<code>eject</code> occurred before a new file was loaded.  This is not necessary.</p>
+</div>
+<div class="paragraph">
+<p>If the file failed to load, servers <strong>must</strong> broadcast <code>EJECT</code> before
+<code>ACK</code>, then behave as if no file is loaded.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_responses_sent"><a class="anchor" href="#_responses_sent"></a>Responses sent</h4>
+<div class="paragraph">
+<p>On success:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>(Optional due to success.) <strong>Broadcast</strong> <code>EJECT</code>.</p>
+</li>
+<li>
+<p><strong>Broadcast</strong> <code>FLOAD</code> <em>absolute-path</em>.</p>
+</li>
+<li>
+<p><strong>Unicast</strong> <code>ACK</code> <code>OK</code> <code>success</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>On failure, due to a missing file:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>(Mandatory due to failure.) <strong>Broadcast</strong> <code>EJECT</code>.</p>
+</li>
+<li>
+<p><strong>Unicast</strong> <code>ACK</code> <code>WHAT</code> <code>file-not-found</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>On failure, due to an unknown file format:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>(Mandatory due to failure.) <strong>Broadcast</strong> <code>EJECT</code>.</p>
+</li>
+<li>
+<p><strong>Unicast</strong> <code>ACK</code> <code>WHAT</code> <code>file-type-not-supported</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>On failure, due to a failure to load a supported file format:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>(Mandatory due to failure.) <strong>Broadcast</strong> <code>EJECT</code>.</p>
+</li>
+<li>
+<p><strong>Unicast</strong> <code>ACK</code> <code>FAIL</code> <code>file-load-failed</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>On any other failure:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>(Mandatory due to failure.) <strong>Broadcast</strong> <code>EJECT</code>.</p>
+</li>
+<li>
+<p><strong>Unicast</strong> <code>ACK</code> <code>FAIL</code> <code>internal-error</code>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_eject_unloads_the_currently_loaded_file"><a class="anchor" href="#_eject_unloads_the_currently_loaded_file"></a><code>eject</code> — unloads the currently loaded file</h3>
+<div class="sect3">
+<h4 id="_synopsis_2"><a class="anchor" href="#_synopsis_2"></a>Synopsis</h4>
+<div class="paragraph">
+<p><code>eject</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description_2"><a class="anchor" href="#_description_2"></a>Description</h4>
+<div class="paragraph">
+<p>If a file is loaded, unload it.</p>
+</div>
+<div class="paragraph">
+<p>If a file was unloaded, servers <strong>must</strong> then send <code>EJECT</code> to confirm.
+Otherwise, servers <strong>may</strong> send <code>EJECT</code>, but this is unnecessary.</p>
+</div>
+<div class="paragraph">
+<p>This request always succeeds, even if no file is loaded.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_responses_sent_2"><a class="anchor" href="#_responses_sent_2"></a>Responses sent</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>(Mandatory only if a file was unloaded.) <strong>Broadcast</strong> <code>EJECT</code>.</p>
+</li>
+<li>
+<p><strong>Unicast</strong> <code>ACK</code> <code>OK</code> <code>success</code>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_play_plays_the_currently_loaded_file"><a class="anchor" href="#_play_plays_the_currently_loaded_file"></a><code>play</code> — plays the currently loaded file</h3>
+<div class="sect3">
+<h4 id="_synopsis_3"><a class="anchor" href="#_synopsis_3"></a>Synopsis</h4>
+<div class="paragraph">
+<p><code>play</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description_3"><a class="anchor" href="#_description_3"></a>Description</h4>
+<div class="paragraph">
+<p>If a file is loaded, begin playback.  Otherwise, fail.</p>
+</div>
+<div class="paragraph">
+<p>Playback begins at position <code>0</code> for newly loaded or <code>end</code>ed files,
+or from the position at which the file was last <code>stop</code>ped otherwise.</p>
+</div>
+<div class="paragraph">
+<p>Servers <strong>may</strong> send <code>PLAY</code> if the file is already playing.
+Otherwise, <code>play</code> on a playing file has no effect.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_responses_sent_3"><a class="anchor" href="#_responses_sent_3"></a>Responses sent</h4>
+<div class="paragraph">
+<p>On success, if a file is loaded:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>(Mandatory only if file stopped.) <strong>Broadcast</strong> <code>PLAY</code>.</p>
+</li>
+<li>
+<p><strong>Unicast</strong> <code>ACK</code> <code>OK</code> <code>success</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>On failure, If a file is not loaded:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Unicast</strong> <code>ACK</code> <code>WHAT</code> <code>no-file</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>On any other failure:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Unicast</strong> <code>ACK</code> <code>FAIL</code> <code>internal-error</code>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_stop_stops_pauses_the_currently_loaded_file"><a class="anchor" href="#_stop_stops_pauses_the_currently_loaded_file"></a><code>stop</code> — stops (pauses) the currently loaded file</h3>
+<div class="sect3">
+<h4 id="_synopsis_4"><a class="anchor" href="#_synopsis_4"></a>Synopsis</h4>
+<div class="paragraph">
+<p><code>stop</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description_4"><a class="anchor" href="#_description_4"></a>Description</h4>
+<div class="paragraph">
+<p>If a file is loaded, stop playback.  Otherwise, fail.</p>
+</div>
+<div class="paragraph">
+<p><code>stop</code>ing a file <strong>should not</strong> change the file position.
+To stop and rewind a file while signalling the end of file to clients, use
+<code>end</code>.</p>
+</div>
+<div class="paragraph">
+<p>Servers <strong>may</strong> send <code>STOP</code> if the file is already stopped.
+Otherwise, <code>stop</code> on a stopped file has no effect.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_responses_sent_4"><a class="anchor" href="#_responses_sent_4"></a>Responses sent</h4>
+<div class="paragraph">
+<p>On success:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>(Mandatory only if file playing.) <strong>Broadcast</strong> <code>STOP</code>.</p>
+</li>
+<li>
+<p><strong>Unicast</strong> <code>ACK</code> <code>OK</code> <code>success</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>On failure, if a file is not loaded:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Unicast</strong> <code>ACK</code> <code>WHAT</code> <code>no-file</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>On any other failure:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Unicast</strong> <code>ACK</code> <code>FAIL</code> <code>internal-error</code>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_end_ends_rewinds_the_currently_loaded_file"><a class="anchor" href="#_end_ends_rewinds_the_currently_loaded_file"></a><code>end</code> — ends (rewinds) the currently loaded file</h3>
+<div class="sect3">
+<h4 id="_synopsis_5"><a class="anchor" href="#_synopsis_5"></a>Synopsis</h4>
+<div class="paragraph">
+<p><code>end</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description_5"><a class="anchor" href="#_description_5"></a>Description</h4>
+<div class="paragraph">
+<p>If a file is loaded, finish it.  Otherwise, fail.</p>
+</div>
+<div class="paragraph">
+<p>The main use of this command is to send an <code>END</code> broadcast manually.
+This notifies clients that the file has reached its end, either by
+running out of data or through <code>end</code>.  Clients <strong>may</strong> then implement
+features such as autoloading using the <code>END</code> broadcast.</p>
+</div>
+<div class="paragraph">
+<p>Depending on any such client behaviour, a manual <code>end</code> can be used to
+skip or rewind the current file.</p>
+</div>
+<div class="paragraph">
+<p>As mentioned above, <code>END</code> implies that the file has returned to
+position <code>0</code> and is <code>STOP</code>ped.  Servers <strong>may</strong> utilize other behaviour,
+but they <strong>must</strong> make this explicit through <code>POS</code>, <code>PLAY</code> and <code>EJECT</code>
+responses, and <strong>must</strong> ensure any <code>dump</code>s show the correct
+position and playback state.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_responses_sent_5"><a class="anchor" href="#_responses_sent_5"></a>Responses sent</h4>
+<div class="paragraph">
+<p>On success:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>(Mandatory only if file playing.) <strong>Broadcast</strong> <code>END</code>.</p>
+</li>
+<li>
+<p>(Only required if the server doesn&#8217;t return to position <code>0</code>.)
+<strong>Broadcast</strong> <code>POS</code> <em>microseconds</em>.</p>
+</li>
+<li>
+<p>(<code>PLAY</code> or <code>EJECT</code> are required if the server doesn&#8217;t <code>stop</code>.
+Therefore, sending <code>STOP</code> is unnecessary, but can still be done.)
+<strong>Broadcast</strong> <code>STOP</code> / <strong>Broadcast</strong> <code>PLAY</code> / <strong>Broadcast</strong> <code>EJECT</code>.</p>
+</li>
+<li>
+<p><strong>Unicast</strong> <code>ACK</code> <code>OK</code> <code>success</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>On failure, if a file is not loaded:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Unicast</strong> <code>ACK</code> <code>WHAT</code> <code>no-file</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>On any other failure:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Unicast</strong> <code>ACK</code> <code>FAIL</code> <code>internal-error</code>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_pos_seeks_to_a_new_position_in_the_currently_loaded_file"><a class="anchor" href="#_pos_seeks_to_a_new_position_in_the_currently_loaded_file"></a><code>pos</code> — seeks to a new position in the currently loaded file</h3>
+<div class="sect3">
+<h4 id="_synopsis_6"><a class="anchor" href="#_synopsis_6"></a>Synopsis</h4>
+<div class="paragraph">
+<p><code>pos</code> <em>microseconds</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_description_6"><a class="anchor" href="#_description_6"></a>Description</h4>
+<div class="paragraph">
+<p>Seeks to the given position, in microseconds.</p>
+</div>
+<div class="paragraph">
+<p>Servers <strong>should</strong> reject non-positive-integral positions.  They
+<strong>may</strong> accept (or reject) positions in excess of the loaded file
+length.  In this case, they <strong>should</strong> behave as if the client asked
+to seek to the end of the file.</p>
+</div>
+<div class="paragraph">
+<p>Servers <strong>may</strong> be inaccurate in the actual position taken.
+They <strong>must</strong> show the actual position taken in the <code>POS</code> response,
+not the requested position.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_responses_sent_6"><a class="anchor" href="#_responses_sent_6"></a>Responses sent</h4>
+<div class="paragraph">
+<p>On success:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>(Optional unless the file is either playing or not at position <code>0</code> in which case mandatory).
+<strong>Broadcast</strong> <code>POS</code> <em>microseconds</em>.</p>
+</li>
+<li>
+<p><strong>Unicast</strong> <code>ACK</code> <code>OK</code> <code>success</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>On failure, if a file is not loaded:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Unicast</strong> <code>ACK</code> <code>WHAT</code> <code>no-file</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>On failure, if the position is not valid (not a positive integer)</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Unicast</strong> <code>ACK</code> <code>WHAT</code> <code>pos-not-valid</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>On failure, if the position cannot be seeked to (exceeds file length,
+if not allowed by the server; or the seek is not allowed for this file
+type; etc.):</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Unicast</strong> <code>ACK</code> <code>FAIL</code> <code>pos-impossible</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>On any other failure:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Unicast</strong> <code>ACK</code> <code>FAIL</code> <code>internal-error</code>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
