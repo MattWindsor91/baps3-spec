@@ -1,7 +1,7 @@
 
 = Core Command Set
 
-:roles:  link:../roles/README.adoc
+:roles:  xref:roles:index.adoc
 
 Bifrost servers **must** implement a set of common requests and
 responses.  This is referred to as the _core command set_.

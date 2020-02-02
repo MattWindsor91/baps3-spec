@@ -1,8 +1,6 @@
-= This document
-:gitbook: https://github.com/GitbookIO/gitbook
+= Introduction to the Bifrost specification
 
 This document specifies the Bifrost protocol and playout architecture.
-It is designed to be compiled using {gitbook}[gitbook].
 
 It is, currently, a _living specification_.  It will change
 dramatically and without warning, as Bifrost is designed and

@@ -1,0 +1,3 @@
+.xref:index.adoc[The Message Protocol]
+* xref:spec.adoc[Specification]
+* xref:tests.adoc[Compliance Tests]

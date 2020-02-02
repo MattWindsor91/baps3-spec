@@ -1,11 +1,11 @@
-= Services
+= Roles
 
-:player:         link:player.adoc
-:list:           link:list.adoc
-:tracklister:    link:tracklister.adoc
-:db:             link:db.adoc
-:mux:            link:mux.adoc
-:Rationale:      link:rationale.adoc
+:player:         xref:player.adoc
+:list:           xref:list.adoc
+:tracklister:    xref:tracklister.adoc
+:db:             xref:db.adoc
+:mux:            xref:mux.adoc
+:Rationale:      xref:rationale.adoc
 
 Bifrost is comprised of multiple logical _roles_.  Each role
 is intended to be implemented as a separate server program, but

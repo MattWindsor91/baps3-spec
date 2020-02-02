@@ -3,13 +3,13 @@
 :GitHub:    https://github.com/UniversityRadioYork/baps3-spec
 :Rendered:  https://universityradioyork.github.io/baps3-spec
 :Issues:    https://github.com/UniversityRadioYork/baps3-spec/issues
-:Gitbook:   https://github.com/GitbookIO/gitbook
+:Antora:    https://antora.org
 
-This is the specification for the _Bifrost_ playout system architecture.
+This is the specification for the _Bifrost_ playout system protocol.
 
 The latest version may be found at its {GitHub}[GitHub repository].
 This can be read directly in _AsciiDoc_ format.  We also maintain a
-{Rendered}[pre-rendered copy], using {Gitbook}[_gitbook_], but it
+{Rendered}[pre-rendered copy], using {Antora}[_antora_], but it may
 lag behind the main repository.
 
 NOTE: The _canonical_ Bifrost specification is the latest
@@ -22,9 +22,6 @@ available as the file `LICENSE`.
 
 NOTE: When forking the Bifrost specification, we ask that you change
 the name to avoid confusion.
-
-When browsed as a repository, the specification _summary_ may be found
-at `SUMMARY.md`.  In book form, this is available as a side-bar.
 
 Queries and comments on should be made on the specification's GitHub
 {Issues}[issues] page, or against individual commits.

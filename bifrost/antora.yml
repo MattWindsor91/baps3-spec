@@ -1,0 +1,9 @@
+name: bifrost
+title: Bifrost Specification
+version: master
+start_page: ROOT:index.adoc
+nav:
+- modules/ROOT/nav.adoc
+- modules/message/nav.adoc
+- modules/core/nav.adoc
+- modules/role/nav.adoc

@@ -1,0 +1,13 @@
+= The Message Protocol
+
+:spec:  xref:spec.adoc
+:tests: xref:tests.adoc
+
+This chapter of the specification defines the Bifrost _message protocol_.
+
+== Structure
+
+This chapter contains the following topics:
+
+* the {spec}[specification] of the message protocol itself;
+* a set of {tests}[compliance tests] for checking the message protocol.

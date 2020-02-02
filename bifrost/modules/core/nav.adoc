@@ -1,0 +1,2 @@
+.xref:index.adoc[The Core Protocol]
+* xref:commands.adoc[Core Command Set]

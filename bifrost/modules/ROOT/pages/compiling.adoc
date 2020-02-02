@@ -1,11 +1,11 @@
 = Compiling
-:Gitbook:     https://github.com/GitbookIO/gitbook
+:Antora:      https://antora.org
 :Repository:  https://github.com/UniversityRadioYork/baps3-spec
 :Issues:      https://github.com/UniversityRadioYork/baps3-spec/issues
 :Fork:        https://github.com/UniversityRadioYork/baps3-spec/fork
 
-This document may be compiled using {Gitbook}[gitbook]; see the
-_readme_ of that project for details.
+This document may be compiled using {Antora}[Antora]; see that
+project's documentation for details.
 
 == Source
 

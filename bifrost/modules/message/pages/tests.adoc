@@ -1,9 +1,9 @@
 = Message Protocol
-:compiling: link:../meta/compiling.adoc
-:protocol: link:../protocol/msgproto.adoc
+:compiling: xref:ROOT:compiling.adoc
+:protocol: xref:spec.adoc
 
 This section contains compliance tests for implementations of the
-{protocol}[Message Protocol].
+{protocol}[message protocol].
 
 == Tokeniser
 
@@ -143,3 +143,4 @@ for example in Go)
 |`"enqueue file \"C:\\\\Users\\\\Test\\\\Artist - Title.mp3\" 1\n"`
 |`{"enqueue", "file", "C:\\Users\\Test\\Artist - Title.mp3", "1"}`
 |Representative command with Windows path
+|===

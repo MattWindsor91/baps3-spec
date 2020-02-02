@@ -1,18 +1,19 @@
 GIT		?= git
-GITBOOK		?= gitbook
+ANTORA		?= antora
+SERVE           ?= serve
 
 all: book
 
 book:
-	${GITBOOK} build --config book.json
+	${ANTORA} antora-playbook.toml
 
 serve:
-	${GITBOOK} serve --config book.json
+	${SERVE} build/site
 
 gh-pages: book
 	${GIT} checkout gh-pages
 	git clean -i
-	cp -r _book/* .
+	cp -r build/site/* .
 	git add .
 	git commit -am "Update GitHub Pages copy of spec."
 	${GIT} checkout master	

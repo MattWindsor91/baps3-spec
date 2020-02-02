@@ -1,0 +1,6 @@
+.xref:index.adoc[Roles]
+* xref:player.adoc[`player/file`]
+* xref:list.adoc[`list`]
+* xref:mux.adoc[`mux`]
+* xref:tracklister.adoc[`tracklister`]
+* xref:db.adoc[`db`]
